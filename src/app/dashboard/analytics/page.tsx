@@ -1,7 +1,4 @@
-"use client";
-export const dynamic = "force-dynamic";
-export default AnalyticsPage;
-
-function AnalyticsPage() {
-  // ...giữ nguyên toàn bộ nội dung cũ...
+// Analytics page - coming soon
+export default function AnalyticsPage() {
+  return <div>Analytics - Coming Soon</div>;
 }

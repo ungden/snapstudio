@@ -1,60 +1,38 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
-import { createSupabaseBrowserClient } from "@/integrations/supabase/client";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { useAuth } from "@/components/auth-provider";
+import { DashboardLoading } from "@/components/dashboard-loading";
 
-const supabase = createSupabaseBrowserClient();
-
-export function AdminGuard({ children }: { children: ReactNode }) {
+export default function AdminGuard({ children }: { children: React.ReactNode }) {
+  const { user, profile, loading } = useAuth();
   const router = useRouter();
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [checking, setChecking] = useState(true);
 
   useEffect(() => {
-    const checkAdmin = async () => {
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) {
-          router.replace('/login?next=/admin');
-          return;
-        }
-
-        const { data: profile, error } = await supabase
-          .from('profiles')
-          .select('subscription_plan')
-          .eq('id', user.id)
-          .single();
-
-        if (error || !profile || profile.subscription_plan !== 'admin') {
-          router.replace('/dashboard');
-          return;
-        }
-
-        setIsAdmin(true);
-      } catch (error) {
-        router.replace('/login');
-      } finally {
-        setLoading(false);
+    if (!loading) {
+      if (!user) {
+        router.replace("/login");
+      } else if (!profile || profile.subscription_plan !== "admin") {
+        router.replace("/dashboard");
+      } else {
+        setChecking(false);
       }
-    };
+    }
+  }, [user, profile, loading, router]);
 
-    checkAdmin();
-  }, [router]);
+  if (loading || checking) {
+    return <DashboardLoading />;
+  }
 
-  if (loading) {
+  if (!user || !profile || profile.subscription_plan !== "admin") {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
-        <p className="ml-4 text-lg">Đang kiểm tra quyền truy cập...</p>
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-red-600">Access denied. Admin privileges required.</p>
       </div>
     );
   }
 
-  if (isAdmin) {
-    return <>{children}</>;
-  }
-
-  return null;
+  return <>{children}</>;
 }

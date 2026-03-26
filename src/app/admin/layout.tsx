@@ -33,13 +33,13 @@ export default function AdminLayout({
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="text-2xl font-bold text-red-600 mb-4">Bạn không có quyền truy cập admin</div>
-          <div className="text-gray-600 mb-4">Vui lòng liên hệ admin nếu bạn nghĩ đây là nhầm lẫn.</div>
+          <div className="text-2xl font-bold text-red-600 mb-4">You do not have admin access</div>
+          <div className="text-gray-600 mb-4">Please contact admin if you believe this is an error.</div>
           <button
             className="px-4 py-2 bg-blue-600 text-white rounded"
             onClick={() => router.replace("/dashboard")}
           >
-            Về Dashboard
+            Go to Dashboard
           </button>
         </div>
       </div>

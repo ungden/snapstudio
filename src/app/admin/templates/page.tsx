@@ -24,7 +24,7 @@ export default function TemplatesPage() {
       if (error) throw error;
       setTemplates(data || []);
     } catch (error) {
-      toast.error('Lỗi khi tải templates');
+      toast.error('Error loading templates');
     } finally {
       setLoading(false);
     }
@@ -37,12 +37,12 @@ export default function TemplatesPage() {
   return (
     <div className="max-w-7xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Quản lý Prompt Templates</h1>
-        <p className="text-gray-600">Tạo, chỉnh sửa và quản lý các prompt template cho việc tạo ảnh.</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Prompt Template Management</h1>
+        <p className="text-gray-600">Create, edit, and manage prompt templates for image generation.</p>
       </div>
       
       {loading ? (
-        <p>Đang tải templates...</p>
+        <p>Loading templates...</p>
       ) : (
         <TemplatesTab templates={templates} onDataChange={loadTemplates} />
       )}

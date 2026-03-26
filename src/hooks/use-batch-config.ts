@@ -1,92 +1,49 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
-import { createSupabaseBrowserClient } from "@/integrations/supabase/client";
-import { toast } from "sonner";
-import type { IndustryId } from "@/components/industry-selector";
+import { useState, useCallback } from "react";
 
-const supabase = createSupabaseBrowserClient();
+export type ImageType = "display" | "model" | "social" | "seeding";
 
-type ImageType = 'display' | 'model' | 'social' | 'seeding';
+export interface BatchConfig {
+  display: number;
+  model: number;
+  social: number;
+  seeding: number;
+}
 
-export function useBatchConfig(selectedIndustry: IndustryId) {
-  const [batchConfig, setBatchConfig] = useState<Record<ImageType, number>>({
-    display: 3,
-    model: 3,
-    social: 3,
-    seeding: 3,
-  });
-  
-  const [configExampleImages, setConfigExampleImages] = useState<Record<ImageType, string | null>>({
-    display: null, 
-    model: null, 
-    social: null, 
-    seeding: null
-  });
+const DEFAULT_CONFIG: BatchConfig = {
+  display: 3,
+  model: 3,
+  social: 3,
+  seeding: 3,
+};
 
-  const totalSelectedInBatch = useMemo(() => {
-    return Object.values(batchConfig).reduce((sum, count) => sum + count, 0);
-  }, [batchConfig]);
+export function useBatchConfig() {
+  const [config, setConfig] = useState<BatchConfig>(DEFAULT_CONFIG);
 
-  // Load example images for configurator
-  useEffect(() => {
-    const fetchExampleImages = async () => {
-      try {
-        const categories: ImageType[] = ['display', 'model', 'social', 'seeding'];
-        const promises = categories.map(category => 
-          supabase
-            .from('generated_images')
-            .select('image_url')
-            .eq('is_sample', true)
-            .eq('image_type', category)
-            .eq('industry', selectedIndustry)
-            .limit(1)
-            .maybeSingle()
-        );
-        
-        const results = await Promise.all(promises);
-        
-        const newImages: Record<ImageType, string | null> = { 
-          display: null, 
-          model: null, 
-          social: null, 
-          seeding: null 
-        };
-        
-        results.forEach((result: any, index: number) => {
-          if (result.data?.image_url) {
-            newImages[categories[index]] = result.data.image_url;
-          }
-        });
-        
-        setConfigExampleImages(newImages);
-      } catch (error) {
-        console.error("Error fetching example images for config:", error);
+  const total = config.display + config.model + config.social + config.seeding;
+
+  const updateCount = useCallback(
+    (type: ImageType, count: number) => {
+      const newConfig = { ...config, [type]: count };
+      const newTotal =
+        newConfig.display + newConfig.model + newConfig.social + newConfig.seeding;
+      if (newTotal > 12) {
+        throw new Error("Total number of images cannot exceed 12");
       }
-    };
-    
-    fetchExampleImages();
-  }, [selectedIndustry]);
+      setConfig(newConfig);
+    },
+    [config]
+  );
 
-  const handleBatchConfigChange = useCallback((type: ImageType, delta: number) => {
-    setBatchConfig(prev => {
-      const currentCount = prev[type];
-      const newCount = Math.max(0, currentCount + delta);
-      const currentTotal = Object.values(prev).reduce((sum, count) => sum + count, 0);
-      
-      if (delta > 0 && currentTotal >= 12) {
-        toast.error("Tổng số ảnh không được vượt quá 12");
-        return prev;
-      }
-      
-      return { ...prev, [type]: newCount };
-    });
+  const resetConfig = useCallback(() => {
+    setConfig(DEFAULT_CONFIG);
   }, []);
 
   return {
-    batchConfig,
-    configExampleImages,
-    totalSelectedInBatch,
-    handleBatchConfigChange
+    config,
+    total,
+    updateCount,
+    resetConfig,
   };
 }
