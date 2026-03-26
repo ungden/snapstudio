@@ -61,7 +61,7 @@ const monthlyPlans: Plan[] = [
     },
     features: [
       "1,200 pts/month", 
-      "~10 bộ ảnh (120 pts/bộ)", 
+      "~10 image sets (120 pts/set)", 
       "All 4 styles", 
       "HD downloads",
       "Community access"
@@ -91,7 +91,7 @@ const monthlyPlans: Plan[] = [
     },
     features: [
       "5,000 pts/month", 
-      "~41 bộ ảnh (120 pts/bộ)", 
+      "~41 image sets (120 pts/set)", 
       "All Starter features", 
       "Priority support",
       "Advanced templates",
@@ -122,7 +122,7 @@ const monthlyPlans: Plan[] = [
     },
     features: [
       "15,000 pts/month", 
-      "~125 bộ ảnh (120 pts/bộ)", 
+      "~125 image sets (120 pts/set)", 
       "All Pro features", 
       "Unlimited history",
       "API access",
@@ -155,7 +155,7 @@ const monthlyPlans: Plan[] = [
     },
     features: [
       "50,000 pts/month", 
-      "~416 bộ ảnh (120 pts/bộ)", 
+      "~416 image sets (120 pts/set)", 
       "All Business features", 
       "Dedicated support",
       "Custom integrations",
@@ -639,7 +639,7 @@ export default function EnhancedPricingPlans({
                           <>
                             <div className="flex justify-between"><span>Photographer:</span><span className="font-semibold">3-8 M VND/session</span></div>
                             <div className="flex justify-between"><span>Food styling:</span><span className="font-semibold">1-3 M VND</span></div>
-                            <div className="flex justify-between"><span>Studio rent:</span><span className="font-semibold">500k-2M/ngày</span></div>
+                            <div className="flex justify-between"><span>Studio rent:</span><span className="font-semibold">500k-2M/day</span></div>
                             <div className="flex justify-between"><span>Props & setup:</span><span className="font-semibold">500k-1M</span></div>
                             <div className="border-t pt-3 flex justify-between text-lg"><span className="font-bold">Total:</span><span className="font-bold text-red-600">5-14 M VND</span></div>
                           </>
@@ -686,7 +686,7 @@ export default function EnhancedPricingPlans({
                     <div className="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-xl p-6 shadow-lg">
                       <h4 className="font-bold mb-4 text-xl">SnapStudio AI</h4>
                       <div className="space-y-3">
-                        <div className="flex justify-between"><span>Upload ảnh:</span><span className="font-semibold">5 seconds</span></div>
+                        <div className="flex justify-between"><span>Upload image:</span><span className="font-semibold">5 seconds</span></div>
                         <div className="flex justify-between"><span>AI processing:</span><span className="font-semibold">30 seconds</span></div>
                         <div className="flex justify-between"><span>12 multi-style images:</span><span className="font-semibold">Instant</span></div>
                         <div className="flex justify-between"><span>Cost:</span><span className="font-semibold">120 pts (~12k VND)</span></div>
@@ -737,7 +737,7 @@ export default function EnhancedPricingPlans({
                 onClick={() => handlePlanSelect('pro_yearly')}
               >
                 <Sparkles className="w-5 h-5 mr-2" />
-                Bắt đầu với Pro
+                Start with Pro
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </div>

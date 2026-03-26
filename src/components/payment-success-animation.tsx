@@ -103,7 +103,7 @@ export function PaymentSuccessAnimation({
               <div className="bg-gray-50 rounded-xl p-4">
                 <div className="text-sm text-gray-600 mb-1">Amount paid</div>
                 <div className="font-bold text-gray-900">
-                  {amountPaid.toLocaleString()} VNĐ
+                  {amountPaid.toLocaleString()} VND
                 </div>
               </div>
               

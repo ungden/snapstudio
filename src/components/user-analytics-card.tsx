@@ -148,7 +148,7 @@ export function UserAnalyticsCard() {
       <Card>
         <CardContent className="p-6 text-center">
           <Loader2 className="w-8 h-8 animate-spin mx-auto text-blue-600" />
-          <p className="mt-2 text-gray-600">Đang tải phân tích...</p>
+          <p className="mt-2 text-gray-600">Loading analytics...</p>
         </CardContent>
       </Card>
     );
@@ -161,10 +161,10 @@ export function UserAnalyticsCard() {
       {/* Summary Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { icon: Image, label: 'Tổng ảnh', value: analytics.totalImages },
-          { icon: Heart, label: 'Tổng lượt thích', value: analytics.totalLikes },
-          { icon: MessageSquare, label: 'Tổng bình luận', value: analytics.totalComments },
-          { icon: Download, label: 'Tổng lượt tải', value: analytics.totalDownloads },
+          { icon: Image, label: 'Total Images', value: analytics.totalImages },
+          { icon: Heart, label: 'Total Likes', value: analytics.totalLikes },
+          { icon: MessageSquare, label: 'Total Comments', value: analytics.totalComments },
+          { icon: Download, label: 'Total Downloads', value: analytics.totalDownloads },
         ].map(stat => {
           const Icon = stat.icon;
           return (
@@ -183,7 +183,7 @@ export function UserAnalyticsCard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Hoạt động 7 ngày qua</CardTitle>
+            <CardTitle>Activity - Last 7 Days</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -192,14 +192,14 @@ export function UserAnalyticsCard() {
                 <XAxis dataKey="date" />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="count" fill="#3B82F6" name="Ảnh tạo" />
+                <Bar dataKey="count" fill="#3B82F6" name="Images Created" />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Phân bố loại ảnh</CardTitle>
+            <CardTitle>Image Type Distribution</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -219,7 +219,7 @@ export function UserAnalyticsCard() {
       {/* Top Performing Images */}
       <Card>
         <CardHeader>
-          <CardTitle>Top 5 ảnh hiệu quả nhất</CardTitle>
+          <CardTitle>Top 5 Best Performing Images</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -236,7 +236,7 @@ export function UserAnalyticsCard() {
                 </div>
                 <div className="text-right">
                   <p className="font-bold text-lg text-blue-600">{image.score}</p>
-                  <p className="text-xs text-gray-500">Điểm hiệu quả</p>
+                  <p className="text-xs text-gray-500">Performance score</p>
                 </div>
               </div>
             ))}

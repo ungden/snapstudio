@@ -37,7 +37,7 @@ export function NewProjectDialog({
 
   const handleCreateProject = async () => {
     if (!projectName.trim() || !user) {
-      toast.error("Vui lòng nhập tên dự án");
+      toast.error("Please enter a project name");
       return;
     }
 
@@ -55,13 +55,13 @@ export function NewProjectDialog({
 
       if (error) throw error;
 
-      toast.success("Đã tạo dự án mới!");
+      toast.success("New project created!");
       onProjectCreated(data);
       onOpenChange(false);
       setProjectName("");
     } catch (error) {
       console.error("Error creating project:", error);
-      toast.error("Lỗi khi tạo dự án");
+      toast.error("Error creating project");
     } finally {
       setIsCreating(false);
     }
@@ -71,24 +71,24 @@ export function NewProjectDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Tạo dự án mới</DialogTitle>
+          <DialogTitle>Create New Project</DialogTitle>
         </DialogHeader>
         <div className="py-4">
-          <Label htmlFor="project-name">Tên dự án</Label>
+          <Label htmlFor="project-name">Project Name</Label>
           <Input
             id="project-name"
             value={projectName}
             onChange={(e) => setProjectName(e.target.value)}
-            placeholder="VD: Bộ ảnh Tết 2025"
+            placeholder="e.g., Holiday Campaign 2025"
           />
         </div>
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline">Hủy</Button>
+            <Button variant="outline">Cancel</Button>
           </DialogClose>
           <Button onClick={handleCreateProject} disabled={isCreating}>
             {isCreating && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-            Tạo dự án
+            Create Project
           </Button>
         </DialogFooter>
       </DialogContent>

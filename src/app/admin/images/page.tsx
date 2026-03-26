@@ -73,7 +73,7 @@ export default function ImagesPage() {
       
       if (error) {
         console.error('Error loading images:', error);
-        toast.error('Lỗi tải ảnh: ' + error.message);
+        toast.error('Error loading images: ' + error.message);
         return;
       }
 
@@ -82,14 +82,14 @@ export default function ImagesPage() {
 
     } catch (error) {
       console.error('Error in loadImages:', error);
-      toast.error('Lỗi khi tải danh sách ảnh');
+      toast.error('Error loading image list');
     } finally {
       setLoading(false);
     }
   };
 
   const deleteImage = async (imageId: string) => {
-    if (!confirm('Bạn có chắc muốn xóa ảnh này?')) return;
+    if (!confirm('Are you sure you want to delete this image?')) return;
 
     try {
       // In a real app, you'd also delete from storage
@@ -101,9 +101,9 @@ export default function ImagesPage() {
       if (error) throw error;
 
       setImages(prev => prev.filter(img => img.id !== imageId));
-      toast.success('Đã xóa ảnh');
+      toast.success('Image deleted');
     } catch (error) {
-      toast.error('Lỗi khi xóa ảnh');
+      toast.error('Error deleting image');
     }
   };
 
@@ -117,9 +117,9 @@ export default function ImagesPage() {
       if (error) throw error;
 
       setImages(prev => prev.map(img => img.id === image.id ? { ...img, is_featured: !image.is_featured } : img));
-      toast.success(image.is_featured ? 'Đã gỡ nổi bật' : 'Đã làm nổi bật');
+      toast.success(image.is_featured ? 'Removed from featured' : 'Marked as featured');
     } catch (error) {
-      toast.error('Lỗi khi cập nhật');
+      toast.error('Error updating');
     }
   };
 
@@ -131,12 +131,12 @@ export default function ImagesPage() {
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Quản lý Ảnh</h1>
-              <p className="text-gray-600">Xem và quản lý tất cả ảnh được tạo bởi người dùng.</p>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Image Management</h1>
+              <p className="text-gray-600">View and manage all user-generated images.</p>
             </div>
             <Button onClick={loadImages} variant="outline" className="flex items-center gap-2">
               <RefreshCw className="w-4 h-4" />
-              Làm mới
+              Refresh
             </Button>
           </div>
         </div>
@@ -146,7 +146,7 @@ export default function ImagesPage() {
           <CardContent className="p-4">
             <div className="flex gap-2">
               <Input
-                placeholder="Tìm kiếm theo tên ảnh..."
+                placeholder="Search by image name..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && loadImages()}
@@ -163,7 +163,7 @@ export default function ImagesPage() {
         {loading ? (
           <div className="text-center py-8">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Đang tải ảnh...</p>
+            <p className="text-gray-600">Loading images...</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -213,7 +213,7 @@ export default function ImagesPage() {
                 </PaginationItem>
                 <PaginationItem>
                   <PaginationLink>
-                    Trang {page + 1} / {totalPages}
+                    Page {page + 1} / {totalPages}
                   </PaginationLink>
                 </PaginationItem>
                 <PaginationItem>
@@ -239,20 +239,20 @@ export default function ImagesPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <img src={selectedImage.image_url} alt={selectedImage.title} className="rounded-lg w-full" />
                 <div className="space-y-4">
-                  <h3 className="font-semibold">Thông tin chi tiết</h3>
+                  <h3 className="font-semibold">Details</h3>
                   <div className="text-sm space-y-2">
-                    <p><User className="inline w-4 h-4 mr-2" /><strong>Người tạo:</strong> {selectedImage.profiles?.email || 'N/A'}</p>
-                    <p><Calendar className="inline w-4 h-4 mr-2" /><strong>Ngày tạo:</strong> {new Date(selectedImage.created_at).toLocaleString('vi-VN')}</p>
-                    <p><TrendingUp className="inline w-4 h-4 mr-2" /><strong>Trạng thái:</strong> {selectedImage.is_public ? 'Công khai' : 'Riêng tư'}</p>
+                    <p><User className="inline w-4 h-4 mr-2" /><strong>Creator:</strong> {selectedImage.profiles?.email || 'N/A'}</p>
+                    <p><Calendar className="inline w-4 h-4 mr-2" /><strong>Created:</strong> {new Date(selectedImage.created_at).toLocaleString()}</p>
+                    <p><TrendingUp className="inline w-4 h-4 mr-2" /><strong>Visibility:</strong> {selectedImage.is_public ? 'Public' : 'Private'}</p>
                   </div>
                   <div className="flex gap-2">
                     <Button onClick={() => toggleFeature(selectedImage)}>
                       {selectedImage.is_featured ? <EyeOff className="w-4 h-4 mr-2" /> : <Star className="w-4 h-4 mr-2" />}
-                      {selectedImage.is_featured ? 'Gỡ nổi bật' : 'Làm nổi bật'}
+                      {selectedImage.is_featured ? 'Remove Featured' : 'Mark Featured'}
                     </Button>
                     <Button variant="destructive" onClick={() => { deleteImage(selectedImage.id); setSelectedImage(null); }}>
                       <Trash2 className="w-4 h-4 mr-2" />
-                      Xóa ảnh
+                      Delete Image
                     </Button>
                   </div>
                 </div>

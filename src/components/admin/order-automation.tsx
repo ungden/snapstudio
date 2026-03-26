@@ -43,9 +43,9 @@ export function OrderAutomation() {
   useEffect(() => {
     // Mock loading rules. In a real app, this would fetch from a DB.
     const mockRules: AutomationRule[] = [
-      { id: '1', name: 'Cộng điểm khi mua gói Pro', trigger: 'order_completed', action: 'grant_points', config: { plan_id: 'pro', points: 1000 }, is_active: true, run_count: 152, last_run_at: new Date().toISOString() },
-      { id: '2', name: 'Email chào mừng user mới', trigger: 'user_signup', action: 'send_email', config: { template_id: 'welcome_email' }, is_active: true, run_count: 1230, last_run_at: new Date().toISOString() },
-      { id: '3', name: 'Nâng cấp plan khi mua gói Enterprise', trigger: 'order_completed', action: 'change_plan', config: { plan_id: 'enterprise', new_plan: 'enterprise' }, is_active: false, run_count: 12, last_run_at: null },
+      { id: '1', name: 'Grant points on Pro plan purchase', trigger: 'order_completed', action: 'grant_points', config: { plan_id: 'pro', points: 1000 }, is_active: true, run_count: 152, last_run_at: new Date().toISOString() },
+      { id: '2', name: 'Welcome email for new users', trigger: 'user_signup', action: 'send_email', config: { template_id: 'welcome_email' }, is_active: true, run_count: 1230, last_run_at: new Date().toISOString() },
+      { id: '3', name: 'Upgrade plan on Enterprise purchase', trigger: 'order_completed', action: 'change_plan', config: { plan_id: 'enterprise', new_plan: 'enterprise' }, is_active: false, run_count: 12, last_run_at: null },
     ];
     setRules(mockRules);
     setLoading(false);
@@ -55,10 +55,10 @@ export function OrderAutomation() {
     // In a real app, this would save to the database
     if (editingRule) {
       setRules(rules.map(r => r.id === editingRule.id ? editingRule : r));
-      toast.success('Đã cập nhật rule');
+      toast.success('Rule updated');
     } else {
       // Create new rule logic
-      toast.success('Đã tạo rule mới');
+      toast.success('New rule created');
     }
     setIsDialogOpen(false);
     setEditingRule(null);
@@ -77,15 +77,15 @@ export function OrderAutomation() {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle>Tự động hóa (Automation)</CardTitle>
+        <CardTitle>Automation</CardTitle>
         <Button onClick={openNewDialog}>
           <Plus className="w-4 h-4 mr-2" />
-          Tạo Rule mới
+          Create New Rule
         </Button>
       </CardHeader>
       <CardContent>
         {loading ? (
-          <p>Đang tải...</p>
+          <p>Loading...</p>
         ) : (
           <div className="space-y-4">
             {rules.map(rule => (
@@ -102,7 +102,7 @@ export function OrderAutomation() {
                     Action: <span className="font-mono text-xs bg-gray-100 p-1 rounded">{rule.action}</span>
                   </p>
                   <p className="text-xs text-gray-500 mt-1">
-                    Đã chạy: {rule.run_count} lần. Lần cuối: {rule.last_run_at ? new Date(rule.last_run_at).toLocaleString('vi-VN') : 'Chưa chạy'}
+                    Runs: {rule.run_count}. Last run: {rule.last_run_at ? new Date(rule.last_run_at).toLocaleString() : 'Never'}
                   </p>
                 </div>
                 <div className="flex gap-2">
@@ -122,39 +122,39 @@ export function OrderAutomation() {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{editingRule ? 'Chỉnh sửa Rule' : 'Tạo Rule mới'}</DialogTitle>
+            <DialogTitle>{editingRule ? 'Edit Rule' : 'Create New Rule'}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div>
-              <label className="block text-sm font-medium mb-1">Tên Rule</label>
-              <Input placeholder="VD: Cộng điểm cho user mới" defaultValue={editingRule?.name} />
+              <label className="block text-sm font-medium mb-1">Rule Name</label>
+              <Input placeholder="e.g., Grant points for new users" defaultValue={editingRule?.name} />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1">Trigger (Khi)</label>
+                <label className="block text-sm font-medium mb-1">Trigger (When)</label>
                 <Select defaultValue={editingRule?.trigger}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="order_completed">Đơn hàng hoàn thành</SelectItem>
-                    <SelectItem value="user_signup">User đăng ký</SelectItem>
-                    <SelectItem value="image_generated">Ảnh được tạo</SelectItem>
+                    <SelectItem value="order_completed">Order completed</SelectItem>
+                    <SelectItem value="user_signup">User signup</SelectItem>
+                    <SelectItem value="image_generated">Image generated</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Action (Thì)</label>
+                <label className="block text-sm font-medium mb-1">Action (Then)</label>
                 <Select defaultValue={editingRule?.action}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="grant_points">Cộng điểm</SelectItem>
-                    <SelectItem value="send_email">Gửi email</SelectItem>
-                    <SelectItem value="change_plan">Đổi gói cước</SelectItem>
+                    <SelectItem value="grant_points">Grant points</SelectItem>
+                    <SelectItem value="send_email">Send email</SelectItem>
+                    <SelectItem value="change_plan">Change plan</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Cấu hình (JSON)</label>
+              <label className="block text-sm font-medium mb-1">Configuration (JSON)</label>
               <Textarea 
                 placeholder='{ "plan_id": "pro", "points": 1000 }' 
                 defaultValue={JSON.stringify(editingRule?.config, null, 2)}
@@ -163,12 +163,12 @@ export function OrderAutomation() {
             </div>
             <div className="flex items-center space-x-2">
               <Switch id="is-active" defaultChecked={editingRule?.is_active ?? true} />
-              <label htmlFor="is-active">Kích hoạt</label>
+              <label htmlFor="is-active">Activate</label>
             </div>
           </div>
           <div className="flex justify-end gap-2">
-            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Hủy</Button>
-            <Button onClick={handleSaveRule}>Lưu</Button>
+            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
+            <Button onClick={handleSaveRule}>Save</Button>
           </div>
         </DialogContent>
       </Dialog>

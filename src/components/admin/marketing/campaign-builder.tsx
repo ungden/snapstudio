@@ -40,8 +40,8 @@ export function CampaignBuilder() {
   useEffect(() => {
     // Mock loading campaigns
     const mockCampaigns: Campaign[] = [
-      { id: '1', name: 'Chào mừng User mới', status: 'sent', target_segment: 'New Users (Last 7 days)', email_subject: 'Chào mừng bạn đến với SnapStudio!', email_body: '...', sent_at: new Date().toISOString(), open_rate: 0.45, click_rate: 0.12 },
-      { id: '2', name: 'Ưu đãi cho Power Users', status: 'draft', target_segment: 'Power Users (>100 images)', email_subject: 'Món quà đặc biệt dành cho bạn', email_body: '', sent_at: null, open_rate: 0, click_rate: 0 },
+      { id: '1', name: 'Welcome New Users', status: 'sent', target_segment: 'New Users (Last 7 days)', email_subject: 'Welcome to SnapStudio!', email_body: '...', sent_at: new Date().toISOString(), open_rate: 0.45, click_rate: 0.12 },
+      { id: '2', name: 'Offer for Power Users', status: 'draft', target_segment: 'Power Users (>100 images)', email_subject: 'A special gift for you', email_body: '', sent_at: null, open_rate: 0, click_rate: 0 },
     ];
     setCampaigns(mockCampaigns);
     setLoading(false);
@@ -49,9 +49,9 @@ export function CampaignBuilder() {
 
   const handleSendCampaign = (campaign: Campaign) => {
     // Mock sending
-    toast.info(`Đang gửi campaign "${campaign.name}"...`);
+    toast.info(`Sending campaign "${campaign.name}"...`);
     setTimeout(() => {
-      toast.success('Campaign đã được gửi thành công!');
+      toast.success('Campaign sent successfully!');
       setCampaigns(campaigns.map(c => c.id === campaign.id ? { ...c, status: 'sent', sent_at: new Date().toISOString() } : c));
     }, 2000);
   };
@@ -59,10 +59,10 @@ export function CampaignBuilder() {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle>Xây dựng Chiến dịch (Campaigns)</CardTitle>
-        <Button onClick={() => setSelectedCampaign({ id: 'new', name: 'Campaign mới', status: 'draft', target_segment: '', email_subject: '', email_body: '', sent_at: null, open_rate: 0, click_rate: 0 })}>
+        <CardTitle>Campaign Builder</CardTitle>
+        <Button onClick={() => setSelectedCampaign({ id: 'new', name: 'New Campaign', status: 'draft', target_segment: '', email_subject: '', email_body: '', sent_at: null, open_rate: 0, click_rate: 0 })}>
           <Plus className="w-4 h-4 mr-2" />
-          Tạo Campaign mới
+          Create New Campaign
         </Button>
       </CardHeader>
       <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -101,20 +101,20 @@ export function CampaignBuilder() {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Email Subject</label>
-                <Input placeholder="Tiêu đề email" defaultValue={selectedCampaign.email_subject} />
+                <Input placeholder="Email subject" defaultValue={selectedCampaign.email_subject} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Email Body (HTML/Markdown)</label>
-                <Textarea placeholder="Nội dung email..." rows={8} defaultValue={selectedCampaign.email_body} />
+                <Textarea placeholder="Email content..." rows={8} defaultValue={selectedCampaign.email_body} />
               </div>
               <div className="flex justify-between items-center">
                 <div className="flex gap-2">
-                  <Button>Lưu</Button>
-                  <Button variant="outline">Gửi Test</Button>
+                  <Button>Save</Button>
+                  <Button variant="outline">Send Test</Button>
                 </div>
                 <Button onClick={() => handleSendCampaign(selectedCampaign)} disabled={selectedCampaign.status === 'sent'}>
                   <Send className="w-4 h-4 mr-2" />
-                  Gửi Campaign
+                  Send Campaign
                 </Button>
               </div>
               {selectedCampaign.status === 'sent' && (
@@ -132,7 +132,7 @@ export function CampaignBuilder() {
             </div>
           ) : (
             <div className="flex items-center justify-center h-full bg-gray-50 rounded-lg">
-              <p className="text-gray-500">Chọn một campaign để chỉnh sửa</p>
+              <p className="text-gray-500">Select a campaign to edit</p>
             </div>
           )}
         </div>

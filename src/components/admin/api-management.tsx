@@ -55,7 +55,7 @@ export function ApiManagement() {
       if (error) throw error;
       setApiKeys((data as ApiKey[]) || []);
     } catch (error) {
-      toast.error('Lỗi khi tải API keys');
+      toast.error('Error loading API keys');
     } finally {
       setLoading(false);
     }
@@ -67,7 +67,7 @@ export function ApiManagement() {
 
   const createApiKey = async () => {
     if (!newKeyName.trim() || !newKeyUserId.trim()) {
-      toast.error('Vui lòng điền đầy đủ thông tin');
+      toast.error('Please fill in all required fields');
       return;
     }
 
@@ -83,12 +83,12 @@ export function ApiManagement() {
       setNewKeyUserId('');
       loadApiKeys();
     } catch (error: any) {
-      toast.error(error.message || 'Lỗi khi tạo API key');
+      toast.error(error.message || 'Error creating API key');
     }
   };
 
   const deleteApiKey = async (keyId: string) => {
-    if (!confirm('Bạn có chắc muốn xóa API key này?')) return;
+    if (!confirm('Are you sure you want to delete this API key?')) return;
 
     try {
       const { error } = await supabase
@@ -97,10 +97,10 @@ export function ApiManagement() {
         .eq('id', keyId);
 
       if (error) throw error;
-      toast.success('Đã xóa API key');
+      toast.success('API key deleted');
       loadApiKeys();
     } catch (error) {
-      toast.error('Lỗi khi xóa API key');
+      toast.error('Error deleting API key');
     }
   };
 
@@ -112,21 +112,21 @@ export function ApiManagement() {
         .eq('id', key.id);
 
       if (error) throw error;
-      toast.success(`API key đã được ${!key.is_active ? 'kích hoạt' : 'vô hiệu hóa'}`);
+      toast.success(`API key ${!key.is_active ? 'activated' : 'deactivated'}`);
       loadApiKeys();
     } catch (error) {
-      toast.error('Lỗi khi cập nhật trạng thái');
+      toast.error('Error updating status');
     }
   };
 
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle>Quản lý API Keys</CardTitle>
+        <CardTitle>API Key Management</CardTitle>
         <div className="flex gap-2">
           <Button onClick={() => setIsDialogOpen(true)}>
             <Plus className="w-4 h-4 mr-2" />
-            Tạo Key mới
+            Create New Key
           </Button>
           <Button onClick={loadApiKeys} variant="outline">
             <RefreshCw className="w-4 h-4" />
@@ -135,17 +135,17 @@ export function ApiManagement() {
       </CardHeader>
       <CardContent>
         {loading ? (
-          <p>Đang tải...</p>
+          <p>Loading...</p>
         ) : (
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Tên Key</TableHead>
+                <TableHead>Key Name</TableHead>
                 <TableHead>User</TableHead>
                 <TableHead>Prefix</TableHead>
-                <TableHead>Sử dụng lần cuối</TableHead>
-                <TableHead>Trạng thái</TableHead>
-                <TableHead>Thao tác</TableHead>
+                <TableHead>Last Used</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -155,7 +155,7 @@ export function ApiManagement() {
                   <TableCell>{key.profiles?.email || key.user_id.slice(0, 8)}</TableCell>
                   <TableCell className="font-mono text-xs">{key.key_prefix}...</TableCell>
                   <TableCell>
-                    {key.last_used_at ? new Date(key.last_used_at).toLocaleString('vi-VN') : 'Chưa dùng'}
+                    {key.last_used_at ? new Date(key.last_used_at).toLocaleString() : 'Never used'}
                   </TableCell>
                   <TableCell>
                     <Switch
@@ -185,11 +185,11 @@ export function ApiManagement() {
       }}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{generatedKey ? 'API Key đã tạo' : 'Tạo API Key mới'}</DialogTitle>
+            <DialogTitle>{generatedKey ? 'API Key Created' : 'Create New API Key'}</DialogTitle>
           </DialogHeader>
           {generatedKey ? (
             <div className="space-y-4">
-              <p className="text-sm text-red-600">Đây là lần duy nhất bạn thấy key này. Hãy sao chép và lưu trữ nó một cách an toàn.</p>
+              <p className="text-sm text-red-600">This is the only time you will see this key. Please copy and store it securely.</p>
               <div className="relative bg-gray-100 p-3 rounded-md">
                 <pre className="text-sm font-mono break-all pr-10">{generatedKey}</pre>
                 <Button
@@ -198,7 +198,7 @@ export function ApiManagement() {
                   className="absolute top-2 right-2 h-7 w-7"
                   onClick={() => {
                     navigator.clipboard.writeText(generatedKey);
-                    toast.success('Đã sao chép key!');
+                    toast.success('Key copied!');
                   }}
                 >
                   <Copy className="w-4 h-4" />
@@ -207,14 +207,14 @@ export function ApiManagement() {
               <Button onClick={() => {
                 setGeneratedKey(null);
                 setIsDialogOpen(false);
-              }}>Đã hiểu</Button>
+              }}>Got it</Button>
             </div>
           ) : (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-1">Tên Key</label>
+                <label className="block text-sm font-medium mb-1">Key Name</label>
                 <Input
-                  placeholder="VD: Đối tác ABC"
+                  placeholder="e.g., Partner ABC"
                   value={newKeyName}
                   onChange={(e) => setNewKeyName(e.target.value)}
                 />
@@ -222,12 +222,12 @@ export function ApiManagement() {
               <div>
                 <label className="block text-sm font-medium mb-1">User ID</label>
                 <Input
-                  placeholder="Dán User ID của người dùng"
+                  placeholder="Paste the user's User ID"
                   value={newKeyUserId}
                   onChange={(e) => setNewKeyUserId(e.target.value)}
                 />
               </div>
-              <Button onClick={createApiKey} className="w-full">Tạo Key</Button>
+              <Button onClick={createApiKey} className="w-full">Create Key</Button>
             </div>
           )}
         </DialogContent>

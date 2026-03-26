@@ -102,7 +102,7 @@ export function ModerationAnalytics({ timeRange, onTimeRangeChange }: Moderation
       date.setDate(date.getDate() - i);
       
       data.push({
-        date: date.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' }),
+        date: date.toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' }),
         pending: Math.floor(Math.random() * 20) + 5,
         approved: Math.floor(Math.random() * 50) + 20,
         rejected: Math.floor(Math.random() * 10) + 2,
@@ -134,9 +134,9 @@ export function ModerationAnalytics({ timeRange, onTimeRangeChange }: Moderation
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="7">7 ngày qua</SelectItem>
-            <SelectItem value="30">30 ngày qua</SelectItem>
-            <SelectItem value="90">90 ngày qua</SelectItem>
+            <SelectItem value="7">Last 7 days</SelectItem>
+            <SelectItem value="30">Last 30 days</SelectItem>
+            <SelectItem value="90">Last 90 days</SelectItem>
           </SelectContent>
         </Select>
       </div>

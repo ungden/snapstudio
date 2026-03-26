@@ -44,7 +44,7 @@ export default function SystemPage() {
       results.push({
         name: 'Supabase Database',
         status: dbError ? 'degraded' : 'operational',
-        description: dbError ? dbError.message : 'Kết nối database ổn định.',
+        description: dbError ? dbError.message : 'Database connection is stable.',
         latency: dbLatency
       });
 
@@ -55,7 +55,7 @@ export default function SystemPage() {
       results.push({
         name: 'Supabase Auth',
         status: authError ? 'degraded' : 'operational',
-        description: authError ? authError.message : 'Dịch vụ xác thực hoạt động.',
+        description: authError ? authError.message : 'Authentication service is operational.',
         latency: authLatency
       });
 
@@ -66,7 +66,7 @@ export default function SystemPage() {
       results.push({
         name: 'Edge Functions',
         status: funcError ? 'degraded' : 'operational',
-        description: funcError ? funcError.message : 'Edge functions đang phản hồi.',
+        description: funcError ? funcError.message : 'Edge functions are responding.',
         latency: funcLatency
       });
 
@@ -74,7 +74,7 @@ export default function SystemPage() {
       results.push({
         name: 'AI Generation Service',
         status: 'operational',
-        description: 'Dịch vụ tạo ảnh đang hoạt động.',
+        description: 'Image generation service is operational.',
         latency: Math.floor(Math.random() * 200) + 100
       });
 
@@ -82,7 +82,7 @@ export default function SystemPage() {
       results.push({
         name: 'Payment Gateway',
         status: 'operational',
-        description: 'Cổng thanh toán đang hoạt động.',
+        description: 'Payment gateway is operational.',
         latency: Math.floor(Math.random() * 150) + 50
       });
 
@@ -90,7 +90,7 @@ export default function SystemPage() {
 
     } catch (error) {
       console.error('Error checking system status:', error);
-      toast.error('Lỗi khi kiểm tra hệ thống');
+      toast.error('Error checking system status');
     } finally {
       setLoading(false);
     }
@@ -131,12 +131,12 @@ export default function SystemPage() {
             <div className="mb-8">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-900 mb-2">Trạng thái Hệ thống</h1>
-                  <p className="text-gray-600">Kiểm tra tình trạng hoạt động của các dịch vụ cốt lõi.</p>
+                  <h1 className="text-3xl font-bold text-gray-900 mb-2">System Status</h1>
+                  <p className="text-gray-600">Check the operational status of core services.</p>
                 </div>
                 <Button onClick={checkSystemStatus} variant="outline" className="flex items-center gap-2">
                   <RefreshCw className="w-4 h-4" />
-                  Kiểm tra lại
+                  Recheck
                 </Button>
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function SystemPage() {
             {loading ? (
               <div className="text-center py-12">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                <p className="text-gray-600">Đang kiểm tra hệ thống...</p>
+                <p className="text-gray-600">Checking system status...</p>
               </div>
             ) : (
               <div className="space-y-6">

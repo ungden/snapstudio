@@ -94,7 +94,7 @@ export default function ActivityPage() {
       
       if (error) {
         console.error('Error loading logs:', error);
-        toast.error('Lỗi tải logs: ' + error.message);
+        toast.error('Error loading logs: ' + error.message);
         return;
       }
 
@@ -118,7 +118,7 @@ export default function ActivityPage() {
 
     } catch (error) {
       console.error('Error in loadLogs:', error);
-      toast.error('Lỗi khi tải activity logs');
+      toast.error('Error loading activity logs');
     } finally {
       setLoading(false);
     }
@@ -144,9 +144,9 @@ export default function ActivityPage() {
 
   const getActivityText = (action: string) => {
     switch (action) {
-      case 'image_generated': return 'Tạo ảnh';
-      case 'project_created': return 'Tạo dự án';
-      case 'image_downloaded': return 'Tải ảnh';
+      case 'image_generated': return 'Image generated';
+      case 'project_created': return 'Project created';
+      case 'image_downloaded': return 'Image downloaded';
       default: return action;
     }
   };
@@ -173,11 +173,11 @@ export default function ActivityPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Activity Logs</h1>
-            <p className="text-gray-600">Theo dõi tất cả hoạt động của người dùng trong hệ thống.</p>
+            <p className="text-gray-600">Track all user activity in the system.</p>
           </div>
           <Button onClick={loadLogs} variant="outline" className="flex items-center gap-2">
             <RefreshCw className="w-4 h-4" />
-            Làm mới
+            Refresh
           </Button>
         </div>
       </div>
@@ -190,7 +190,7 @@ export default function ActivityPage() {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
-                  placeholder="Tìm theo action, email, metadata..."
+                  placeholder="Search by action, email, metadata..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -200,25 +200,25 @@ export default function ActivityPage() {
             
             <Select value={actionFilter} onValueChange={setActionFilter}>
               <SelectTrigger className="w-48">
-                <SelectValue placeholder="Loại hoạt động" />
+                <SelectValue placeholder="Activity type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Tất cả hoạt động</SelectItem>
-                <SelectItem value="image_generated">Tạo ảnh</SelectItem>
-                <SelectItem value="project_created">Tạo dự án</SelectItem>
-                <SelectItem value="image_downloaded">Tải ảnh</SelectItem>
+                <SelectItem value="all">All Activities</SelectItem>
+                <SelectItem value="image_generated">Image Generated</SelectItem>
+                <SelectItem value="project_created">Project Created</SelectItem>
+                <SelectItem value="image_downloaded">Image Downloaded</SelectItem>
               </SelectContent>
             </Select>
 
             <Select value={dateFilter} onValueChange={setDateFilter}>
               <SelectTrigger className="w-48">
-                <SelectValue placeholder="Thời gian" />
+                <SelectValue placeholder="Time range" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Tất cả thời gian</SelectItem>
-                <SelectItem value="today">Hôm nay</SelectItem>
-                <SelectItem value="week">7 ngày qua</SelectItem>
-                <SelectItem value="month">30 ngày qua</SelectItem>
+                <SelectItem value="all">All Time</SelectItem>
+                <SelectItem value="today">Today</SelectItem>
+                <SelectItem value="week">Last 7 days</SelectItem>
+                <SelectItem value="month">Last 30 days</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -231,7 +231,7 @@ export default function ActivityPage() {
           <CardTitle className="flex items-center justify-between">
             Activity Logs ({filteredLogs.length.toLocaleString()})
             <div className="text-sm text-gray-500">
-              Trang {page + 1} / {totalPages}
+              Page {page + 1} / {totalPages}
             </div>
           </CardTitle>
         </CardHeader>
@@ -239,7 +239,7 @@ export default function ActivityPage() {
           {loading ? (
             <div className="text-center py-8">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-              <p className="text-gray-600">Đang tải logs...</p>
+              <p className="text-gray-600">Loading logs...</p>
             </div>
           ) : (
             <>
@@ -247,10 +247,10 @@ export default function ActivityPage() {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Thời gian</TableHead>
-                      <TableHead>Người dùng</TableHead>
-                      <TableHead>Hoạt động</TableHead>
-                      <TableHead>Chi tiết</TableHead>
+                      <TableHead>Time</TableHead>
+                      <TableHead>User</TableHead>
+                      <TableHead>Activity</TableHead>
+                      <TableHead>Details</TableHead>
                       <TableHead>Project ID</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -262,7 +262,7 @@ export default function ActivityPage() {
                       return (
                         <TableRow key={log.id}>
                           <TableCell className="text-sm">
-                            {new Date(log.created_at).toLocaleString('vi-VN')}
+                            {new Date(log.created_at).toLocaleString()}
                           </TableCell>
                           <TableCell>
                             <div>
@@ -299,17 +299,17 @@ export default function ActivityPage() {
                     onClick={() => setPage(p => Math.max(0, p - 1))}
                     disabled={page === 0}
                   >
-                    Trước
+                    Previous
                   </Button>
                   <span className="text-sm text-gray-600">
-                    Trang {page + 1} / {totalPages}
+                    Page {page + 1} / {totalPages}
                   </span>
                   <Button
                     variant="outline"
                     onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
                     disabled={page >= totalPages - 1}
                   >
-                    Sau
+                    Next
                   </Button>
                 </div>
               )}

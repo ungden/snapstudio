@@ -68,7 +68,7 @@ export function NotificationsDropdown() {
             // Show toast for new notification
             toast.info(newNotification.content, {
               action: newNotification.link_to ? {
-                label: 'Xem',
+                label: 'View',
                 onClick: () => router.push(newNotification.link_to!)
               } : undefined
             });
@@ -144,17 +144,17 @@ export function NotificationsDropdown() {
 
       if (error) {
         console.error('Error marking all as read:', error);
-        toast.error('Lỗi khi đánh dấu đã đọc');
+        toast.error('Error marking as read');
         return;
       }
 
       setNotifications(prev => 
         prev.map(notif => ({ ...notif, is_read: true }))
       );
-      toast.success('Đã đánh dấu tất cả là đã đọc');
+      toast.success('All marked as read');
     } catch (error) {
       console.error('Error in markAllAsRead:', error);
-      toast.error('Lỗi khi đánh dấu đã đọc');
+      toast.error('Error marking as read');
     }
   };
 
@@ -244,11 +244,11 @@ export function NotificationsDropdown() {
       <DropdownMenuContent align="end" className="w-80 p-0">
         <div className="p-4 border-b">
           <div className="flex items-center justify-between">
-            <h3 className="font-semibold text-gray-900">Thông báo</h3>
+            <h3 className="font-semibold text-gray-900">Notifications</h3>
             {unreadCount > 0 && (
               <Button size="sm" variant="ghost" onClick={markAllAsRead}>
                 <Check className="w-4 h-4 mr-1" />
-                Đánh dấu đã đọc
+                Mark all read
               </Button>
             )}
           </div>
@@ -258,13 +258,13 @@ export function NotificationsDropdown() {
           {loading ? (
             <div className="p-6 text-center">
               <Loader2 className="w-6 h-6 animate-spin mx-auto mb-2 text-blue-600" />
-              <p className="text-sm text-gray-600">Đang tải thông báo...</p>
+              <p className="text-sm text-gray-600">Loading notifications...</p>
             </div>
           ) : notifications.length === 0 ? (
             <div className="p-6 text-center">
               <Bell className="w-12 h-12 mx-auto mb-3 text-gray-400" />
-              <h4 className="font-medium text-gray-900 mb-1">Chưa có thông báo</h4>
-              <p className="text-sm text-gray-600">Thông báo mới sẽ hiển thị ở đây</p>
+              <h4 className="font-medium text-gray-900 mb-1">No notifications</h4>
+              <p className="text-sm text-gray-600">New notifications will appear here</p>
             </div>
           ) : (
             <div className="divide-y">
@@ -335,7 +335,7 @@ export function NotificationsDropdown() {
                 router.push('/dashboard/notifications');
               }}
             >
-              Xem tất cả thông báo
+              View all notifications
             </Button>
           </div>
         )}

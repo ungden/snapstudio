@@ -113,7 +113,7 @@ export function FollowingFeed() {
       }
     } catch (error) {
       console.error("Error loading feed:", error);
-      toast.error("Lỗi khi tải feed");
+      toast.error("Error loading feed");
     } finally {
       setLoading(false);
     }
@@ -181,11 +181,11 @@ export function FollowingFeed() {
   }
 
   if (!user) {
-    return <p className="text-center text-gray-600">Vui lòng đăng nhập để xem feed.</p>;
+    return <p className="text-center text-gray-600">Please log in to view your feed.</p>;
   }
 
   if (images.length === 0) {
-    return <p className="text-center text-gray-600">Bạn chưa theo dõi ai, hoặc họ chưa đăng ảnh nào.</p>;
+    return <p className="text-center text-gray-600">You haven't followed anyone yet, or they haven't posted any images.</p>;
   }
 
   return (
@@ -230,7 +230,7 @@ export function FollowingFeed() {
         ))}
         {hasMore && !loading && (
           <div className="text-center">
-            <Button onClick={() => loadFeed()}>Tải thêm</Button>
+            <Button onClick={() => loadFeed()}>Load More</Button>
           </div>
         )}
         {loading && page > 0 && (

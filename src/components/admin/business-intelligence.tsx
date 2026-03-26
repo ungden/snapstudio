@@ -71,9 +71,9 @@ export function BusinessIntelligence() {
         columns: data.length > 0 ? Object.keys(data[0]) : [],
         rows: data,
       });
-      toast.success(`Báo cáo "${selectedReport.name}" đã chạy thành công.`);
+      toast.success(`Report "${selectedReport.name}" ran successfully.`);
     } catch (error: any) {
-      toast.error(error.message || 'Lỗi khi chạy báo cáo');
+      toast.error(error.message || 'Error running report');
     } finally {
       setLoading(false);
     }
@@ -88,7 +88,7 @@ export function BusinessIntelligence() {
         <div className="flex gap-4">
           <Select onValueChange={(value) => setSelectedReport(reports.find(r => r.id === value) || null)}>
             <SelectTrigger className="flex-1">
-              <SelectValue placeholder="Chọn một báo cáo để chạy" />
+              <SelectValue placeholder="Select a report to run" />
             </SelectTrigger>
             <SelectContent>
               {reports.map(report => (
@@ -97,13 +97,13 @@ export function BusinessIntelligence() {
             </SelectContent>
           </Select>
           <Button onClick={runReport} disabled={!selectedReport || loading}>
-            {loading ? 'Đang chạy...' : 'Chạy Báo cáo'}
+            {loading ? 'Running...' : 'Run Report'}
           </Button>
         </div>
 
         {selectedReport && (
           <div className="p-4 bg-gray-50 rounded-lg">
-            <h4 className="font-semibold">Mô tả báo cáo</h4>
+            <h4 className="font-semibold">Report Description</h4>
             <p className="text-sm text-gray-600">{selectedReport.description}</p>
             <h4 className="font-semibold mt-2">SQL Query</h4>
             <pre className="text-xs bg-gray-200 p-2 rounded mt-1 font-mono overflow-x-auto">
@@ -112,11 +112,11 @@ export function BusinessIntelligence() {
           </div>
         )}
 
-        {loading && <p>Đang tải kết quả...</p>}
+        {loading && <p>Loading results...</p>}
 
         {reportResult && (
           <div>
-            <h3 className="text-lg font-semibold mb-4">Kết quả báo cáo</h3>
+            <h3 className="text-lg font-semibold mb-4">Report Results</h3>
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>

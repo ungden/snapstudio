@@ -45,7 +45,7 @@ function AdminSidebarContent() {
       toast.error(error.message || "Logout failed");
       return;
     }
-    toast.success("Đã đăng xuất");
+    toast.success("Logged out");
     router.replace("/login");
   };
 
@@ -115,7 +115,7 @@ function AdminSidebarContent() {
             className={cn("w-full justify-start text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200", isCollapsed && "justify-center")}
           >
             <Home className={cn("w-4 h-4", !isCollapsed && "mr-3")} />
-            <span className={cn(isCollapsed && "hidden")}>Về Dashboard</span>
+            <span className={cn(isCollapsed && "hidden")}>Go to Dashboard</span>
           </Button>
         </Link>
         <Button 
@@ -124,7 +124,7 @@ function AdminSidebarContent() {
           onClick={handleLogout}
         >
           <LogOut className={cn("w-4 h-4", !isCollapsed && "mr-3")} />
-          <span className={cn(isCollapsed && "hidden")}>Đăng xuất</span>
+          <span className={cn(isCollapsed && "hidden")}>Logout</span>
         </Button>
       </div>
     </div>

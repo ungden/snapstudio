@@ -41,45 +41,45 @@ interface AdminStatsCardsProps {
 export function AdminStatsCards({ stats, loading = false }: AdminStatsCardsProps) {
   const statCards = [
     {
-      title: 'Tổng người dùng',
+      title: 'Total Users',
       value: stats.totalUsers.toLocaleString(),
       change: `+${stats.newUsersToday}`,
       changeType: 'increase' as const,
       icon: Users,
       color: 'blue',
-      description: 'hôm nay'
+      description: 'today'
     },
     {
-      title: 'Ảnh đã tạo',
+      title: 'Images Created',
       value: stats.totalImages.toLocaleString(),
       change: `+${stats.imagesGeneratedToday}`,
       changeType: 'increase' as const,
       icon: Image,
       color: 'green',
-      description: 'hôm nay'
+      description: 'today'
     },
     {
-      title: 'Đơn hàng',
+      title: 'Orders',
       value: stats.totalOrders.toLocaleString(),
-      change: `${stats.pendingOrders} chờ`,
+      change: `${stats.pendingOrders} pending`,
       changeType: stats.pendingOrders > 0 ? 'warning' as const : 'neutral' as const,
       icon: CreditCard,
       color: 'orange',
-      description: 'xử lý'
+      description: 'processing'
     },
     {
-      title: 'Doanh thu',
+      title: 'Revenue',
       value: `${(stats.revenue / 1000000).toFixed(1)}M`,
       change: `+${(stats.revenueToday / 1000).toFixed(0)}k`,
       changeType: 'increase' as const,
       icon: DollarSign,
       color: 'emerald',
-      description: 'hôm nay'
+      description: 'today'
     },
     {
       title: 'Templates',
       value: stats.activeTemplates.toString(),
-      change: 'Hoạt động',
+      change: 'Active',
       changeType: 'neutral' as const,
       icon: Zap,
       color: 'purple',
@@ -97,20 +97,20 @@ export function AdminStatsCards({ stats, loading = false }: AdminStatsCardsProps
     {
       title: 'API Calls',
       value: stats.apiCalls.toLocaleString(),
-      change: 'Hôm nay',
+      change: 'Today',
       changeType: 'neutral' as const,
       icon: Database,
       color: 'pink',
       description: 'requests'
     },
     {
-      title: 'Đơn hoàn thành',
+      title: 'Completed Orders',
       value: stats.completedOrders.toLocaleString(),
       change: `${stats.totalOrders > 0 ? ((stats.completedOrders / stats.totalOrders) * 100).toFixed(1) : 0}%`,
       changeType: 'increase' as const,
       icon: CheckCircle,
       color: 'teal',
-      description: 'tỷ lệ'
+      description: 'rate'
     }
   ];
 

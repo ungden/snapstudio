@@ -27,7 +27,7 @@ export function ImagePreviewDialog({ open, onOpenChange, imageUrl, title, onDown
           {onDownload && (
             <Button onClick={onDownload} className="w-full">
               <Download className="w-4 h-4 mr-2" />
-              Tải xuống
+              Download
             </Button>
           )}
         </div>

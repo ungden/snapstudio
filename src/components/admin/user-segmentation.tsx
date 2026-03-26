@@ -79,7 +79,7 @@ export function UserSegmentation() {
 
     const { data, error, count } = await query;
     if (error) {
-      toast.error('Lỗi khi tính toán segment');
+      toast.error('Error calculating segment');
       return;
     }
     
@@ -91,14 +91,14 @@ export function UserSegmentation() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Phân khúc Người dùng (Segmentation)</CardTitle>
+        <CardTitle>User Segmentation</CardTitle>
       </CardHeader>
       <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Segments List */}
         <div className="md:col-span-1 space-y-3">
           <Button className="w-full">
             <Plus className="w-4 h-4 mr-2" />
-            Tạo Segment mới
+            Create New Segment
           </Button>
           {segments.map(segment => (
             <div 
@@ -128,7 +128,7 @@ export function UserSegmentation() {
                 <h3 className="text-lg font-semibold">{selectedSegment.name}</h3>
                 <Button size="sm" variant="outline">
                   <Mail className="w-4 h-4 mr-2" />
-                  Gửi Email Campaign
+                  Send Email Campaign
                 </Button>
               </div>
               <div className="border rounded-lg max-h-96 overflow-y-auto">
@@ -144,7 +144,7 @@ export function UserSegmentation() {
             </div>
           ) : (
             <div className="flex items-center justify-center h-full bg-gray-50 rounded-lg">
-              <p className="text-gray-500">Chọn một segment để xem chi tiết</p>
+              <p className="text-gray-500">Select a segment to view details</p>
             </div>
           )}
         </div>

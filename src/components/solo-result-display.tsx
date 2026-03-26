@@ -26,13 +26,13 @@ export function SoloResultDisplay({ imageUrl, prompt, onRegenerate }: SoloResult
     try {
       await ImageGenerator.downloadImage(imageUrl, 'snapstudio-generated-image.png');
     } catch (error) {
-      toast.error("Tải ảnh thất bại");
+      toast.error("Image download failed");
     }
   };
 
   const handleCopyToClipboard = () => {
     navigator.clipboard.writeText(prompt);
-    toast.success("Đã sao chép prompt!");
+    toast.success("Prompt copied!");
   };
 
   const handleSaveToProject = async () => {
@@ -41,9 +41,9 @@ export function SoloResultDisplay({ imageUrl, prompt, onRegenerate }: SoloResult
     try {
       // For simplicity, we'll just mark it as a favorite for now.
       // A full implementation would involve selecting a project and creating a new DB entry.
-      toast.info("Tính năng lưu vào dự án đang được phát triển.");
+      toast.info("Save to project feature is under development.");
     } catch (error) {
-      toast.error("Lỗi khi lưu ảnh.");
+      toast.error("Error saving image.");
     } finally {
       setIsSaving(false);
     }
@@ -52,7 +52,7 @@ export function SoloResultDisplay({ imageUrl, prompt, onRegenerate }: SoloResult
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Kết quả của bạn</CardTitle>
+        <CardTitle>Your Result</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="aspect-square w-full rounded-lg overflow-hidden bg-gray-100">
@@ -62,24 +62,24 @@ export function SoloResultDisplay({ imageUrl, prompt, onRegenerate }: SoloResult
         <div className="flex flex-wrap gap-2">
           <Button onClick={handleDownload} variant="outline">
             <Download className="w-4 h-4 mr-2" />
-            Tải xuống
+            Download
           </Button>
           <Button onClick={onRegenerate} variant="outline">
             <RefreshCw className="w-4 h-4 mr-2" />
-            Tạo lại
+            Regenerate
           </Button>
           <Button onClick={handleSaveToProject} variant="default" disabled={isSaving}>
             {isSaving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Heart className="w-4 h-4 mr-2" />}
-            Lưu
+            Save
           </Button>
           <Button variant="outline">
             <Share2 className="w-4 h-4 mr-2" />
-            Chia sẻ
+            Share
           </Button>
         </div>
 
         <div>
-          <h4 className="font-semibold mb-2">Prompt đã sử dụng</h4>
+          <h4 className="font-semibold mb-2">Prompt Used</h4>
           <div className="relative bg-gray-50 p-3 rounded-md">
             <p className="text-sm text-gray-700 font-mono pr-10">{prompt}</p>
             <Button 

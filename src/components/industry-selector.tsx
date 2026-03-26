@@ -26,61 +26,61 @@ export const industries: Industry[] = [
     id: 'f_b',
     name: 'Food & Beverage',
     shortName: 'F&B',
-    description: 'Thực phẩm & Đồ uống',
+    description: 'Food & Beverages',
     color: 'from-orange-500 to-red-500',
     bgColor: 'bg-orange-50',
     textColor: 'text-orange-700',
     icon: Coffee,
     emoji: '🍔',
-    examples: 'Món ăn, đồ uống, nhà hàng'
+    examples: 'Dishes, beverages, restaurants'
   },
   {
     id: 'beauty',
     name: 'Beauty & Personal Care',
     shortName: 'Beauty',
-    description: 'Mỹ phẩm & Chăm sóc',
+    description: 'Cosmetics & Personal Care',
     color: 'from-pink-500 to-purple-500',
     bgColor: 'bg-pink-50',
     textColor: 'text-pink-700',
     icon: Heart,
     emoji: '💄',
-    examples: 'Mỹ phẩm, skincare, makeup'
+    examples: 'Cosmetics, skincare, makeup'
   },
   {
     id: 'fashion',
     name: 'Fashion & Accessories',
     shortName: 'Fashion',
-    description: 'Thời trang & Phụ kiện',
+    description: 'Fashion & Accessories',
     color: 'from-purple-500 to-indigo-500',
     bgColor: 'bg-purple-50',
     textColor: 'text-purple-700',
     icon: Shirt,
     emoji: '👕',
-    examples: 'Quần áo, giày dép, túi xách'
+    examples: 'Clothing, shoes, handbags'
   },
   {
     id: 'mother_baby',
     name: 'Mother & Baby',
     shortName: 'Mom & Baby',
-    description: 'Mẹ & Bé',
+    description: 'Mom & Baby',
     color: 'from-blue-500 to-cyan-500',
     bgColor: 'bg-blue-50',
     textColor: 'text-blue-700',
     icon: Baby,
     emoji: '👶',
-    examples: 'Sản phẩm cho mẹ và bé'
+    examples: 'Products for mothers and babies'
   },
   {
     id: 'other',
     name: 'Electronics & Home',
     shortName: 'Tech & Home',
-    description: 'Điện tử & Gia dụng',
+    description: 'Electronics & Home Appliances',
     color: 'from-gray-500 to-slate-600',
     bgColor: 'bg-gray-50',
     textColor: 'text-gray-700',
     icon: Smartphone,
     emoji: '📱',
-    examples: 'Điện tử, gia dụng, công nghệ'
+    examples: 'Electronics, home appliances, technology'
   },
 ];
 
@@ -107,10 +107,10 @@ export function IndustrySelector({ selectedIndustry, onIndustryChange, className
         <div className="text-center mb-6">
           <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
             <Building2 className="w-5 h-5 text-blue-600" />
-            Chọn ngành hàng của bạn
+            Select your industry
           </h3>
           <p className="text-gray-600">
-            AI sẽ sử dụng prompt chuyên biệt và hiển thị ảnh mẫu phù hợp
+            AI will use specialized prompts and display relevant sample images
           </p>
         </div>
 
@@ -150,7 +150,7 @@ export function IndustrySelector({ selectedIndustry, onIndustryChange, className
                 </div>
                 <Badge className={cn("px-3 py-1", selectedIndustryInfo.bgColor, selectedIndustryInfo.textColor)}>
                   <Sparkles className="w-3 h-3 mr-1" />
-                  Prompt chuyên biệt
+                  Specialized prompts
                 </Badge>
               </div>
             </CardContent>

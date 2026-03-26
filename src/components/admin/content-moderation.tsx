@@ -67,7 +67,7 @@ export function ContentModeration() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Content Moderation</h2>
-          <p className="text-gray-600">AI-powered content screening và community management</p>
+          <p className="text-gray-600">AI-powered content screening and community management</p>
         </div>
         <Button onClick={loadModerationData} variant="outline">
           <RefreshCw className="w-4 h-4 mr-2" />
