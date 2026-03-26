@@ -23,93 +23,6 @@ interface SampleItem {
   thumbnailUrl?: string | null;
 }
 
-const fallbackSamples: SampleItem[] = [
-  {
-    id: "display-studio",
-    type: "display",
-    title: "Studio Hero",
-    description: "Nền trắng tối giản, ánh sáng đều",
-    imageUrl: "",
-  },
-  {
-    id: "display-luxury",
-    type: "display",
-    title: "Luxury Display",
-    description: "Vibe cao cấp, ánh kim sang trọng",
-    imageUrl: "",
-  },
-  {
-    id: "display-macro",
-    type: "display",
-    title: "Macro Detail",
-    description: "Cận cảnh chất liệu và chi tiết",
-    imageUrl: "",
-  },
-  {
-    id: "model-fashion",
-    type: "model",
-    title: "Fashion Model",
-    description: "Model cầm/đeo sản phẩm",
-    imageUrl: "",
-  },
-  {
-    id: "model-lifestyle",
-    type: "model",
-    title: "Lifestyle",
-    description: "Bối cảnh đời sống thường ngày",
-    imageUrl: "",
-  },
-  {
-    id: "model-urban",
-    type: "model",
-    title: "Urban Trendy",
-    description: "Đường phố, phong cách trẻ",
-    imageUrl: "",
-  },
-  {
-    id: "social-poster",
-    type: "social",
-    title: "Social Poster",
-    description: "Bố cục bắt mắt cho bài post",
-    imageUrl: "",
-  },
-  {
-    id: "social-seasonal",
-    type: "social",
-    title: "Seasonal Promo",
-    description: "Chủ đề mùa lễ/khuyến mãi",
-    imageUrl: "",
-  },
-  {
-    id: "social-carousel",
-    type: "social",
-    title: "Carousel",
-    description: "Ảnh lifestyle bắt mắt cho social media",
-    imageUrl: "",
-  },
-  {
-    id: "seeding-selfie",
-    type: "seeding",
-    title: "Selfie UGC",
-    description: "Người dùng thực tế tự chụp",
-    imageUrl: "",
-  },
-  {
-    id: "seeding-casual",
-    type: "seeding",
-    title: "Casual Desk",
-    description: "Bàn làm việc/đời thường",
-    imageUrl: "",
-  },
-  {
-    id: "seeding-unboxing",
-    type: "seeding",
-    title: "Unboxing",
-    description: "Mở hộp sản phẩm chân thực",
-    imageUrl: "",
-  },
-];
-
 function typeBadgeStyles(type: ImageType) {
   switch (type) {
     case "display":
@@ -126,8 +39,8 @@ function typeBadgeStyles(type: ImageType) {
 }
 
 export function SampleOutputsGrid({
-  title = "Ví dụ 12 output bạn sẽ nhận được",
-  subtitle = "4 nhóm ảnh: Display • Model • Social • Seeding",
+  title = "V\u00ed d\u1ee5 12 output b\u1ea1n s\u1ebd nh\u1eadn \u0111\u01b0\u1ee3c",
+  subtitle = "4 nh\u00f3m \u1ea3nh: Display \u2022 Model \u2022 Social \u2022 Seeding",
   dense = false,
   preloadedImages = null,
 }: {
@@ -136,7 +49,7 @@ export function SampleOutputsGrid({
   dense?: boolean;
   preloadedImages?: any[] | null;
 }) {
-  const [samples, setSamples] = useState<SampleItem[]>(fallbackSamples);
+  const [samples, setSamples] = useState<SampleItem[]>([]);
   const [preview, setPreview] = useState<SampleItem | null>(null);
   const [loading, setLoading] = useState(!preloadedImages);
 
@@ -165,12 +78,8 @@ export function SampleOutputsGrid({
         ...groupedSamples.seeding,
       ];
 
-      if (organizedSamples.length >= 8) {
+      if (organizedSamples.length > 0) {
         setSamples(organizedSamples.slice(0, 12));
-      } else {
-        const mixedSamples = [...organizedSamples];
-        const remainingFallback = fallbackSamples.slice(organizedSamples.length);
-        setSamples([...mixedSamples, ...remainingFallback].slice(0, 12));
       }
       setLoading(false);
     } else {
@@ -211,12 +120,8 @@ export function SampleOutputsGrid({
               ...groupedSamples.seeding,
             ];
 
-            if (organizedSamples.length >= 8) {
+            if (organizedSamples.length > 0) {
               setSamples(organizedSamples.slice(0, 12));
-            } else {
-              const mixedSamples = [...organizedSamples];
-              const remainingFallback = fallbackSamples.slice(organizedSamples.length);
-              setSamples([...mixedSamples, ...remainingFallback].slice(0, 12));
             }
           }
         } catch (error) {
@@ -245,6 +150,10 @@ export function SampleOutputsGrid({
       console.error("Download failed:", error);
     }
   };
+
+  if (!loading && samples.length === 0) {
+    return null;
+  }
 
   if (loading) {
     return (
@@ -285,7 +194,7 @@ export function SampleOutputsGrid({
             key={item.id}
             className="overflow-hidden border-0 shadow hover:shadow-md transition-shadow cursor-pointer"
             onClick={() => setPreview(item)}
-            title="Nhấn để xem lớn"
+            title="Nh\u1ea5n \u0111\u1ec3 xem l\u1edbn"
           >
             <div className="aspect-square relative bg-gray-100">
               <SafeImage
