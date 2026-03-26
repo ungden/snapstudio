@@ -56,7 +56,7 @@ export function useImageGeneration(user: User | null, profile: Profile | null, r
             setProgress(100);
             await refreshProfile();
             
-            toast.success('🎉 Bộ ảnh của bạn đã sẵn sàng!');
+            toast.success('Your image set is ready!');
             
             const { data: images, error: imagesError } = await supabase
               .from('generated_images')
@@ -67,7 +67,7 @@ export function useImageGeneration(user: User | null, profile: Profile | null, r
               
             if (imagesError) {
               console.error('Error loading generated images:', imagesError);
-              toast.error('Lỗi khi tải ảnh đã tạo');
+              toast.error('Failed to load generated images');
             } else {
               setGeneratedImages(images as GeneratedImage[] || []);
             }
@@ -77,7 +77,7 @@ export function useImageGeneration(user: User | null, profile: Profile | null, r
             clearInterval(progressTimer);
             setIsProcessing(false);
             setProgress(0);
-            toast.error('Quá trình tạo ảnh thất bại. Vui lòng thử lại.');
+            toast.error('Image generation failed. Please try again.');
           }
         } catch (error) {
           console.error('Error handling project update:', error);
@@ -125,12 +125,12 @@ export function useImageGeneration(user: User | null, profile: Profile | null, r
     batchConfig: Record<ImageType, number>;
   }) => {
     if (!user) {
-      toast.error("Bạn cần đăng nhập để tạo ảnh");
+      toast.error("You need to sign in to generate images");
       return;
     }
 
     if ((profile?.points_balance ?? 0) < 120) {
-      toast.error("Không đủ điểm. Cần 120 điểm để tạo bộ ảnh.");
+      toast.error("Not enough points. 120 points required to generate an image set.");
       return;
     }
 
@@ -160,12 +160,12 @@ export function useImageGeneration(user: User | null, profile: Profile | null, r
         throw new Error(data?.error || 'Failed to start generation');
       }
 
-      toast.success("Đã bắt đầu tạo ảnh! Quá trình sẽ hoàn thành trong 30-60 giây.");
+      toast.success("Image generation started! It will complete in 30-60 seconds.");
       setProgress(25);
       
     } catch (error: any) {
       console.error('Error starting generation:', error);
-      toast.error(error.message || 'Lỗi khi bắt đầu tạo ảnh');
+      toast.error(error.message || 'Failed to start image generation');
       setIsProcessing(false);
       setProgress(0);
     }
@@ -188,9 +188,9 @@ export function useImageGeneration(user: User | null, profile: Profile | null, r
         )
       );
       
-      toast.success(currentFavorite ? "Đã bỏ yêu thích" : "Đã thêm vào yêu thích");
+      toast.success(currentFavorite ? "Removed from favorites" : "Added to favorites");
     } catch (error) {
-      toast.error("Lỗi khi cập nhật yêu thích");
+      toast.error("Failed to update favorites");
     }
   }, []);
 

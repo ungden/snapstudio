@@ -65,7 +65,7 @@ export function useContentModeration() {
       ]);
     } catch (error) {
       console.error('Error loading moderation data:', error);
-      toast.error('Lỗi khi tải dữ liệu kiểm duyệt');
+      toast.error('Failed to load moderation data');
     } finally {
       setLoading(false);
     }
@@ -228,7 +228,7 @@ export function useContentModeration() {
       
     } catch (error) {
       console.error('Error moderating content:', error);
-      toast.error('Lỗi khi kiểm duyệt nội dung');
+      toast.error('Failed to moderate content');
       throw error;
     }
   }, [moderationQueue]);
@@ -246,7 +246,7 @@ export function useContentModeration() {
       toast.success(`Bulk ${action}d ${selectedItems.size} items`);
     } catch (error) {
       console.error('Error in bulk moderation:', error);
-      toast.error('Lỗi khi thực hiện bulk moderation');
+      toast.error('Failed to perform bulk moderation');
     }
   }, [selectedItems, moderateContent]);
 
@@ -261,7 +261,7 @@ export function useContentModeration() {
       toast.success(`Rule ${!isActive ? 'activated' : 'deactivated'}`);
     } catch (error) {
       console.error('Error toggling rule:', error);
-      toast.error('Lỗi khi cập nhật rule');
+      toast.error('Failed to toggle rule');
     }
   }, []);
 
@@ -281,7 +281,7 @@ export function useContentModeration() {
       toast.success('Rule created successfully');
     } catch (error) {
       console.error('Error creating rule:', error);
-      toast.error('Lỗi khi tạo rule');
+      toast.error('Failed to create rule');
     }
   }, []);
 
@@ -295,7 +295,7 @@ export function useContentModeration() {
       toast.success('Rule updated successfully');
     } catch (error) {
       console.error('Error updating rule:', error);
-      toast.error('Lỗi khi cập nhật rule');
+      toast.error('Failed to update rule');
     }
   }, []);
 
@@ -307,7 +307,7 @@ export function useContentModeration() {
       toast.success('Rule deleted successfully');
     } catch (error) {
       console.error('Error deleting rule:', error);
-      toast.error('Lỗi khi xóa rule');
+      toast.error('Failed to delete rule');
     }
   }, []);
 
@@ -329,7 +329,7 @@ export function useContentModeration() {
       toast.success(`Report ${action}d successfully`);
     } catch (error) {
       console.error('Error resolving report:', error);
-      toast.error('Lỗi khi xử lý report');
+      toast.error('Failed to process report');
     }
   }, []);
 
@@ -345,7 +345,7 @@ export function useContentModeration() {
       toast.success('Report marked as investigating');
     } catch (error) {
       console.error('Error investigating report:', error);
-      toast.error('Lỗi khi điều tra report');
+      toast.error('Failed to investigate report');
     }
   }, []);
 

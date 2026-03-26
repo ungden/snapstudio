@@ -44,10 +44,10 @@ export function ImageUpload({
 
   const validateFile = (file: File): string | null => {
     if (!ACCEPTED_TYPES.includes(file.type)) {
-      return "Chỉ hỗ trợ file JPG, PNG, WebP";
+      return "Only JPG, PNG, and WebP files are supported";
     }
     if (file.size > MAX_FILE_SIZE) {
-      return "File quá lớn. Tối đa 10MB";
+      return "File too large. Maximum 10MB";
     }
     return null;
   };
@@ -74,10 +74,10 @@ export function ImageUpload({
       }
 
       onImageSelect(file, preview);
-      toast.success("Tải ảnh thành công!");
+      toast.success("Image uploaded successfully!");
     } catch (error) {
       console.error('Error processing file:', error);
-      toast.error("Lỗi khi xử lý ảnh");
+      toast.error("Error processing image");
     } finally {
       setUploading(false);
     }
@@ -114,7 +114,7 @@ export function ImageUpload({
       URL.revokeObjectURL(selectedImage);
     }
     onClear();
-    toast.success("Đã xóa ảnh");
+    toast.success("Image removed");
   };
 
   return (
@@ -158,16 +158,16 @@ export function ImageUpload({
                 
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {uploading ? "Đang xử lý ảnh..." : "Tải ảnh sản phẩm"}
+                    {uploading ? "Processing image..." : "Upload Product Image"}
                   </h3>
                   <p className="text-gray-600 mb-4">
-                    Kéo thả ảnh vào đây hoặc nhấn để chọn file
+                    Drag and drop an image here or click to select a file
                   </p>
                   <div className="flex flex-wrap justify-center gap-2 text-xs text-gray-500">
                     <Badge variant="outline">JPG</Badge>
                     <Badge variant="outline">PNG</Badge>
                     <Badge variant="outline">WebP</Badge>
-                    <Badge variant="outline">Tối đa 10MB</Badge>
+                    <Badge variant="outline">Max 10MB</Badge>
                   </div>
                 </div>
 
@@ -177,7 +177,7 @@ export function ImageUpload({
                   className="pointer-events-none"
                 >
                   <ImageIcon className="w-4 h-4 mr-2" />
-                  Chọn ảnh từ máy
+                  Select from device
                 </Button>
               </div>
             </div>
@@ -204,7 +204,7 @@ export function ImageUpload({
                   <div className="absolute top-2 left-2">
                     <Badge className="bg-green-100 text-green-800">
                       <CheckCircle className="w-3 h-3 mr-1" />
-                      Đã tải
+                      Uploaded
                     </Badge>
                   </div>
                 </div>
@@ -214,10 +214,10 @@ export function ImageUpload({
               <div className="text-center p-3 bg-green-50 border border-green-200 rounded-lg">
                 <div className="flex items-center justify-center gap-2 text-green-800 mb-1">
                   <CheckCircle className="w-4 h-4" />
-                  <span className="font-medium">Ảnh đã sẵn sàng!</span>
+                  <span className="font-medium">Image is ready!</span>
                 </div>
                 <p className="text-sm text-green-700">
-                  Điền thông tin bên dưới để bắt đầu tạo bộ ảnh marketing
+                  Fill in the details below to start generating your marketing photo set
                 </p>
               </div>
             </div>
@@ -233,39 +233,39 @@ export function ImageUpload({
         <CardContent className="p-6 space-y-4">
           <div className="flex items-center gap-2 mb-4">
             <Sparkles className="w-5 h-5 text-blue-600" />
-            <h3 className="font-semibold text-gray-900">Thông tin sản phẩm</h3>
+            <h3 className="font-semibold text-gray-900">Product Information</h3>
           </div>
 
           <div>
             <Label htmlFor="product-name" className="text-sm font-medium mb-2 block">
-              Tên sản phẩm *
+              Product Name *
             </Label>
             <Input
               id="product-name"
-              placeholder="Ví dụ: iPhone 15 Pro Max"
+              placeholder="e.g. iPhone 15 Pro Max"
               value={productName}
               onChange={(e) => onProductNameChange(e.target.value)}
               className="w-full"
             />
             <p className="text-xs text-gray-500 mt-1">
-              Tên này sẽ được sử dụng để tạo prompt AI và đặt tên file
+              This name will be used for AI prompts and file naming
             </p>
           </div>
 
           <div>
             <Label htmlFor="custom-keywords" className="text-sm font-medium mb-2 block">
-              Từ khóa bổ sung (tùy chọn)
+              Additional Keywords (optional)
             </Label>
             <Textarea
               id="custom-keywords"
-              placeholder="Ví dụ: cao cấp, sang trọng, hiện đại, màu đen, chất liệu kim loại..."
+              placeholder="e.g. premium, elegant, modern, black, metallic..."
               value={customKeywords}
               onChange={(e) => onCustomKeywordsChange(e.target.value)}
               rows={3}
               className="resize-none"
             />
             <p className="text-xs text-gray-500 mt-1">
-              Thêm các từ khóa mô tả đặc điểm, màu sắc, chất liệu để AI tạo ảnh chính xác hơn
+              Add keywords describing features, colors, and materials for more accurate AI-generated images
             </p>
           </div>
 
@@ -274,12 +274,12 @@ export function ImageUpload({
             <div className="flex items-start gap-2">
               <AlertCircle className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
               <div className="text-xs text-blue-800">
-                <p className="font-medium mb-1">Mẹo để có ảnh đẹp nhất:</p>
+                <p className="font-medium mb-1">Tips for the best results:</p>
                 <ul className="list-disc list-inside space-y-0.5">
-                  <li>Chọn ảnh sản phẩm rõ nét, ánh sáng tốt</li>
-                  <li>Nền đơn giản, không quá nhiều chi tiết phụ</li>
-                  <li>Sản phẩm chiếm tỷ lệ hợp lý trong khung hình</li>
-                  <li>Tên sản phẩm chính xác giúp AI hiểu rõ hơn</li>
+                  <li>Use a clear, well-lit product photo</li>
+                  <li>Simple background with minimal distractions</li>
+                  <li>Product should be proportionally framed</li>
+                  <li>Accurate product name helps AI understand better</li>
                 </ul>
               </div>
             </div>

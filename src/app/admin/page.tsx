@@ -74,15 +74,15 @@ export default function AdminDashboard() {
       const activity = (ordersRes.data || []).map((o: any) => ({
         id: o.id,
         type: o.status === 'completed' ? 'order_completed' : 'order_failed',
-        title: `Đơn hàng ${o.metadata?.plan_name || ''}`,
-        description: `Số tiền: ${o.amount.toLocaleString()} VND`,
+        title: `Order ${o.metadata?.plan_name || ''}`,
+        description: `Amount: ${o.amount.toLocaleString()} VND`,
         user: { name: '', email: profileMap.get(o.user_id) || 'N/A' },
         timestamp: o.created_at,
       }));
       setRecentActivity(activity as any);
 
     } catch (error) {
-      toast.error('Lỗi khi tải dữ liệu dashboard');
+      toast.error('Error loading dashboard data');
     } finally {
       setLoading(false);
     }
@@ -105,7 +105,7 @@ export default function AdminDashboard() {
         <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
         <Button onClick={loadDashboardData} variant="outline">
           <RefreshCw className="w-4 h-4 mr-2" />
-          Làm mới
+          Refresh
         </Button>
       </div>
       

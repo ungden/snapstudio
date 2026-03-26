@@ -42,14 +42,14 @@ function LoginPageInner() {
 
   useEffect(() => {
     if (error === 'auth_callback_error') {
-      toast.error('Lỗi xác thực. Vui lòng thử lại.');
+      toast.error('Authentication error. Please try again.');
     }
   }, [error]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim() || !password.trim()) {
-      toast.error("Vui lòng nhập email và mật khẩu");
+      toast.error("Please enter your email and password");
       return;
     }
     
@@ -64,15 +64,15 @@ function LoginPageInner() {
         
         if (error) {
           if (error.message.includes('Invalid login credentials')) {
-            throw new Error('Email hoặc mật khẩu không đúng');
+            throw new Error('Incorrect email or password');
           } else if (error.message.includes('Email not confirmed')) {
-            throw new Error('Vui lòng xác nhận email trước khi đăng nhập');
+            throw new Error('Please confirm your email before signing in');
           } else {
             throw error;
           }
         }
         
-        toast.success("Đăng nhập thành công!");
+        toast.success("Signed in successfully!");
         // Let useEffect handle redirect
       } else {
         const { data, error } = await supabase.auth.signUp({ 
@@ -87,24 +87,24 @@ function LoginPageInner() {
         
         if (error) {
           if (error.message.includes('User already registered')) {
-            throw new Error('Email này đã được đăng ký. Vui lòng đăng nhập.');
+            throw new Error('This email is already registered. Please sign in.');
           } else if (error.message.includes('Password should be at least')) {
-            throw new Error('Mật khẩu phải có ít nhất 6 ký tự');
+            throw new Error('Password must be at least 6 characters');
           } else {
             throw error;
           }
         }
         
         if (data.session) {
-          toast.success("Đăng ký thành công!");
+          toast.success("Signed up successfully!");
           // Let useEffect handle redirect
         } else {
-          toast.success("Đăng ký thành công! Vui lòng kiểm tra email để xác nhận.");
+          toast.success("Signed up successfully! Please check your email to confirm.");
           setBusy(false);
         }
       }
     } catch (error: any) {
-      toast.error(error.message || "Có lỗi xảy ra");
+      toast.error(error.message || "An error occurred");
       setBusy(false);
     }
   };
@@ -123,11 +123,11 @@ function LoginPageInner() {
       });
       
       if (error) {
-        toast.error("Lỗi đăng nhập Google: " + error.message);
+        toast.error("Google sign-in error: " + error.message);
         setBusy(false);
       }
     } catch (error: any) {
-      toast.error("Lỗi đăng nhập Google");
+      toast.error("Google sign-in error");
       setBusy(false);
     }
   };
@@ -137,7 +137,7 @@ function LoginPageInner() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="w-8 h-8 animate-spin text-blue-600 mx-auto mb-4" />
-          <p className="text-gray-600">Đang kiểm tra đăng nhập...</p>
+          <p className="text-gray-600">Checking sign-in status...</p>
         </div>
       </div>
     );
@@ -149,7 +149,7 @@ function LoginPageInner() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold flex items-center justify-center gap-2">
             <LogIn className="w-5 h-5" />
-            {mode === "login" ? "Đăng nhập" : "Đăng ký"}
+            {mode === "login" ? "Sign In" : "Sign Up"}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-5">
@@ -157,7 +157,7 @@ function LoginPageInner() {
             <Alert className="border-red-200 bg-red-50">
               <AlertCircle className="h-4 w-4 text-red-600" />
               <AlertDescription className="text-red-800">
-                Có lỗi xảy ra trong quá trình xác thực. Vui lòng thử lại.
+                An error occurred during authentication. Please try again.
               </AlertDescription>
             </Alert>
           )}
@@ -170,16 +170,16 @@ function LoginPageInner() {
               disabled={busy} 
               size="sm"
             >
-              Đăng nhập
+              Sign In
             </Button>
-            <Button 
-              type="button" 
-              variant={mode === "signup" ? "default" : "outline"} 
-              onClick={() => setMode("signup")} 
-              disabled={busy} 
+            <Button
+              type="button"
+              variant={mode === "signup" ? "default" : "outline"}
+              onClick={() => setMode("signup")}
+              disabled={busy}
               size="sm"
             >
-              Đăng ký
+              Sign Up
             </Button>
           </div>
 
@@ -191,13 +191,13 @@ function LoginPageInner() {
             disabled={busy}
           >
             <Chrome className="w-4 h-4 mr-2" />
-            {mode === "login" ? "Đăng nhập" : "Đăng ký"} với Google
+            {mode === "login" ? "Sign in" : "Sign up"} with Google
           </Button>
 
           <div className="relative">
             <Separator />
             <span className="absolute left-1/2 -translate-x-1/2 -top-3 bg-white px-3 text-xs text-gray-500">
-              Hoặc dùng email
+              Or use email
             </span>
           </div>
 
@@ -220,7 +220,7 @@ function LoginPageInner() {
               </div>
             </div>
             <div>
-              <Label htmlFor="password">Mật khẩu</Label>
+              <Label htmlFor="password">Password</Label>
               <div className="relative mt-1">
                 <Lock className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
                 <Input 
@@ -240,10 +240,10 @@ function LoginPageInner() {
               {busy ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Đang xử lý...
+                  Processing...
                 </>
               ) : (
-                mode === "login" ? "Đăng nhập" : "Đăng ký"
+                mode === "login" ? "Sign In" : "Sign Up"
               )}
             </Button>
           </form>

@@ -6,23 +6,23 @@ import { Building2, Sparkles, Upload, Wand2 } from 'lucide-react';
 const steps = [
   {
     icon: Building2,
-    title: "Bước 1: Chọn Ngành Hàng",
-    description: "Chọn ngành hàng để AI sử dụng bộ prompt chuyên biệt, tối ưu cho sản phẩm của bạn.",
+    title: "Step 1: Select Industry",
+    description: "Choose your industry so AI uses specialized prompts optimized for your products.",
   },
   {
     icon: Sparkles,
-    title: "Bước 2: Cấu hình Bộ Ảnh",
-    description: "Tùy chỉnh số lượng ảnh cho mỗi phong cách (Display, Model, Social, Seeding) để đủ 12 ảnh.",
+    title: "Step 2: Configure Image Set",
+    description: "Customize the number of images for each style (Display, Model, Social, Seeding) to total 12.",
   },
   {
     icon: Upload,
-    title: "Bước 3: Tải Ảnh Gốc",
-    description: "Tải lên ảnh sản phẩm gốc của bạn. Ảnh nên rõ nét và sản phẩm là trung tâm.",
+    title: "Step 3: Upload Original Image",
+    description: "Upload your original product image. It should be clear with the product as the focal point.",
   },
   {
     icon: Wand2,
-    title: "Bước 4: Tạo Bộ Ảnh",
-    description: "Nhấn nút 'Tạo ảnh' và chờ trong 30-60 giây để nhận bộ ảnh marketing hoàn chỉnh.",
+    title: "Step 4: Generate Image Set",
+    description: "Click 'Generate' and wait 30-60 seconds to receive your complete marketing image set.",
   },
 ];
 
@@ -31,7 +31,7 @@ export function OnboardingGuide() {
     <Card className="mb-8 border-blue-200 bg-blue-50/50">
       <CardHeader>
         <CardTitle className="text-center text-2xl font-bold text-gray-900">
-          Hướng dẫn tạo ảnh trong 4 bước
+          Create images in 4 steps
         </CardTitle>
       </CardHeader>
       <CardContent>

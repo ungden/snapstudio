@@ -18,25 +18,25 @@ export function DashboardHeader({ userName, projectId, pointsBalance, onNewProje
     <div className="flex items-center justify-between mb-6">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">
-          Chào {userName}! 👋
+          Hello {userName}! 👋
         </h1>
         <p className="text-gray-600 text-sm">
-          {projectId ? "Tạo ảnh cho dự án đã chọn" : "Tạo ảnh marketing chuyên nghiệp với AI"}
+          {projectId ? "Generate images for the selected project" : "Create professional marketing images with AI"}
         </p>
       </div>
       <div className="flex items-center gap-4">
         <div className="text-right">
-          <div className="text-sm text-gray-500">Số dư</div>
+          <div className="text-sm text-gray-500">Balance</div>
           <div className="text-lg font-bold text-blue-600">
             {pointsBalance.toLocaleString()} pts
           </div>
         </div>
         <Button size="sm" variant="outline" onClick={() => router.push('/dashboard/billing')}>
-          <CreditCard className="w-4 h-4 mr-2" /> Nạp điểm
+          <CreditCard className="w-4 h-4 mr-2" /> Top Up
         </Button>
         <Button onClick={onNewProject}>
           <Plus className="w-4 h-4 mr-2" />
-          Dự án mới
+          New Project
         </Button>
       </div>
     </div>

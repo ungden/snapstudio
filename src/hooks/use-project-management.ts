@@ -38,14 +38,14 @@ export function useProjectManagement(user: User | null) {
         
       if (error) {
         console.error('Error loading project:', error);
-        toast.error('Không thể tải thông tin dự án');
+        toast.error('Failed to load project information');
         return;
       }
       
       if (data) {
         setProductName(data.product_name || '');
         setSelectedIndustry((data.industry as IndustryId) || 'f_b');
-        toast.success(`Đã chọn dự án: ${data.name}`);
+        toast.success(`Project selected: ${data.name}`);
       }
     } catch (error) {
       console.error('Error in loadProjectData:', error);
@@ -69,7 +69,7 @@ export function useProjectManagement(user: User | null) {
       .single();
 
     if (projectError || !newProject) {
-      throw new Error('Không thể tạo dự án: ' + (projectError?.message || 'Unknown error'));
+      throw new Error('Failed to create project: ' + (projectError?.message || 'Unknown error'));
     }
     
     const newProjectId = newProject.id;

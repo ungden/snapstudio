@@ -38,7 +38,7 @@ export class ImageGenerator {
 
   static async downloadImage(imageUrl: string, filename: string): Promise<void> {
     if (isDemoMode()) {
-      toast.info('Demo mode: tải ảnh không khả dụng');
+      toast.info('Demo mode: image download is not available');
       return;
     }
 
@@ -62,7 +62,7 @@ export class ImageGenerator {
 
   static async downloadAllImages(images: GeneratedImage[], productName: string): Promise<void> {
     if (isDemoMode()) {
-      toast.info('Demo mode: tải ảnh không khả dụng');
+      toast.info('Demo mode: image download is not available');
       return;
     }
 

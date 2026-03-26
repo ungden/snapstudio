@@ -75,10 +75,10 @@ export function DashboardStats() {
   }, [user]);
 
   const statItems = [
-    { icon: Image, label: "Ảnh đã tạo", value: stats.images, color: "text-blue-600" },
-    { icon: Folder, label: "Dự án", value: stats.projects, color: "text-green-600" },
-    { icon: Heart, label: "Yêu thích", value: stats.favorites, color: "text-red-600" },
-    { icon: Clock, label: "Ngày tham gia", value: stats.days, color: "text-purple-600" },
+    { icon: Image, label: "Images Created", value: stats.images, color: "text-blue-600" },
+    { icon: Folder, label: "Projects", value: stats.projects, color: "text-green-600" },
+    { icon: Heart, label: "Favorites", value: stats.favorites, color: "text-red-600" },
+    { icon: Clock, label: "Days Since Joined", value: stats.days, color: "text-purple-600" },
   ];
 
   if (loading) {

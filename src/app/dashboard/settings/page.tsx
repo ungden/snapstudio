@@ -83,10 +83,10 @@ export default function SettingsPage() {
       if (error) throw error;
 
       await refreshProfile();
-      toast.success('Đã cập nhật thông tin cá nhân!');
+      toast.success('Profile updated successfully!');
     } catch (error) {
       console.error('Error updating profile:', error);
-      toast.error('Lỗi khi cập nhật thông tin');
+      toast.error('Error updating profile');
     } finally {
       setSaving(false);
     }
@@ -99,25 +99,25 @@ export default function SettingsPage() {
       });
 
       if (error) throw error;
-      toast.success('Đã gửi email đổi mật khẩu!');
+      toast.success('Password reset email sent!');
     } catch (error) {
-      toast.error('Lỗi khi gửi email đổi mật khẩu');
+      toast.error('Error sending password reset email');
     }
   };
 
   const handleDeleteAccount = async () => {
-    if (deleteConfirmText !== 'XÓA TÀI KHOẢN') {
-      toast.error('Vui lòng nhập chính xác "XÓA TÀI KHOẢN"');
+    if (deleteConfirmText !== 'DELETE ACCOUNT') {
+      toast.error('Please type exactly "DELETE ACCOUNT"');
       return;
     }
 
     try {
       // In a real app, this would be handled by an admin function
-      toast.info('Yêu cầu xóa tài khoản đã được gửi. Admin sẽ xử lý trong 24h.');
+      toast.info('Account deletion request has been submitted. Admin will process it within 24 hours.');
       setShowDeleteConfirm(false);
       setDeleteConfirmText('');
     } catch (error) {
-      toast.error('Lỗi khi xóa tài khoản');
+      toast.error('Error deleting account');
     }
   };
 
@@ -126,7 +126,7 @@ export default function SettingsPage() {
       <div className="max-w-2xl mx-auto">
         <div className="text-center py-12">
           <Loader2 className="w-8 h-8 animate-spin mx-auto text-blue-600" />
-          <p className="text-gray-600 mt-2">Đang tải cài đặt...</p>
+          <p className="text-gray-600 mt-2">Loading settings...</p>
         </div>
       </div>
     );
@@ -135,8 +135,8 @@ export default function SettingsPage() {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Cài đặt tài khoản</h1>
-        <p className="text-gray-600">Quản lý thông tin cá nhân và tùy chọn của bạn</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Account Settings</h1>
+        <p className="text-gray-600">Manage your personal information and preferences</p>
       </div>
 
       {/* Profile Information */}
@@ -144,17 +144,17 @@ export default function SettingsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <User className="w-5 h-5" />
-            Thông tin cá nhân
+            Personal Information
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <Label htmlFor="full-name">Họ và tên</Label>
+            <Label htmlFor="full-name">Full Name</Label>
             <Input
               id="full-name"
               value={settings.full_name}
               onChange={(e) => setSettings({...settings, full_name: e.target.value})}
-              placeholder="Nhập họ và tên của bạn"
+              placeholder="Enter your full name"
             />
           </div>
           
@@ -167,12 +167,12 @@ export default function SettingsPage() {
               className="bg-gray-50"
             />
             <p className="text-xs text-gray-500 mt-1">
-              Email không thể thay đổi. Liên hệ admin nếu cần hỗ trợ.
+              Email cannot be changed. Contact admin if you need assistance.
             </p>
           </div>
 
           <div>
-            <Label htmlFor="avatar-url">Avatar URL (tùy chọn)</Label>
+            <Label htmlFor="avatar-url">Avatar URL (optional)</Label>
             <Input
               id="avatar-url"
               value={settings.avatar_url || ''}
@@ -187,7 +187,7 @@ export default function SettingsPage() {
             ) : (
               <Save className="w-4 h-4 mr-2" />
             )}
-            Lưu thông tin
+            Save Information
           </Button>
         </CardContent>
       </Card>
@@ -197,23 +197,23 @@ export default function SettingsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Shield className="w-5 h-5" />
-            Thông tin tài khoản
+            Account Information
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
             <div>
-              <span className="text-gray-600">Gói hiện tại:</span>
+              <span className="text-gray-600">Current Plan:</span>
               <div className="font-semibold capitalize">{profile?.subscription_plan || 'Free'}</div>
             </div>
             <div>
-              <span className="text-gray-600">Ngày tham gia:</span>
+              <span className="text-gray-600">Date Joined:</span>
               <div className="font-semibold">
-                {user?.created_at ? new Date(user.created_at).toLocaleDateString('vi-VN') : 'N/A'}
+                {user?.created_at ? new Date(user.created_at).toLocaleDateString('en-US') : 'N/A'}
               </div>
             </div>
             <div>
-              <span className="text-gray-600">Ảnh đã tạo:</span>
+              <span className="text-gray-600">Images Generated:</span>
               <div className="font-semibold">{profile?.images_generated || 0}</div>
             </div>
             <div>

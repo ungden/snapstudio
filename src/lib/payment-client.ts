@@ -35,14 +35,14 @@ export class PaymentClient {
         if (!isAuth) {
           return {
             success: false,
-            error: 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.'
+            error: 'Your session has expired. Please log in again.'
           };
         }
 
         if (!planId || typeof planId !== 'string') {
           return {
             success: false,
-            error: 'Plan ID không hợp lệ'
+            error: 'Invalid Plan ID'
           };
         }
 
@@ -53,7 +53,7 @@ export class PaymentClient {
         if (error) {
           lastError = error;
           if (error.message.includes('Unauthorized') || error.message.includes('not authenticated')) {
-            return { success: false, error: 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.' };
+            return { success: false, error: 'Your session has expired. Please log in again.' };
           }
           if (error.message.includes('Invalid planId') || error.message.includes('Bad Request')) {
             return { success: false, error: error.message };
@@ -111,7 +111,7 @@ export class PaymentClient {
 
     return {
       success: false,
-      error: lastError?.message || 'Không thể tạo đơn hàng sau nhiều lần thử'
+      error: lastError?.message || 'Unable to create order after multiple attempts'
     };
   }
 

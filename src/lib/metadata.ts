@@ -23,10 +23,10 @@ export function generatePageMetadata({
   
   const allKeywords = [
     "SnapStudio",
-    "tạo ảnh AI",
-    "ảnh sản phẩm",
+    "AI image generation",
+    "product photography",
     "marketing",
-    "AI Vietnam",
+    "AI photography",
     ...keywords
   ];
 
@@ -38,7 +38,7 @@ export function generatePageMetadata({
     // Open Graph
     openGraph: {
       type: "website",
-      locale: "vi_VN",
+      locale: "en_US",
       url,
       siteName: "SnapStudio",
       title: fullTitle,
@@ -82,27 +82,27 @@ export function generatePageMetadata({
 // Industry-specific metadata
 export const industryMetadata = {
   'f_b': {
-    title: "Tạo ảnh Food & Beverage bằng AI",
-    description: "Prompt chuyên biệt cho F&B - Studio shots, lifestyle dining, social content. Tiết kiệm 99% chi phí chụp ảnh món ăn.",
-    keywords: ["ảnh món ăn", "food photography", "restaurant marketing", "F&B AI", "menu design"],
+    title: "AI Food & Beverage Photography",
+    description: "Specialized prompts for F&B - Studio shots, lifestyle dining, social content. Save 99% on food photography costs.",
+    keywords: ["food photos", "food photography", "restaurant marketing", "F&B AI", "menu design"],
     image: "/og-food-beverage.jpg"
   },
   'beauty': {
-    title: "Tạo ảnh Beauty & Personal Care bằng AI", 
-    description: "Prompt chuyên biệt cho mỹ phẩm - Luxury aesthetic, model application, skincare campaigns. Ảnh beauty chuyên nghiệp.",
-    keywords: ["ảnh mỹ phẩm", "beauty photography", "skincare marketing", "makeup AI", "cosmetics"],
+    title: "AI Beauty & Personal Care Photography",
+    description: "Specialized prompts for cosmetics - Luxury aesthetic, model application, skincare campaigns. Professional beauty photography.",
+    keywords: ["cosmetics photos", "beauty photography", "skincare marketing", "makeup AI", "cosmetics"],
     image: "/og-beauty.jpg"
   },
   'fashion': {
-    title: "Tạo ảnh Fashion & Accessories bằng AI",
-    description: "Prompt chuyên biệt cho thời trang - Editorial style, streetwear vibe, product flat-lay. Fashion photography AI.",
-    keywords: ["ảnh thời trang", "fashion photography", "streetwear", "clothing AI", "accessories"],
+    title: "AI Fashion & Accessories Photography",
+    description: "Specialized prompts for fashion - Editorial style, streetwear vibe, product flat-lay. Fashion photography AI.",
+    keywords: ["fashion photos", "fashion photography", "streetwear", "clothing AI", "accessories"],
     image: "/og-fashion.jpg"
   },
   'mother_baby': {
-    title: "Tạo ảnh Mother & Baby bằng AI",
-    description: "Prompt chuyên biệt cho sản phẩm em bé - An toàn, ấm áp, family-friendly. Baby product photography AI.",
-    keywords: ["ảnh sản phẩm baby", "mother baby photography", "family products", "baby AI", "parenting"],
+    title: "AI Mother & Baby Photography",
+    description: "Specialized prompts for baby products - Safe, warm, family-friendly. Baby product photography AI.",
+    keywords: ["baby product photos", "mother baby photography", "family products", "baby AI", "parenting"],
     image: "/og-mother-baby.jpg"
   }
 };

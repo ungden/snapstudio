@@ -22,13 +22,13 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const supabase = createSupabaseBrowserClient();
 
 const navigation = [
-  { name: 'Tạo ảnh', href: '/dashboard', icon: Home },
-  { name: 'Dự án', href: '/dashboard/projects', icon: Folder },
-  { name: 'Yêu thích', href: '/dashboard/favorites', icon: Heart },
-  { name: 'Cộng đồng', href: '/community', icon: Users },
-  { name: 'Thanh toán', href: '/dashboard/billing', icon: CreditCard },
-  { name: 'Lịch sử điểm', href: '/dashboard/points-history', icon: History },
-  { name: 'Cài đặt', href: '/dashboard/settings', icon: Settings },
+  { name: 'Create Images', href: '/dashboard', icon: Home },
+  { name: 'Projects', href: '/dashboard/projects', icon: Folder },
+  { name: 'Favorites', href: '/dashboard/favorites', icon: Heart },
+  { name: 'Community', href: '/community', icon: Users },
+  { name: 'Billing', href: '/dashboard/billing', icon: CreditCard },
+  { name: 'Points History', href: '/dashboard/points-history', icon: History },
+  { name: 'Settings', href: '/dashboard/settings', icon: Settings },
 ];
 
 function SidebarContent() {
@@ -50,13 +50,13 @@ function SidebarContent() {
     try {
       const { error } = await supabase.auth.signOut();
       if (error) {
-        toast.error(error.message || 'Đăng xuất thất bại');
+        toast.error(error.message || 'Logout failed');
         return;
       }
-      toast.success('Đã đăng xuất');
+      toast.success('Logged out');
       router.replace('/login');
     } catch (error) {
-      toast.error('Lỗi khi đăng xuất');
+      toast.error('Error logging out');
     }
   };
 
@@ -143,7 +143,7 @@ function SidebarContent() {
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" />
-                <span className={cn("font-medium text-sm", isCollapsed && "hidden")}>Điểm</span>
+                <span className={cn("font-medium text-sm", isCollapsed && "hidden")}>Points</span>
               </div>
               {profile?.subscription_plan === 'admin' && !isCollapsed && (
                 <Badge className="bg-red-500 text-white text-xs px-2 py-1">
@@ -159,7 +159,7 @@ function SidebarContent() {
               className={cn("w-full bg-white/20 hover:bg-white/30 text-white border-0 text-xs py-1", isCollapsed && "hidden")}
               onClick={() => router.push('/dashboard/billing')}
             >
-              Nạp thêm
+              Top Up
             </Button>
           </CardContent>
         </Card>
@@ -170,7 +170,7 @@ function SidebarContent() {
           onClick={handleLogout}
         >
           <LogOut className={cn("w-4 h-4", !isCollapsed && "mr-2")} />
-          <span className={cn(isCollapsed && "hidden")}>Đăng xuất</span>
+          <span className={cn(isCollapsed && "hidden")}>Log Out</span>
         </Button>
       </div>
     </div>

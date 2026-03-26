@@ -19,15 +19,15 @@ export function PrivacyToggle({ isPublic, onToggle }: PrivacyToggleProps) {
           <div className="flex items-center gap-2">
             <Globe className={cn("w-4 h-4", isPublic ? "text-green-600" : "text-gray-400")} />
             <Label htmlFor="is-public-switch" className="text-sm font-medium">
-              Chia sẻ ảnh ra cộng đồng?
+              Share images to community?
             </Label>
           </div>
           <div className="flex items-center gap-3">
-            <Label 
-              htmlFor="is-public-switch" 
+            <Label
+              htmlFor="is-public-switch"
               className={cn("text-xs cursor-pointer", !isPublic ? "font-bold text-gray-800" : "text-gray-500")}
             >
-              Riêng tư
+              Private
             </Label>
             <Switch
               id="is-public-switch"
@@ -38,14 +38,14 @@ export function PrivacyToggle({ isPublic, onToggle }: PrivacyToggleProps) {
               htmlFor="is-public-switch" 
               className={cn("text-xs cursor-pointer", isPublic ? "font-bold text-gray-800" : "text-gray-500")}
             >
-              Công khai
+              Public
             </Label>
           </div>
         </div>
         <p className="text-xs text-gray-500 mt-2">
-          {isPublic 
-            ? "Ảnh sẽ được chia sẻ công khai trong cộng đồng SnapStudio (mặc định)" 
-            : "Ảnh chỉ hiển thị trong tài khoản cá nhân của bạn"
+          {isPublic
+            ? "Images will be shared publicly in the SnapStudio community (default)"
+            : "Images will only be visible in your personal account"
           }
         </p>
       </CardContent>
