@@ -217,7 +217,7 @@ export default function SettingsPage() {
               <div className="font-semibold">{profile?.images_generated || 0}</div>
             </div>
             <div>
-              <span className="text-gray-600">Số dư điểm:</span>
+              <span className="text-gray-600">Points Balance:</span>
               <div className="font-semibold text-blue-600">{(profile?.points_balance || 0).toLocaleString()}</div>
             </div>
           </div>
@@ -225,12 +225,12 @@ export default function SettingsPage() {
           {profile?.subscription_expires_at && (
             <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
               <div className="text-sm">
-                <span className="text-gray-600">Gói hết hạn:</span>
+                <span className="text-gray-600">Plan Expires:</span>
                 <span className="font-semibold ml-2">
-                  {new Date(profile.subscription_expires_at).toLocaleDateString('vi-VN')}
+                  {new Date(profile.subscription_expires_at).toLocaleDateString('en-US')}
                 </span>
                 <span className="text-blue-600 ml-2">
-                  (còn {Math.max(0, Math.ceil((new Date(profile.subscription_expires_at).getTime() - Date.now()) / (1000 * 60 * 60 * 24)))} ngày)
+                  ({Math.max(0, Math.ceil((new Date(profile.subscription_expires_at).getTime() - Date.now()) / (1000 * 60 * 60 * 24)))} days remaining)
                 </span>
               </div>
             </div>
@@ -243,14 +243,14 @@ export default function SettingsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Bell className="w-5 h-5" />
-            Quyền riêng tư & Thông báo
+            Privacy & Notifications
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="font-medium text-gray-900">Thông báo email</h4>
-              <p className="text-sm text-gray-600">Nhận email về cập nhật tài khoản và khuyến mãi</p>
+              <h4 className="font-medium text-gray-900">Email Notifications</h4>
+              <p className="text-sm text-gray-600">Receive emails about account updates and promotions</p>
             </div>
             <Switch
               checked={settings.email_notifications}
@@ -260,8 +260,8 @@ export default function SettingsPage() {
 
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="font-medium text-gray-900">Hồ sơ công khai</h4>
-              <p className="text-sm text-gray-600">Cho phép người khác xem hồ sơ của bạn</p>
+              <h4 className="font-medium text-gray-900">Public Profile</h4>
+              <p className="text-sm text-gray-600">Allow others to view your profile</p>
             </div>
             <Switch
               checked={settings.public_profile}
@@ -271,8 +271,8 @@ export default function SettingsPage() {
 
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="font-medium text-gray-900">Hiển thị trong cộng đồng</h4>
-              <p className="text-sm text-gray-600">Ảnh của bạn có thể xuất hiện trong feed cộng đồng</p>
+              <h4 className="font-medium text-gray-900">Show in Community</h4>
+              <p className="text-sm text-gray-600">Your images may appear in the community feed</p>
             </div>
             <Switch
               checked={settings.show_in_community}
@@ -287,18 +287,18 @@ export default function SettingsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Shield className="w-5 h-5" />
-            Bảo mật
+            Security
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <h4 className="font-medium text-gray-900 mb-2">Đổi mật khẩu</h4>
+            <h4 className="font-medium text-gray-900 mb-2">Change Password</h4>
             <p className="text-sm text-gray-600 mb-4">
-              Chúng tôi sẽ gửi link đổi mật khẩu về email của bạn
+              We will send a password reset link to your email
             </p>
             <Button variant="outline" onClick={handleChangePassword}>
               <Mail className="w-4 h-4 mr-2" />
-              Gửi link đổi mật khẩu
+              Send Password Reset Link
             </Button>
           </div>
         </CardContent>

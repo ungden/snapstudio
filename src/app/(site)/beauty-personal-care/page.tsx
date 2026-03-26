@@ -14,36 +14,36 @@ export const metadata = generatePageMetadata({
 
 export default function BeautyPersonalCarePage() {
   const benefits = [
-    "Ảnh sản phẩm luxury với ánh sáng mềm mại, phản chiếu tinh tế",
-    "Model apply sản phẩm tự nhiên, showcase hiệu quả sử dụng",
-    "Content beauty campaign với aesthetic cao cho social",
-    "UGC content chân thực như review khách hàng"
+    "Luxury product photos with soft lighting and refined reflections",
+    "Models naturally applying products, showcasing usage effectiveness",
+    "High-aesthetic beauty campaign content for social media",
+    "Authentic UGC content resembling real customer reviews"
   ];
 
   const beautyCategories = [
-    { name: "Skincare", examples: "Serum, kem dưỡng, mặt nạ" },
-    { name: "Makeup", examples: "Son môi, phấn mắt, foundation" },
-    { name: "Haircare", examples: "Dầu gội, dưỡng tóc, styling" },
-    { name: "Fragrance", examples: "Nước hoa, body mist, perfume" }
+    { name: "Skincare", examples: "Serums, moisturizers, face masks" },
+    { name: "Makeup", examples: "Lipstick, eyeshadow, foundation" },
+    { name: "Haircare", examples: "Shampoo, conditioner, styling" },
+    { name: "Fragrance", examples: "Perfume, body mist, cologne" }
   ];
 
   const pricingHighlight = [
-    { plan: "Starter", price: "99k", images: "10 sản phẩm", best: false },
-    { plan: "Pro", price: "528k", images: "41 sản phẩm", best: true },
-    { plan: "Business", price: "1.58M", images: "125 sản phẩm", best: false }
+    { plan: "Starter", price: "99k", images: "10 products", best: false },
+    { plan: "Pro", price: "528k", images: "41 products", best: true },
+    { plan: "Business", price: "1.58M", images: "125 products", best: false }
   ];
 
   const beforeAfter = [
-    { aspect: "Chi phí chụp", before: "5-15 triệu", after: "12k VND", saving: "99.9%" },
-    { aspect: "Thời gian", before: "3-5 ngày", after: "30 giây", saving: "99.8%" },
-    { aspect: "Số ảnh", before: "5-8 ảnh", after: "12 ảnh", saving: "+50%" },
-    { aspect: "Chất lượng", before: "Không ổn định", after: "Consistent", saving: "100%" }
+    { aspect: "Photo shoot cost", before: "$200-$600", after: "12k VND", saving: "99.9%" },
+    { aspect: "Time", before: "3-5 days", after: "30 seconds", saving: "99.8%" },
+    { aspect: "Number of images", before: "5-8 images", after: "12 images", saving: "+50%" },
+    { aspect: "Quality", before: "Inconsistent", after: "Consistent", saving: "100%" }
   ];
 
   return (
     <PageLayout
-      title="Tạo ảnh Beauty & Personal Care bằng AI"
-      subtitle="Prompt chuyên biệt cho mỹ phẩm — Luxury aesthetic, model application, skincare campaigns"
+      title="AI-Powered Beauty & Personal Care Images"
+      subtitle="Specialized prompts for cosmetics — Luxury aesthetic, model application, skincare campaigns"
     >
       <div className="space-y-16">
         {/* Hero Benefits */}
@@ -53,10 +53,10 @@ export default function BeautyPersonalCarePage() {
               <Building2 className="w-10 h-10 text-white" />
             </div>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              AI chuyên biệt cho Beauty & Personal Care
+              AI Specialized for Beauty & Personal Care
             </h2>
             <p className="text-xl text-gray-600">
-              Prompt tối ưu cho luxury aesthetic, skin glow và beauty application
+              Prompts optimized for luxury aesthetic, skin glow, and beauty application
             </p>
           </div>
           

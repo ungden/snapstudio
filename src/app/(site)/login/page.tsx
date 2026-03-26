@@ -249,7 +249,7 @@ function LoginPageInner() {
           </form>
 
           <p className="text-center text-xs text-gray-500">
-            Bằng cách tiếp tục, bạn đồng ý với Điều khoản & Chính sách bảo mật.
+            By continuing, you agree to our Terms of Service & Privacy Policy.
           </p>
         </CardContent>
       </Card>

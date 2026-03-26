@@ -18,7 +18,7 @@ export function GenerationModeSelector({ mode, onModeChange }: GenerationModeSel
     <Card className="mb-8">
       <CardContent className="p-6">
         <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
-          Chọn chế độ tạo ảnh
+          Choose generation mode
         </h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -38,9 +38,9 @@ export function GenerationModeSelector({ mode, onModeChange }: GenerationModeSel
                 <Users className="w-6 h-6 text-blue-600" />
               </div>
               <div className="flex-1">
-                <h4 className="font-bold text-lg text-gray-900">Batch - Tùy chỉnh bộ ảnh</h4>
+                <h4 className="font-bold text-lg text-gray-900">Batch - Custom image set</h4>
                 <Badge className="bg-green-100 text-green-700 text-xs">
-                  Tiết kiệm 60%
+                  Save 60%
                 </Badge>
               </div>
               {mode === 'batch' && (
@@ -51,10 +51,10 @@ export function GenerationModeSelector({ mode, onModeChange }: GenerationModeSel
             </div>
             
             <div className="space-y-2 text-sm text-gray-600">
-              <p>• <strong>Tùy chỉnh 12 ảnh</strong> theo 4 phong cách</p>
-              <p>• <strong>120 điểm</strong> - Siêu tiết kiệm nhờ xử lý hàng loạt</p>
-              <p>• Phù hợp cho chiến dịch marketing hoàn chỉnh</p>
-              <p>• Thời gian: 30-60 giây</p>
+              <p>• <strong>Customize 12 images</strong> across 4 styles</p>
+              <p>• <strong>120 points</strong> - Super cost-effective with batch processing</p>
+              <p>• Ideal for complete marketing campaigns</p>
+              <p>• Processing time: 30-60 seconds</p>
             </div>
           </Button>
 
@@ -74,7 +74,7 @@ export function GenerationModeSelector({ mode, onModeChange }: GenerationModeSel
                 <Sparkles className="w-6 h-6 text-orange-600" />
               </div>
               <div className="flex-1">
-                <h4 className="font-bold text-lg text-gray-900">Solo - Tùy chỉnh hoàn toàn</h4>
+                <h4 className="font-bold text-lg text-gray-900">Solo - Full customization</h4>
                 <Badge className="bg-orange-100 text-orange-700 text-xs">
                   Premium
                 </Badge>
@@ -87,10 +87,10 @@ export function GenerationModeSelector({ mode, onModeChange }: GenerationModeSel
             </div>
             
             <div className="space-y-2 text-sm text-gray-600">
-              <p>• <strong>1 ảnh</strong> theo prompt tùy chỉnh của bạn</p>
-              <p>• <strong>30 điểm</strong> - Chi phí cao để khuyến khích Batch</p>
-              <p>• Linh hoạt tối đa, kiểm soát hoàn toàn kết quả</p>
-              <p>• Thời gian: 10-20 giây</p>
+              <p>• <strong>1 image</strong> with your custom prompt</p>
+              <p>• <strong>30 points</strong> - Higher cost to encourage Batch mode</p>
+              <p>• Maximum flexibility, full control over results</p>
+              <p>• Processing time: 10-20 seconds</p>
             </div>
           </Button>
         </div>

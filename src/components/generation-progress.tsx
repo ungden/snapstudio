@@ -155,10 +155,10 @@ export function GenerationProgress({ productName, progress }: GenerationProgress
             <div className="p-4 bg-green-100 rounded-lg border border-green-200">
               <div className="flex items-center justify-center gap-2 text-green-800 mb-2">
                 <CheckCircle className="w-5 h-5" />
-                <span className="font-medium">Tạo ảnh thành công!</span>
+                <span className="font-medium">Images generated successfully!</span>
               </div>
               <p className="text-sm text-green-700">
-                12 ảnh chuyên nghiệp đã được tạo và sẵn sàng để tải xuống.
+                12 professional images have been generated and are ready for download.
               </p>
             </div>
           )}
