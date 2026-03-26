@@ -8,6 +8,12 @@ import { Upload, Users, Zap, ArrowRight, TrendingUp, Award, Shield, LogIn, Star,
 import PricingPlans from "@/components/pricing-plans";
 import { useRouter } from "next/navigation";
 
+const DEMO_IMAGES = [
+  { src: "https://raw.githubusercontent.com/ungden/snapstudio/main/docs/images/553323811_10163378911118750_3011025545344987494_n.jpg", alt: "Demo th\u1eddi trang - \u00c1o s\u1ecdc" },
+  { src: "https://raw.githubusercontent.com/ungden/snapstudio/main/docs/images/555460282_10163378911348750_5147601682514173002_n.jpg", alt: "Demo gi\u00e0y Nike" },
+  { src: "https://raw.githubusercontent.com/ungden/snapstudio/main/docs/images/558764108_10163415838538750_7584497244626114108_n.jpg", alt: "Demo \u00e1o len" },
+];
+
 const stats = [
   { number: '50,000+', label: '\u1ea2nh \u0111\u00e3 t\u1ea1o th\u00e0nh c\u00f4ng', icon: TrendingUp, color: 'text-blue-600' },
   { number: '2,500+', label: 'Doanh nghi\u1ec7p tin d\u00f9ng', icon: Users, color: 'text-green-600' },
@@ -24,7 +30,7 @@ const features = [
   },
   {
     icon: Star,
-    title: "4 phong c\u00e1ch ph\u1ee7 s\u00f3ng to\u00e0n b\u1ed9 customer journey", 
+    title: "4 phong c\u00e1ch ph\u1ee7 s\u00f3ng to\u00e0n b\u1ed9 customer journey",
     description: "\u1ea2nh tr\u01b0ng b\u00e0y s\u1ea3n ph\u1ea9m, ng\u01b0\u1eddi m\u1eabu th\u1ef1c t\u1ebf, content m\u1ea1ng x\u00e3 h\u1ed9i, banner qu\u1ea3ng c\u00e1o - \u0111\u1ee7 t\u1eeb awareness \u0111\u1ebfn conversion",
     color: "bg-purple-100 text-purple-600"
   },
@@ -45,7 +51,7 @@ const testimonials = [
     industry: 'fashion'
   },
   {
-    name: "Anh V\u0103n H\u00f9ng", 
+    name: "Anh V\u0103n H\u00f9ng",
     role: "Founder - Chu\u1ed7i Qu\u00e1n H\u00f9ng K\u00fd",
     content: "T\u1eeb menu in, poster qu\u00e1n, \u0111\u1ebfn Facebook, Grab Food - t\u1ea5t c\u1ea3 \u0111\u1ec1u d\u00f9ng \u1ea3nh t\u1eeb SnapStudio. Kh\u00e1ch th\u1ea5y \u1ea3nh \u0111\u1eb9p, order nhi\u1ec1u h\u01a1n h\u1eb3n!",
     avatar: "https://ui-avatars.com/api/?name=V%C4%83n+H%C3%B9ng&background=random&color=fff",
@@ -53,7 +59,7 @@ const testimonials = [
   },
   {
     name: "Ch\u1ecb Th\u1ecb Mai",
-    role: "CEO - Mai Beauty House", 
+    role: "CEO - Mai Beauty House",
     content: "1 l\u1ea7n ch\u1ee5p c\u00f3 ngay content cho c\u1ea3 th\u00e1ng: \u1ea3nh website, banner Shopee, story Instagram, video TikTok. Marketing team kh\u00f4ng bao gi\u1edd thi\u1ebfu \u1ea3nh!",
     avatar: "https://ui-avatars.com/api/?name=Th%E1%BB%8B+Mai&background=random&color=fff",
     industry: 'beauty'
@@ -77,28 +83,28 @@ export default function Home() {
         <div className="absolute inset-0 opacity-40" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }}></div>
-        
+
         <div className="relative container-custom">
           <div className="text-center max-w-5xl mx-auto animate-fade-in-up">
             <Badge className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 border-0 px-6 py-2 mb-8 animate-scale-in">
               <Sparkles className="w-4 h-4" />
               Gi\u1ea3i ph\u00e1p h\u00ecnh \u1ea3nh marketing \u0111a n\u1ec1n t\u1ea3ng s\u1ed1 1 Vi\u1ec7t Nam
             </Badge>
-            
+
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 text-balance">
               <span className="gradient-text">SnapStudio</span>
               <span className="text-gray-900">.app</span>
             </h1>
-            
+
             <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed text-balance max-w-4xl mx-auto">
-              <span className="font-bold text-purple-600">1 \u1ea3nh s\u1ea3n ph\u1ea9m</span> \u2192 
+              <span className="font-bold text-purple-600">1 \u1ea3nh s\u1ea3n ph\u1ea9m</span> \u2192
               <span className="font-bold text-blue-600"> 12 \u1ea3nh marketing ho\u00e0n ch\u1ec9nh</span> cho
               <span className="font-bold text-green-600"> m\u1ecdi n\u1ec1n t\u1ea3ng</span>: Website, Social Media, E-commerce, Qu\u1ea3ng c\u00e1o
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 variant="default"
                 className="btn-primary text-lg px-8 py-4 animate-scale-in animation-delay-200"
                 onClick={() => router.push('/login')}
@@ -107,9 +113,9 @@ export default function Home() {
                 T\u1ea1o b\u1ed9 \u1ea3nh marketing ngay
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
+              <Button
+                size="lg"
+                variant="outline"
                 className="btn-secondary text-lg px-8 py-4 animate-scale-in animation-delay-400"
                 onClick={() => {
                   const pricingSection = document.getElementById('pricing');
@@ -126,8 +132,8 @@ export default function Home() {
               {stats.map((stat, index) => {
                 const Icon = stat.icon;
                 return (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className={`text-center animate-fade-in-up`}
                     style={{ animationDelay: `${600 + index * 100}ms` }}
                   >
@@ -156,11 +162,7 @@ export default function Home() {
             </p>
           </div>
           <div className="space-y-8">
-            {[
-              { src: "/demo-fashion.jpg", alt: "Demo th\u1eddi trang - \u00c1o s\u1ecdc", label: "Th\u1eddi trang" },
-              { src: "/demo-shoes.jpg", alt: "Demo gi\u00e0y Nike", label: "Gi\u00e0y d\u00e9p" },
-              { src: "/demo-sweater.jpg", alt: "Demo \u00e1o len", label: "Th\u1eddi trang n\u1eef" },
-            ].map((demo, i) => (
+            {DEMO_IMAGES.map((demo, i) => (
               <div key={i} className="rounded-2xl overflow-hidden shadow-lg border border-gray-200">
                 <img
                   src={demo.src}
@@ -253,8 +255,8 @@ export default function Home() {
               <Card key={index} className="card-hover bg-white border-0 shadow-lg">
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
-                    <Image 
-                      src={testimonial.avatar} 
+                    <Image
+                      src={testimonial.avatar}
                       alt={testimonial.name}
                       width={48}
                       height={48}
@@ -294,8 +296,8 @@ export default function Home() {
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             T\u1ea1o ngay b\u1ed9 \u1ea3nh \u0111\u1ea7y \u0111\u1ee7 cho m\u1ecdi n\u1ec1n t\u1ea3ng marketing c\u1ee7a doanh nghi\u1ec7p b\u1ea1n.
           </p>
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             variant="default"
             className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300"
             onClick={() => router.push('/login')}
