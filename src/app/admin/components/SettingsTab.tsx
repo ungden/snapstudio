@@ -8,12 +8,12 @@ export function SettingsTab() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Cài đặt hệ thống</CardTitle>
+        <CardTitle>System Settings</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
           <div>
-            <h3 className="text-lg font-semibold mb-4">Cấu hình AI</h3>
+            <h3 className="text-lg font-semibold mb-4">AI Configuration</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium mb-2">Model AI</label>
@@ -28,7 +28,7 @@ export function SettingsTab() {
                 </Select>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Batch Cost (điểm)</label>
+                <label className="block text-sm font-medium mb-2">Batch Cost (points)</label>
                 <Input type="number" defaultValue="120" />
               </div>
             </div>

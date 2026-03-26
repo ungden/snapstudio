@@ -82,7 +82,7 @@ export default function ProjectDetailPage() {
         .single();
 
       if (projectError) {
-        toast.error('Không tìm thấy dự án');
+        toast.error('Project not found');
         router.push('/dashboard/projects');
         return;
       }
@@ -104,7 +104,7 @@ export default function ProjectDetailPage() {
 
     } catch (error) {
       console.error('Error loading project:', error);
-      toast.error('Lỗi khi tải dự án');
+      toast.error('Error loading project');
     } finally {
       setLoading(false);
     }
@@ -112,7 +112,7 @@ export default function ProjectDetailPage() {
 
   const saveProject = async () => {
     if (!project || !editName.trim() || !editProductName.trim()) {
-      toast.error('Vui lòng điền đầy đủ thông tin');
+      toast.error('Please fill in all required fields');
       return;
     }
 
@@ -134,10 +134,10 @@ export default function ProjectDetailPage() {
       } : null);
       
       setIsEditing(false);
-      toast.success('Đã cập nhật dự án');
+      toast.success('Project updated');
     } catch (error) {
       console.error('Error updating project:', error);
-      toast.error('Lỗi khi cập nhật dự án');
+      toast.error('Error updating project');
     }
   };
 
@@ -156,9 +156,9 @@ export default function ProjectDetailPage() {
           : img
       ));
 
-      toast.success(image.is_favorite ? 'Đã bỏ yêu thích' : 'Đã thêm vào yêu thích');
+      toast.success(image.is_favorite ? 'Removed from favorites' : 'Added to favorites');
     } catch (error) {
-      toast.error('Lỗi khi cập nhật yêu thích');
+      toast.error('Error updating favorite');
     }
   };
 
@@ -176,9 +176,9 @@ export default function ProjectDetailPage() {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
       
-      toast.success('Tải ảnh thành công!');
+      toast.success('Image downloaded successfully!');
     } catch (error) {
-      toast.error('Lỗi khi tải ảnh');
+      toast.error('Error downloading image');
     }
   };
 
@@ -201,13 +201,13 @@ export default function ProjectDetailPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'completed':
-        return <Badge className="bg-green-100 text-green-800">Hoàn thành</Badge>;
+        return <Badge className="bg-green-100 text-green-800">Completed</Badge>;
       case 'processing':
-        return <Badge className="bg-blue-100 text-blue-800">Đang xử lý</Badge>;
+        return <Badge className="bg-blue-100 text-blue-800">Processing</Badge>;
       case 'failed':
-        return <Badge className="bg-red-100 text-red-800">Thất bại</Badge>;
+        return <Badge className="bg-red-100 text-red-800">Failed</Badge>;
       default:
-        return <Badge className="bg-gray-100 text-gray-800">Chờ xử lý</Badge>;
+        return <Badge className="bg-gray-100 text-gray-800">Pending</Badge>;
     }
   };
 
@@ -216,7 +216,7 @@ export default function ProjectDetailPage() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center py-12">
           <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
-          <p className="text-gray-600">Đang tải dự án...</p>
+          <p className="text-gray-600">Loading project...</p>
         </div>
       </div>
     );
@@ -226,9 +226,9 @@ export default function ProjectDetailPage() {
     return (
       <div className="max-w-6xl mx-auto">
         <div className="text-center py-12">
-          <p className="text-gray-600">Không tìm thấy dự án</p>
+          <p className="text-gray-600">Project not found</p>
           <Button onClick={() => router.push('/dashboard/projects')} className="mt-4">
-            Quay lại danh sách dự án
+            Back to Projects
           </Button>
         </div>
       </div>
@@ -241,7 +241,7 @@ export default function ProjectDetailPage() {
         <div className="flex items-center gap-4 mb-8">
           <Button variant="ghost" onClick={() => router.push('/dashboard/projects')}>
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Quay lại
+            Back
           </Button>
           <div className="flex-1">
             <h1 className="text-3xl font-bold text-gray-900">{project.name}</h1>
@@ -252,20 +252,20 @@ export default function ProjectDetailPage() {
             onClick={() => setIsEditing(!isEditing)}
           >
             <Edit className="w-4 h-4 mr-2" />
-            {isEditing ? 'Hủy' : 'Chỉnh sửa'}
+            {isEditing ? 'Cancel' : 'Edit'}
           </Button>
         </div>
 
         {/* Project Info */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>Thông tin dự án</CardTitle>
+            <CardTitle>Project Information</CardTitle>
           </CardHeader>
           <CardContent>
             {isEditing ? (
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="edit-name">Tên dự án</Label>
+                  <Label htmlFor="edit-name">Project Name</Label>
                   <Input
                     id="edit-name"
                     value={editName}
@@ -273,7 +273,7 @@ export default function ProjectDetailPage() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="edit-product">Tên sản phẩm</Label>
+                  <Label htmlFor="edit-product">Product Name</Label>
                   <Input
                     id="edit-product"
                     value={editProductName}
@@ -282,34 +282,34 @@ export default function ProjectDetailPage() {
                 </div>
                 <Button onClick={saveProject}>
                   <Save className="w-4 h-4 mr-2" />
-                  Lưu thay đổi
+                  Save Changes
                 </Button>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">Thông tin cơ bản</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">Basic Info</h4>
                   <div className="space-y-2 text-sm">
-                    <div><strong>Tên dự án:</strong> {project.name}</div>
-                    <div><strong>Sản phẩm:</strong> {project.product_name}</div>
-                    <div><strong>Ngành hàng:</strong> {project.industry}</div>
+                    <div><strong>Project Name:</strong> {project.name}</div>
+                    <div><strong>Product:</strong> {project.product_name}</div>
+                    <div><strong>Industry:</strong> {project.industry}</div>
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">Trạng thái</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">Status</h4>
                   <div className="space-y-2">
                     <div>{getStatusBadge(project.status)}</div>
                     <div className="text-sm text-gray-600">
-                      {project.is_public ? 'Công khai' : 'Riêng tư'}
+                      {project.is_public ? 'Public' : 'Private'}
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">Thống kê</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">Statistics</h4>
                   <div className="space-y-2 text-sm">
-                    <div><strong>Số ảnh:</strong> {images.length}</div>
-                    <div><strong>Tạo lúc:</strong> {new Date(project.created_at).toLocaleString('vi-VN')}</div>
-                    <div><strong>Cập nhật:</strong> {new Date(project.updated_at).toLocaleString('vi-VN')}</div>
+                    <div><strong>Images:</strong> {images.length}</div>
+                    <div><strong>Created:</strong> {new Date(project.created_at).toLocaleString('en-US')}</div>
+                    <div><strong>Updated:</strong> {new Date(project.updated_at).toLocaleString('en-US')}</div>
                   </div>
                 </div>
               </div>
@@ -321,13 +321,13 @@ export default function ProjectDetailPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
-              <span>Ảnh đã tạo ({images.length})</span>
+              <span>Generated Images ({images.length})</span>
               {images.length > 0 && (
                 <Button 
                   variant="outline"
                   onClick={() => router.push(`/dashboard?projectId=${project.id}`)}
                 >
-                  Tiếp tục tạo ảnh
+                  Continue Generating
                 </Button>
               )}
             </CardTitle>
@@ -336,10 +336,10 @@ export default function ProjectDetailPage() {
             {images.length === 0 ? (
               <div className="text-center py-12">
                 <ImageIcon className="w-16 h-16 mx-auto text-gray-300 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Chưa có ảnh nào</h3>
-                <p className="text-gray-600 mb-6">Bắt đầu tạo ảnh cho dự án này</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">No images yet</h3>
+                <p className="text-gray-600 mb-6">Start generating images for this project</p>
                 <Button onClick={() => router.push(`/dashboard?projectId=${project.id}`)}>
-                  Tạo ảnh ngay
+                  Generate Images
                 </Button>
               </div>
             ) : (
@@ -384,7 +384,7 @@ export default function ProjectDetailPage() {
                     <div className="mt-2">
                       <h4 className="font-medium text-sm text-gray-900 truncate">{image.title}</h4>
                       <div className="flex items-center justify-between mt-1">
-                        <span className="text-xs text-gray-500">{image.download_count} lượt tải</span>
+                        <span className="text-xs text-gray-500">{image.download_count} downloads</span>
                         <div className="flex gap-1">
                           <Button
                             size="sm"

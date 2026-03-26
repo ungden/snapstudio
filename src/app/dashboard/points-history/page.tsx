@@ -100,7 +100,7 @@ export default function PointsHistoryPage() {
 
     } catch (error) {
       console.error('Error loading transactions:', error);
-      toast.error('Lỗi khi tải lịch sử điểm');
+      toast.error('Error loading points history');
     } finally {
       setLoading(false);
     }
@@ -126,14 +126,14 @@ export default function PointsHistoryPage() {
 
   const getReasonText = (reason: string) => {
     const reasonMap: Record<string, string> = {
-      'monthly_subscription': 'Đăng ký gói tháng',
-      'yearly_subscription': 'Đăng ký gói năm',
-      'yearly_subscription_first_month': 'Đăng ký gói năm (tháng đầu)',
-      'monthly_allocation': 'Cấp điểm hàng tháng',
-      'spend_generation': 'Tạo ảnh',
-      'bonus_points': 'Điểm thưởng',
-      'refund': 'Hoàn điểm',
-      'admin_adjustment': 'Điều chỉnh bởi admin'
+      'monthly_subscription': 'Monthly subscription',
+      'yearly_subscription': 'Yearly subscription',
+      'yearly_subscription_first_month': 'Yearly subscription (first month)',
+      'monthly_allocation': 'Monthly point allocation',
+      'spend_generation': 'Image generation',
+      'bonus_points': 'Bonus points',
+      'refund': 'Points refund',
+      'admin_adjustment': 'Admin adjustment'
     };
     
     return reasonMap[reason] || reason;
@@ -156,8 +156,8 @@ export default function PointsHistoryPage() {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Lịch sử Điểm</h1>
-        <p className="text-gray-600">Theo dõi tất cả giao dịch điểm của bạn</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Points History</h1>
+        <p className="text-gray-600">Track all your point transactions</p>
       </div>
 
       {/* Summary Cards */}
@@ -166,7 +166,7 @@ export default function PointsHistoryPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Số dư hiện tại</p>
+                <p className="text-sm text-gray-600">Current Balance</p>
                 <p className="text-2xl font-bold text-blue-600">
                   {(profile?.points_balance || 0).toLocaleString()}
                 </p>
@@ -180,7 +180,7 @@ export default function PointsHistoryPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Tổng điểm nhận</p>
+                <p className="text-sm text-gray-600">Total Earned</p>
                 <p className="text-2xl font-bold text-green-600">
                   +{totalEarned.toLocaleString()}
                 </p>
@@ -194,7 +194,7 @@ export default function PointsHistoryPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Tổng điểm dùng</p>
+                <p className="text-sm text-gray-600">Total Spent</p>
                 <p className="text-2xl font-bold text-red-600">
                   -{totalSpent.toLocaleString()}
                 </p>
@@ -208,7 +208,7 @@ export default function PointsHistoryPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Giao dịch</p>
+                <p className="text-sm text-gray-600">Transactions</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {transactions.length}
                 </p>
@@ -227,7 +227,7 @@ export default function PointsHistoryPage() {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
-                  placeholder="Tìm kiếm giao dịch..."
+                  placeholder="Search transactions..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -237,12 +237,12 @@ export default function PointsHistoryPage() {
             
             <Select value={typeFilter} onValueChange={setTypeFilter}>
               <SelectTrigger className="w-48">
-                <SelectValue placeholder="Loại giao dịch" />
+                <SelectValue placeholder="Transaction type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Tất cả</SelectItem>
-                <SelectItem value="earned">Điểm nhận (+)</SelectItem>
-                <SelectItem value="spent">Điểm dùng (-)</SelectItem>
+                <SelectItem value="all">All</SelectItem>
+                <SelectItem value="earned">Earned (+)</SelectItem>
+                <SelectItem value="spent">Spent (-)</SelectItem>
               </SelectContent>
             </Select>
 
@@ -256,18 +256,18 @@ export default function PointsHistoryPage() {
       {/* Transactions List */}
       <Card>
         <CardHeader>
-          <CardTitle>Lịch sử giao dịch ({filteredTransactions.length})</CardTitle>
+          <CardTitle>Transaction History ({filteredTransactions.length})</CardTitle>
         </CardHeader>
         <CardContent>
           {loading && page === 0 ? (
             <div className="text-center py-8">
               <Loader2 className="w-6 h-6 animate-spin mx-auto text-blue-600" />
-              <p className="text-gray-600 mt-2">Đang tải lịch sử...</p>
+              <p className="text-gray-600 mt-2">Loading history...</p>
             </div>
           ) : filteredTransactions.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
               <Sparkles className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p>Chưa có giao dịch nào</p>
+              <p>No transactions yet</p>
             </div>
           ) : (
             <div className="space-y-3">
@@ -296,11 +296,11 @@ export default function PointsHistoryPage() {
                           {getReasonText(transaction.reason)}
                         </div>
                         <div className="text-sm text-gray-600">
-                          {new Date(transaction.created_at).toLocaleString('vi-VN')}
+                          {new Date(transaction.created_at).toLocaleString('en-US')}
                         </div>
                         {transaction.metadata && Object.keys(transaction.metadata).length > 0 && (
                           <div className="text-xs text-gray-500 mt-1">
-                            {transaction.metadata.plan_name && `Gói: ${transaction.metadata.plan_name}`}
+                            {transaction.metadata.plan_name && `Plan: ${transaction.metadata.plan_name}`}
                             {transaction.metadata.billing_period && ` (${transaction.metadata.billing_period})`}
                           </div>
                         )}
@@ -311,7 +311,7 @@ export default function PointsHistoryPage() {
                       <div className={cn("text-lg font-bold", getTransactionColor(transaction.delta))}>
                         {transaction.delta > 0 ? '+' : ''}{transaction.delta.toLocaleString()}
                       </div>
-                      <div className="text-xs text-gray-500">điểm</div>
+                      <div className="text-xs text-gray-500">points</div>
                     </div>
                   </div>
                 );
@@ -327,7 +327,7 @@ export default function PointsHistoryPage() {
                     {loading ? (
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                     ) : (
-                      'Tải thêm'
+                      'Load More'
                     )}
                   </Button>
                 </div>

@@ -25,10 +25,10 @@ export function UsersTab({ users, onDataChange }: UsersTabProps) {
         .eq('id', userId);
 
       if (error) throw error;
-      toast.success('Cập nhật gói thành công');
+      toast.success('Plan updated successfully');
       onDataChange();
     } catch (error) {
-      toast.error('Lỗi khi cập nhật gói');
+      toast.error('Error updating plan');
     }
   };
 
@@ -43,10 +43,10 @@ export function UsersTab({ users, onDataChange }: UsersTabProps) {
         .eq('id', userId);
 
       if (error) throw error;
-      toast.success('Cập nhật điểm thành công');
+      toast.success('Points updated successfully');
       onDataChange();
     } catch (error) {
-      toast.error('Lỗi khi cập nhật điểm');
+      toast.error('Error updating points');
     }
   };
 
@@ -58,11 +58,11 @@ export function UsersTab({ users, onDataChange }: UsersTabProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Danh sách người dùng ({filteredUsers.length})</CardTitle>
+        <CardTitle>User List ({filteredUsers.length})</CardTitle>
       </CardHeader>
       <CardContent>
         <Input 
-          placeholder="Tìm theo email hoặc tên..."
+          placeholder="Search by email or name..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="mb-6"
@@ -72,11 +72,11 @@ export function UsersTab({ users, onDataChange }: UsersTabProps) {
             <TableHeader>
               <TableRow>
                 <TableHead>Email</TableHead>
-                <TableHead>Tên</TableHead>
-                <TableHead>Gói</TableHead>
-                <TableHead>Điểm</TableHead>
-                <TableHead>Ảnh tạo</TableHead>
-                <TableHead>Ngày tạo</TableHead>
+                <TableHead>Name</TableHead>
+                <TableHead>Plan</TableHead>
+                <TableHead>Points</TableHead>
+                <TableHead>Images Created</TableHead>
+                <TableHead>Created</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -112,7 +112,7 @@ export function UsersTab({ users, onDataChange }: UsersTabProps) {
                   </TableCell>
                   <TableCell>{user.images_generated}</TableCell>
                   <TableCell>
-                    {new Date(user.created_at).toLocaleDateString('vi-VN')}
+                    {new Date(user.created_at).toLocaleDateString()}
                   </TableCell>
                 </TableRow>
               ))}

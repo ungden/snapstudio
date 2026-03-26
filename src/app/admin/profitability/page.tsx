@@ -112,7 +112,7 @@ export default function ProfitabilityPage() {
                   </Card>
                   <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">Tổng Chi phí</CardTitle>
+                      <CardTitle className="text-sm font-medium">Total Cost</CardTitle>
                       <TrendingDown className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
@@ -121,7 +121,7 @@ export default function ProfitabilityPage() {
                   </Card>
                   <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">Lợi nhuận</CardTitle>
+                      <CardTitle className="text-sm font-medium">Profit</CardTitle>
                       <DollarSign className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
@@ -132,7 +132,7 @@ export default function ProfitabilityPage() {
                   </Card>
                   <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">Tỷ suất lợi nhuận</CardTitle>
+                      <CardTitle className="text-sm font-medium">Profit Margin</CardTitle>
                       <DollarSign className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
@@ -146,7 +146,7 @@ export default function ProfitabilityPage() {
                 {/* Profitability Chart */}
                 <Card>
                   <CardHeader>
-                    <CardTitle>Biểu đồ Doanh thu, Chi phí & Lợi nhuận</CardTitle>
+                    <CardTitle>Revenue, Cost & Profit Chart</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ResponsiveContainer width="100%" height={400}>
@@ -156,16 +156,16 @@ export default function ProfitabilityPage() {
                         <YAxis tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
                         <Tooltip formatter={(v: number) => `${v.toLocaleString()} VND`} />
                         <Legend />
-                        <Line type="monotone" dataKey="revenue" name="Doanh thu" stroke="#10B981" strokeWidth={2} />
-                        <Line type="monotone" dataKey="cost" name="Chi phí" stroke="#EF4444" strokeWidth={2} />
-                        <Line type="monotone" dataKey="profit" name="Lợi nhuận" stroke="#3B82F6" strokeWidth={3} />
+                        <Line type="monotone" dataKey="revenue" name="Revenue" stroke="#10B981" strokeWidth={2} />
+                        <Line type="monotone" dataKey="cost" name="Cost" stroke="#EF4444" strokeWidth={2} />
+                        <Line type="monotone" dataKey="profit" name="Profit" stroke="#3B82F6" strokeWidth={3} />
                       </LineChart>
                     </ResponsiveContainer>
                   </CardContent>
                 </Card>
               </div>
             ) : (
-              <p>Không có dữ liệu.</p>
+              <p>No data available.</p>
             )}
           </div>
         </main>

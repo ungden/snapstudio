@@ -99,11 +99,11 @@ export function GenerationModeSelector({ mode, onModeChange }: GenerationModeSel
           <div className="flex items-start gap-3">
             <Zap className="w-5 h-5 text-blue-600 mt-0.5" />
             <div className="text-sm text-gray-700">
-              <p className="font-medium mb-1">So sánh hiệu quả:</p>
+              <p className="font-medium mb-1">Cost comparison:</p>
               <p>
-                <strong>Batch:</strong> 120 điểm = 12 ảnh → 10 điểm/ảnh 💰<br/>
-                <strong>Solo:</strong> 30 điểm = 1 ảnh → 30 điểm/ảnh 💸<br/>
-                → <span className="font-bold text-green-600">Batch rẻ gấp 3 lần!</span> Khuyến khích dùng Batch cho hiệu quả tối đa.
+                <strong>Batch:</strong> 120 points = 12 images → 10 points/image 💰<br/>
+                <strong>Solo:</strong> 30 points = 1 image → 30 points/image 💸<br/>
+                → <span className="font-bold text-green-600">Batch is 3x cheaper!</span> Use Batch for maximum efficiency.
               </p>
             </div>
           </div>

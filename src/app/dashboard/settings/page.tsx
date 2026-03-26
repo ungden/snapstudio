@@ -309,14 +309,14 @@ export default function SettingsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-red-600">
             <AlertTriangle className="w-5 h-5" />
-            Vùng nguy hiểm
+            Danger Zone
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <Alert className="border-red-200 bg-red-50">
             <AlertTriangle className="h-4 w-4 text-red-600" />
             <AlertDescription className="text-red-800">
-              <strong>Cảnh báo:</strong> Xóa tài khoản sẽ xóa vĩnh viễn tất cả dữ liệu của bạn và không thể khôi phục.
+              <strong>Warning:</strong> Deleting your account will permanently remove all your data and cannot be undone.
             </AlertDescription>
           </Alert>
 
@@ -326,19 +326,19 @@ export default function SettingsPage() {
               onClick={() => setShowDeleteConfirm(true)}
             >
               <Trash2 className="w-4 h-4 mr-2" />
-              Xóa tài khoản
+              Delete Account
             </Button>
           ) : (
             <div className="space-y-4 p-4 bg-red-50 rounded-lg border border-red-200">
               <div>
                 <Label htmlFor="delete-confirm">
-                  Nhập <strong>"XÓA TÀI KHOẢN"</strong> để xác nhận:
+                  Type <strong>"DELETE ACCOUNT"</strong> to confirm:
                 </Label>
                 <Input
                   id="delete-confirm"
                   value={deleteConfirmText}
                   onChange={(e) => setDeleteConfirmText(e.target.value)}
-                  placeholder="XÓA TÀI KHOẢN"
+                  placeholder="DELETE ACCOUNT"
                   className="mt-2"
                 />
               </div>
@@ -350,15 +350,15 @@ export default function SettingsPage() {
                     setDeleteConfirmText('');
                   }}
                 >
-                  Hủy
+                  Cancel
                 </Button>
-                <Button 
-                  variant="destructive" 
+                <Button
+                  variant="destructive"
                   onClick={handleDeleteAccount}
-                  disabled={deleteConfirmText !== 'XÓA TÀI KHOẢN'}
+                  disabled={deleteConfirmText !== 'DELETE ACCOUNT'}
                 >
                   <Trash2 className="w-4 h-4 mr-2" />
-                  Xác nhận xóa
+                  Confirm Delete
                 </Button>
               </div>
             </div>

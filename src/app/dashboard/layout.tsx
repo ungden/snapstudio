@@ -29,13 +29,13 @@ export default function DashboardLayout({
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="text-2xl font-bold text-red-600 mb-4">Không lấy được thông tin tài khoản</div>
-          <div className="text-gray-600 mb-4">Vui lòng thử tải lại trang hoặc liên hệ admin nếu lỗi tiếp tục.</div>
+          <div className="text-2xl font-bold text-red-600 mb-4">Unable to load account information</div>
+          <div className="text-gray-600 mb-4">Please try reloading the page or contact admin if the error persists.</div>
           <button
             className="px-4 py-2 bg-blue-600 text-white rounded"
             onClick={() => window.location.reload()}
           >
-            Tải lại trang
+            Reload Page
           </button>
         </div>
       </div>

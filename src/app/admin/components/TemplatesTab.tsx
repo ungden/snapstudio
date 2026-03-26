@@ -29,7 +29,7 @@ export function TemplatesTab({ templates, onDataChange }: TemplatesTabProps) {
 
   const saveTemplate = async () => {
     if (!templateForm.name.trim() || !templateForm.prompt_template.trim()) {
-      toast.error('Vui lòng điền đầy đủ thông tin');
+      toast.error('Please fill in all required fields');
       return;
     }
 
@@ -41,25 +41,25 @@ export function TemplatesTab({ templates, onDataChange }: TemplatesTabProps) {
           .eq('id', editingTemplate.id);
 
         if (error) throw error;
-        toast.success('Cập nhật template thành công');
+        toast.success('Template updated successfully');
       } else {
         const { error } = await supabase
           .from('prompt_templates')
           .insert({ ...templateForm, is_active: true });
 
         if (error) throw error;
-        toast.success('Tạo template thành công');
+        toast.success('Template created successfully');
       }
 
       resetTemplateForm();
       onDataChange();
     } catch (error) {
-      toast.error('Lỗi khi lưu template');
+      toast.error('Error saving template');
     }
   };
 
   const deleteTemplate = async (id: string) => {
-    if (!confirm('Bạn có chắc muốn xóa template này?')) return;
+    if (!confirm('Are you sure you want to delete this template?')) return;
 
     try {
       const { error } = await supabase
@@ -68,10 +68,10 @@ export function TemplatesTab({ templates, onDataChange }: TemplatesTabProps) {
         .eq('id', id);
 
       if (error) throw error;
-      toast.success('Xóa template thành công');
+      toast.success('Template deleted successfully');
       onDataChange();
     } catch (error) {
-      toast.error('Lỗi khi xóa template');
+      toast.error('Error deleting template');
     }
   };
 
@@ -83,10 +83,10 @@ export function TemplatesTab({ templates, onDataChange }: TemplatesTabProps) {
         .eq('id', id);
 
       if (error) throw error;
-      toast.success(`Template đã ${!isActive ? 'kích hoạt' : 'vô hiệu hóa'}`);
+      toast.success(`Template ${!isActive ? 'activated' : 'deactivated'}`);
       onDataChange();
     } catch (error) {
-      toast.error('Lỗi khi cập nhật template');
+      toast.error('Error updating template');
     }
   };
 
@@ -134,7 +134,7 @@ export function TemplatesTab({ templates, onDataChange }: TemplatesTabProps) {
       <Card className="lg:col-span-1">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
-            {editingTemplate ? 'Chỉnh sửa Template' : 'Tạo Template Mới'}
+            {editingTemplate ? 'Edit Template' : 'Create New Template'}
             {editingTemplate && (
               <Button variant="ghost" size="sm" onClick={resetTemplateForm}>
                 <X className="w-4 h-4" />
@@ -144,7 +144,7 @@ export function TemplatesTab({ templates, onDataChange }: TemplatesTabProps) {
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Ngành hàng</label>
+            <label className="block text-sm font-medium mb-2">Industry</label>
             <Select 
               value={templateForm.industry} 
               onValueChange={handleIndustryChange}
@@ -153,17 +153,17 @@ export function TemplatesTab({ templates, onDataChange }: TemplatesTabProps) {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="other">Khác (General)</SelectItem>
+                <SelectItem value="other">Other (General)</SelectItem>
                 <SelectItem value="f_b">Food & Beverage (F&B)</SelectItem>
                 <SelectItem value="beauty">Beauty & Personal Care</SelectItem>
-                <SelectItem value="fashion">Thời trang & Phụ kiện</SelectItem>
+                <SelectItem value="fashion">Fashion & Accessories</SelectItem>
                 <SelectItem value="mother_baby">Mother & Baby</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Danh mục</label>
+            <label className="block text-sm font-medium mb-2">Category</label>
             <Select 
               value={templateForm.category} 
               onValueChange={handleCategoryChange}
@@ -181,7 +181,7 @@ export function TemplatesTab({ templates, onDataChange }: TemplatesTabProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Tên Template</label>
+            <label className="block text-sm font-medium mb-2">Template Name</label>
             <Input
               value={templateForm.name}
               onChange={(e) => setTemplateForm({...templateForm, name: e.target.value})}
@@ -200,17 +200,17 @@ export function TemplatesTab({ templates, onDataChange }: TemplatesTabProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Mô tả</label>
+            <label className="block text-sm font-medium mb-2">Description</label>
             <Input
               value={templateForm.description}
               onChange={(e) => setTemplateForm({...templateForm, description: e.target.value})}
-              placeholder="Mô tả ngắn về template"
+              placeholder="Short description of the template"
             />
           </div>
 
           <Button onClick={saveTemplate} className="w-full">
             <Save className="w-4 h-4 mr-2" />
-            {editingTemplate ? 'Cập nhật' : 'Tạo mới'}
+            {editingTemplate ? 'Update' : 'Create'}
           </Button>
         </CardContent>
       </Card>
@@ -218,7 +218,7 @@ export function TemplatesTab({ templates, onDataChange }: TemplatesTabProps) {
       {/* Templates List */}
       <Card className="lg:col-span-2">
         <CardHeader>
-          <CardTitle>Danh sách Templates ({templates.length})</CardTitle>
+          <CardTitle>Templates List ({templates.length})</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4 max-h-[70vh] overflow-y-auto">

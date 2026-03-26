@@ -64,10 +64,10 @@ export function PaymentSuccessAnimation({
             showAnimation ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           )}>
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              🎉 Thanh toán thành công!
+              🎉 Payment Successful!
             </h1>
             <p className="text-xl text-gray-600 mb-8">
-              Chào mừng bạn đến với gói <span className="font-bold text-blue-600">{planName}</span>
+              Welcome to the <span className="font-bold text-blue-600">{planName}</span> plan
             </p>
           </div>
 
@@ -80,20 +80,20 @@ export function PaymentSuccessAnimation({
             <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-2xl p-6 shadow-xl">
               <div className="flex items-center justify-center gap-3 mb-3">
                 <Gift className="w-8 h-8" />
-                <span className="text-2xl font-bold">Điểm đã được cộng!</span>
+                <span className="text-2xl font-bold">Points Added!</span>
               </div>
               <div className="text-5xl font-bold mb-2">
                 +{pointsReceived.toLocaleString()}
               </div>
               <div className="text-blue-100">
-                điểm đã được cộng vào tài khoản
+                points added to your account
               </div>
             </div>
 
             {/* Transaction Summary */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="bg-gray-50 rounded-xl p-4">
-                <div className="text-sm text-gray-600 mb-1">Gói đã mua</div>
+                <div className="text-sm text-gray-600 mb-1">Plan purchased</div>
                 <div className="font-bold text-gray-900">{planName}</div>
                 <Badge className="mt-1 bg-blue-100 text-blue-700">
                   {billingPeriod === 'yearly' ? 'Yearly' : 'Monthly'}
@@ -101,14 +101,14 @@ export function PaymentSuccessAnimation({
               </div>
               
               <div className="bg-gray-50 rounded-xl p-4">
-                <div className="text-sm text-gray-600 mb-1">Số tiền đã trả</div>
+                <div className="text-sm text-gray-600 mb-1">Amount paid</div>
                 <div className="font-bold text-gray-900">
                   {amountPaid.toLocaleString()} VNĐ
                 </div>
               </div>
               
               <div className="bg-gray-50 rounded-xl p-4">
-                <div className="text-sm text-gray-600 mb-1">Điểm/tháng</div>
+                <div className="text-sm text-gray-600 mb-1">Points/month</div>
                 <div className="font-bold text-gray-900">
                   {(pointsReceived / (billingPeriod === 'yearly' ? 12 : 1)).toLocaleString()}
                 </div>
@@ -117,21 +117,21 @@ export function PaymentSuccessAnimation({
 
             {/* Next Steps */}
             <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-6 border border-purple-200">
-              <h3 className="font-bold text-gray-900 mb-3">🚀 Bước tiếp theo:</h3>
+              <h3 className="font-bold text-gray-900 mb-3">🚀 Next steps:</h3>
               <ul className="text-left space-y-2 text-gray-700 mb-4">
                 <li className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-600" />
-                  Bắt đầu tạo ảnh với {pointsReceived.toLocaleString()} điểm
+                  Start creating images with {pointsReceived.toLocaleString()} points
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-600" />
-                  Khám phá 4 phong cách: Display, Model, Social, Seeding
+                  Explore 4 styles: Display, Model, Social, Seeding
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-600" />
-                  {billingPeriod === 'yearly' ? 
-                    `Nhận thêm ${(pointsReceived / 12).toLocaleString()} điểm mỗi tháng trong 11 tháng tới` :
-                    'Gia hạn gói trước khi hết điểm'
+                  {billingPeriod === 'yearly' ?
+                    `Receive ${(pointsReceived / 12).toLocaleString()} more points each month for the next 11 months` :
+                    'Renew your plan before running out of points'
                   }
                 </li>
               </ul>
@@ -144,12 +144,12 @@ export function PaymentSuccessAnimation({
               className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
             >
               <Sparkles className="w-6 h-6 mr-3" />
-              Bắt đầu tạo ảnh ngay
+              Start creating images now
               <ArrowRight className="w-6 h-6 ml-3" />
             </Button>
 
             <p className="text-sm text-gray-500 mt-4">
-              Cảm ơn bạn đã tin tưởng SnapStudio! 🙏
+              Thank you for choosing SnapStudio! 🙏
             </p>
           </div>
         </CardContent>

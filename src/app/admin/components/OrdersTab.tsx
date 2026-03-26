@@ -22,7 +22,7 @@ export function OrdersTab({ orders, onDataChange }: OrdersTabProps) {
   const [orderStatus, setOrderStatus] = useState('all');
 
   const confirmOrder = async (orderId: string) => {
-    if (!confirm('Bạn có chắc muốn xác nhận đơn hàng này?')) return;
+    if (!confirm('Are you sure you want to confirm this order?')) return;
 
     try {
       const { error } = await supabase.functions.invoke('confirm-payment', {
@@ -30,11 +30,11 @@ export function OrdersTab({ orders, onDataChange }: OrdersTabProps) {
       });
 
       if (error) throw error;
-      toast.success('Xác nhận đơn hàng thành công!');
+      toast.success('Order confirmed successfully!');
       onDataChange();
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      toast.error(`Lỗi khi xác nhận: ${errorMessage}`);
+      toast.error(`Error confirming order: ${errorMessage}`);
     }
   };
 
@@ -50,12 +50,12 @@ export function OrdersTab({ orders, onDataChange }: OrdersTabProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Quản lý đơn hàng ({filteredOrders.length})</CardTitle>
+        <CardTitle>Order Management ({filteredOrders.length})</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex gap-4 mb-6">
           <Input 
-            placeholder="Tìm theo mã đơn hàng hoặc email..."
+            placeholder="Search by order ID or email..."
             value={orderSearch}
             onChange={(e) => setOrderSearch(e.target.value)}
             className="flex-1"
@@ -65,11 +65,11 @@ export function OrdersTab({ orders, onDataChange }: OrdersTabProps) {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Tất cả trạng thái</SelectItem>
-              <SelectItem value="pending">Chờ xử lý</SelectItem>
-              <SelectItem value="completed">Hoàn thành</SelectItem>
-              <SelectItem value="failed">Thất bại</SelectItem>
-              <SelectItem value="rejected">Đã từ chối</SelectItem>
+              <SelectItem value="all">All Statuses</SelectItem>
+              <SelectItem value="pending">Pending</SelectItem>
+              <SelectItem value="completed">Completed</SelectItem>
+              <SelectItem value="failed">Failed</SelectItem>
+              <SelectItem value="rejected">Rejected</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -78,13 +78,13 @@ export function OrdersTab({ orders, onDataChange }: OrdersTabProps) {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Mã đơn hàng</TableHead>
+                <TableHead>Order ID</TableHead>
                 <TableHead>Email</TableHead>
-                <TableHead>Gói</TableHead>
-                <TableHead>Số tiền</TableHead>
-                <TableHead>Trạng thái</TableHead>
-                <TableHead>Ngày tạo</TableHead>
-                <TableHead>Thao tác</TableHead>
+                <TableHead>Plan</TableHead>
+                <TableHead>Amount</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Created</TableHead>
+                <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -105,7 +105,7 @@ export function OrdersTab({ orders, onDataChange }: OrdersTabProps) {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    {new Date(order.created_at).toLocaleDateString('vi-VN')}
+                    {new Date(order.created_at).toLocaleDateString()}
                   </TableCell>
                   <TableCell>
                     {order.status === 'pending' && (
@@ -114,7 +114,7 @@ export function OrdersTab({ orders, onDataChange }: OrdersTabProps) {
                         onClick={() => confirmOrder(order.id)}
                       >
                         <CheckCircle className="w-4 h-4 mr-1" />
-                        Xác nhận
+                        Confirm
                       </Button>
                     )}
                   </TableCell>

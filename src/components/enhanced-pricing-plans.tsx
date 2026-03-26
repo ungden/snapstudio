@@ -60,20 +60,20 @@ const monthlyPlans: Plan[] = [
       icon: Star
     },
     features: [
-      "1,200 điểm/tháng", 
+      "1,200 pts/month", 
       "~10 bộ ảnh (120 pts/bộ)", 
-      "Tất cả 4 phong cách", 
-      "Tải xuống HD",
+      "All 4 styles", 
+      "HD downloads",
       "Community access"
     ],
     industryExamples: {
-      f_b: "~10 món ăn/tháng",
-      beauty: "~10 sản phẩm mỹ phẩm/tháng", 
-      fashion: "~10 outfit/sản phẩm/tháng",
-      mother_baby: "~10 sản phẩm baby/tháng",
-      other: "~10 sản phẩm tech/tháng"
+      f_b: "~10 dishes/month",
+      beauty: "~10 beauty products/month", 
+      fashion: "~10 outfits/products/month",
+      mother_baby: "~10 baby products/month",
+      other: "~10 tech products/month"
     },
-    highlight: "Phù hợp cho startup"
+    highlight: "Great for startups"
   },
   { 
     id: "pro_monthly", 
@@ -90,22 +90,22 @@ const monthlyPlans: Plan[] = [
       icon: Zap
     },
     features: [
-      "5,000 điểm/tháng", 
+      "5,000 pts/month", 
       "~41 bộ ảnh (120 pts/bộ)", 
-      "Tất cả tính năng Starter", 
-      "Hỗ trợ ưu tiên",
+      "All Starter features", 
+      "Priority support",
       "Advanced templates",
       "Bulk download"
     ],
     industryExamples: {
-      f_b: "~41 món ăn/tháng",
-      beauty: "~41 sản phẩm mỹ phẩm/tháng",
-      fashion: "~41 outfit/sản phẩm/tháng", 
-      mother_baby: "~41 sản phẩm baby/tháng",
-      other: "~41 sản phẩm tech/tháng"
+      f_b: "~41 dishes/month",
+      beauty: "~41 beauty products/month",
+      fashion: "~41 outfits/products/month", 
+      mother_baby: "~41 baby products/month",
+      other: "~41 tech products/month"
     },
-    highlight: "Lựa chọn phổ biến nhất",
-    savings: "Tiết kiệm 75% vs studio"
+    highlight: "Most popular choice",
+    savings: "Save 75% vs studio"
   },
   { 
     id: "business_monthly", 
@@ -121,22 +121,22 @@ const monthlyPlans: Plan[] = [
       icon: Crown
     },
     features: [
-      "15,000 điểm/tháng", 
+      "15,000 pts/month", 
       "~125 bộ ảnh (120 pts/bộ)", 
-      "Tất cả tính năng Pro", 
-      "Lịch sử không giới hạn",
+      "All Pro features", 
+      "Unlimited history",
       "API access",
       "Custom branding",
       "Team collaboration"
     ],
     industryExamples: {
-      f_b: "~125 món ăn/tháng",
-      beauty: "~125 sản phẩm mỹ phẩm/tháng",
-      fashion: "~125 outfit/sản phẩm/tháng",
-      mother_baby: "~125 sản phẩm baby/tháng", 
-      other: "~125 sản phẩm tech/tháng"
+      f_b: "~125 dishes/month",
+      beauty: "~125 beauty products/month",
+      fashion: "~125 outfits/products/month",
+      mother_baby: "~125 baby products/month", 
+      other: "~125 tech products/month"
     },
-    highlight: "Cho doanh nghiệp vừa",
+    highlight: "For mid-size businesses",
     savings: "ROI 500%+"
   },
   { 
@@ -154,9 +154,9 @@ const monthlyPlans: Plan[] = [
       icon: Crown
     },
     features: [
-      "50,000 điểm/tháng", 
+      "50,000 pts/month", 
       "~416 bộ ảnh (120 pts/bộ)", 
-      "Tất cả tính năng Business", 
+      "All Business features", 
       "Dedicated support",
       "Custom integrations",
       "White-label solution",
@@ -164,13 +164,13 @@ const monthlyPlans: Plan[] = [
       "Priority processing"
     ],
     industryExamples: {
-      f_b: "~416 món ăn/tháng",
-      beauty: "~416 sản phẩm mỹ phẩm/tháng",
-      fashion: "~416 outfit/sản phẩm/tháng",
-      mother_baby: "~416 sản phẩm baby/tháng",
-      other: "~416 sản phẩm tech/tháng"
+      f_b: "~416 dishes/month",
+      beauty: "~416 beauty products/month",
+      fashion: "~416 outfits/products/month",
+      mother_baby: "~416 baby products/month",
+      other: "~416 tech products/month"
     },
-    highlight: "Giải pháp doanh nghiệp",
+    highlight: "Enterprise solution",
     savings: "Unlimited scale"
   },
 ];
@@ -182,7 +182,7 @@ const yearlyPlans: Plan[] = [
     points: 1200,
     priceUsd: 50,
     yearly: true, 
-    discountNote: "Tiết kiệm 17%",
+    discountNote: "Save 17%",
     theme: {
       gradient: "from-yellow-400 to-orange-500",
       bg: "bg-yellow-50",
@@ -192,21 +192,21 @@ const yearlyPlans: Plan[] = [
       icon: Star
     },
     features: [
-      "1,200 điểm/tháng × 12 tháng", 
-      "Thanh toán 1 lần/năm", 
-      "Tất cả templates", 
-      "Tải xuống HD",
+      "1,200 pts/month × 12 months", 
+      "One-time annual payment", 
+      "All templates", 
+      "HD downloads",
       "Email support"
     ],
     industryExamples: {
-      f_b: "~10 món ăn/tháng × 12 tháng",
-      beauty: "~10 sản phẩm mỹ phẩm/tháng × 12 tháng",
-      fashion: "~10 outfit/tháng × 12 tháng",
-      mother_baby: "~10 sản phẩm baby/tháng × 12 tháng",
-      other: "~10 sản phẩm/tháng × 12 tháng"
+      f_b: "~10 dishes/month × 12 months",
+      beauty: "~10 beauty products/month × 12 months",
+      fashion: "~10 outfits/month × 12 months",
+      mother_baby: "~10 baby products/month × 12 months",
+      other: "~10 products/month × 12 months"
     },
-    highlight: "Tiết kiệm cho cả năm",
-    savings: "Tiết kiệm 10$/năm"
+    highlight: "Save for the whole year",
+    savings: "Save $10/year"
   },
   { 
     id: "pro_yearly", 
@@ -215,7 +215,7 @@ const yearlyPlans: Plan[] = [
     priceUsd: 200,
     popular: true,
     yearly: true, 
-    discountNote: "Tiết kiệm 17%",
+    discountNote: "Save 17%",
     theme: {
       gradient: "from-blue-500 to-purple-600",
       bg: "bg-blue-50",
@@ -225,22 +225,22 @@ const yearlyPlans: Plan[] = [
       icon: Zap
     },
     features: [
-      "5,000 điểm/tháng × 12 tháng", 
-      "Thanh toán 1 lần/năm", 
-      "Hỗ trợ ưu tiên",
+      "5,000 pts/month × 12 months", 
+      "One-time annual payment", 
+      "Priority support",
       "Advanced features",
       "Bulk operations",
       "Analytics dashboard"
     ],
     industryExamples: {
-      f_b: "~41 món ăn/tháng × 12 tháng",
-      beauty: "~41 sản phẩm mỹ phẩm/tháng × 12 tháng",
-      fashion: "~41 outfit/tháng × 12 tháng",
-      mother_baby: "~41 sản phẩm baby/tháng × 12 tháng", 
-      other: "~41 sản phẩm/tháng × 12 tháng"
+      f_b: "~41 dishes/month × 12 months",
+      beauty: "~41 beauty products/month × 12 months",
+      fashion: "~41 outfits/month × 12 months",
+      mother_baby: "~41 baby products/month × 12 months", 
+      other: "~41 products/month × 12 months"
     },
-    highlight: "Lựa chọn tốt nhất",
-    savings: "Tiết kiệm 40$/năm"
+    highlight: "Best choice",
+    savings: "Save $40/year"
   },
   { 
     id: "business_yearly", 
@@ -248,7 +248,7 @@ const yearlyPlans: Plan[] = [
     points: 15000,
     priceUsd: 600,
     yearly: true, 
-    discountNote: "Tiết kiệm 17%",
+    discountNote: "Save 17%",
     theme: {
       gradient: "from-purple-500 to-indigo-600",
       bg: "bg-purple-50",
@@ -258,22 +258,22 @@ const yearlyPlans: Plan[] = [
       icon: Crown
     },
     features: [
-      "15,000 điểm/tháng × 12 tháng", 
-      "Thanh toán 1 lần/năm", 
+      "15,000 pts/month × 12 months", 
+      "One-time annual payment", 
       "Team management",
       "API access",
       "Custom branding",
       "Dedicated support"
     ],
     industryExamples: {
-      f_b: "~125 món ăn/tháng × 12 tháng",
-      beauty: "~125 sản phẩm mỹ phẩm/tháng × 12 tháng",
-      fashion: "~125 outfit/tháng × 12 tháng",
-      mother_baby: "~125 sản phẩm baby/tháng × 12 tháng",
-      other: "~125 sản phẩm/tháng × 12 tháng"
+      f_b: "~125 dishes/month × 12 months",
+      beauty: "~125 beauty products/month × 12 months",
+      fashion: "~125 outfits/month × 12 months",
+      mother_baby: "~125 baby products/month × 12 months",
+      other: "~125 products/month × 12 months"
     },
-    highlight: "Cho doanh nghiệp",
-    savings: "Tiết kiệm 120$/năm"
+    highlight: "For businesses",
+    savings: "Save $120/year"
   },
   { 
     id: "enterprise_yearly", 
@@ -282,7 +282,7 @@ const yearlyPlans: Plan[] = [
     priceUsd: 1990,
     premium: true,
     yearly: true, 
-    discountNote: "Tiết kiệm 17%",
+    discountNote: "Save 17%",
     theme: {
       gradient: "from-gray-800 to-black",
       bg: "bg-gray-50",
@@ -292,8 +292,8 @@ const yearlyPlans: Plan[] = [
       icon: Crown
     },
     features: [
-      "50,000 điểm/tháng × 12 tháng", 
-      "Thanh toán 1 lần/năm", 
+      "50,000 pts/month × 12 months", 
+      "One-time annual payment", 
       "White-label solution",
       "Custom integrations",
       "SLA guarantee",
@@ -301,14 +301,14 @@ const yearlyPlans: Plan[] = [
       "Dedicated account manager"
     ],
     industryExamples: {
-      f_b: "~416 món ăn/tháng × 12 tháng",
-      beauty: "~416 sản phẩm mỹ phẩm/tháng × 12 tháng", 
-      fashion: "~416 outfit/tháng × 12 tháng",
-      mother_baby: "~416 sản phẩm baby/tháng × 12 tháng",
-      other: "~416 sản phẩm/tháng × 12 tháng"
+      f_b: "~416 dishes/month × 12 months",
+      beauty: "~416 beauty products/month × 12 months", 
+      fashion: "~416 outfits/month × 12 months",
+      mother_baby: "~416 baby products/month × 12 months",
+      other: "~416 products/month × 12 months"
     },
-    highlight: "Giải pháp toàn diện",
-    savings: "Tiết kiệm 398$/năm"
+    highlight: "Comprehensive solution",
+    savings: "Save $398/year"
   },
 ];
 
@@ -344,15 +344,14 @@ export default function EnhancedPricingPlans({
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full px-6 py-2 mb-6">
             <Sparkles className="w-4 h-4 text-blue-600" />
-            <span className="text-blue-800 text-sm font-semibold">Bảng giá linh hoạt</span>
+            <span className="text-blue-800 text-sm font-semibold">Flexible Pricing</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Chọn gói phù hợp với 
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> quy mô </span>
-            của bạn
+            Choose the right plan for your
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> scale </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Yearly tiết kiệm 17% — điểm được cấp hàng tháng, không hết hạn
+            Yearly saves 17% — points allocated monthly, never expire
           </p>
           
           {/* Industry Filter */}
@@ -364,7 +363,7 @@ export default function EnhancedPricingPlans({
                 size="sm"
                 className="rounded-full"
               >
-                Tất cả ngành
+                All Industries
               </Button>
               {[
                 { value: 'f_b', label: '🍔 F&B', color: 'hover:bg-orange-50' },
@@ -388,7 +387,7 @@ export default function EnhancedPricingPlans({
           
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 max-w-3xl mx-auto border border-blue-100">
             <p className="text-sm text-blue-800">
-              <strong>💡 Mẹo tiết kiệm:</strong> Batch Mode (120 pts = 12 ảnh) rẻ gấp 3 lần Solo Mode (30 pts = 1 ảnh)
+              <strong>💡 Savings tip:</strong> Batch Mode (120 pts = 12 images) is 3x cheaper than Solo Mode (30 pts = 1 image)
             </p>
           </div>
         </div>
@@ -456,7 +455,7 @@ export default function EnhancedPricingPlans({
                 {/* Popular Badge */}
                 {plan.popular && (
                   <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 text-white text-center py-3 text-sm font-bold animate-gradient-x">
-                    🔥 PHỔ BIẾN NHẤT
+                    🔥 MOST POPULAR
                   </div>
                 )}
 
@@ -496,7 +495,7 @@ export default function EnhancedPricingPlans({
                       ${plan.priceUsd.toLocaleString()}
                     </span>
                     <span className="text-gray-500 ml-2 text-lg">
-                      {plan.yearly ? "/năm" : "/tháng"}
+                      {plan.yearly ? "/year" : "/month"}
                     </span>
                   </div>
 
@@ -506,7 +505,7 @@ export default function EnhancedPricingPlans({
 
                   {monthlyUsd && monthlyVnd && (
                     <div className="text-sm text-gray-500 mb-4">
-                      ≈ ${monthlyUsd.toFixed(0)}/tháng ({Math.round(monthlyVnd/1000)}k₫/tháng)
+                      ≈ ${monthlyUsd.toFixed(0)}/month ({Math.round(monthlyVnd/1000)}k₫/month)
                     </div>
                   )}
 
@@ -519,7 +518,7 @@ export default function EnhancedPricingPlans({
                       plan.theme.border
                     )}
                   >
-                    {plan.points.toLocaleString()} pts/tháng
+                    {plan.points.toLocaleString()} pts/month
                   </Badge>
 
                   {/* Highlight */}
@@ -574,18 +573,18 @@ export default function EnhancedPricingPlans({
                     {plan.popular ? (
                       <>
                         <Zap className="w-5 h-5 mr-2" />
-                        Bắt đầu ngay
+                        Get Started
                         <ArrowRight className="w-5 h-5 ml-2" />
                       </>
                     ) : plan.premium ? (
                       <>
                         <Crown className="w-5 h-5 mr-2" />
-                        Liên hệ tư vấn
+                        Contact Sales
                         <ArrowRight className="w-5 h-5 ml-2" />
                       </>
                     ) : (
                       <>
-                        Chọn gói {plan.name}
+                        Choose {plan.name}
                         <ArrowRight className="w-5 h-5 ml-2" />
                       </>
                     )}
@@ -594,7 +593,7 @@ export default function EnhancedPricingPlans({
                   {/* Value Proposition */}
                   <div className="mt-4 text-center">
                     <p className="text-xs text-gray-500">
-                      {plan.yearly ? "Thanh toán 1 lần, sử dụng cả năm" : "Linh hoạt theo tháng"}
+                      {plan.yearly ? "Pay once, use all year" : "Flexible monthly billing"}
                     </p>
                   </div>
                 </CardContent>
