@@ -34,7 +34,7 @@ export function useFeaturedImages() {
       .order('created_at', { ascending: false });
 
     if (error) {
-      toast.error('Lỗi tải ảnh nổi bật');
+      toast.error('Error loading featured images');
       setLoading(false);
       return;
     }

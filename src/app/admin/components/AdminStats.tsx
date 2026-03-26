@@ -34,7 +34,7 @@ export function AdminStats({ stats }: AdminStatsProps) {
       color: 'text-orange-600'
     },
     {
-      label: 'Chờ xử lý',
+      label: 'Pending',
       value: stats.pendingOrders,
       icon: AlertCircle,
       color: 'text-yellow-600'
@@ -46,7 +46,7 @@ export function AdminStats({ stats }: AdminStatsProps) {
       color: 'text-purple-600'
     },
     {
-      label: 'Doanh thu',
+      label: 'Revenue',
       value: `${(stats.revenue / 1000000).toFixed(1)}M`,
       icon: DollarSign,
       color: 'text-green-600'

@@ -688,7 +688,7 @@ export default function EnhancedPricingPlans({
                       <div className="space-y-3">
                         <div className="flex justify-between"><span>Upload ảnh:</span><span className="font-semibold">5 seconds</span></div>
                         <div className="flex justify-between"><span>AI processing:</span><span className="font-semibold">30 seconds</span></div>
-                        <div className="flex justify-between"><span>12 multi-style images:</span><span className="font-semibold">Tức thì</span></div>
+                        <div className="flex justify-between"><span>12 multi-style images:</span><span className="font-semibold">Instant</span></div>
                         <div className="flex justify-between"><span>Cost:</span><span className="font-semibold">120 pts (~12k VND)</span></div>
                         <div className="border-t border-white/20 pt-3 flex justify-between text-lg"><span className="font-bold">Total:</span><span className="font-bold text-green-300">35 seconds, 12k VND</span></div>
                       </div>
@@ -699,7 +699,7 @@ export default function EnhancedPricingPlans({
                     <div className="flex items-center justify-center gap-3 mb-2">
                       <TrendingUp className="w-8 h-8" />
                       <p className="text-2xl font-bold">
-                        Tiết kiệm 99.9% thời gian và 99.9% chi phí!
+                        Save 99.9% time and 99.9% cost!
                       </p>
                     </div>
                     <p className="text-green-100">
