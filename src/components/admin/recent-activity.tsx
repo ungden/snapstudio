@@ -60,13 +60,13 @@ export function RecentActivity({ activities, loading = false }: RecentActivityPr
 
   const getActivityBadge = (type: string) => {
     switch (type) {
-      case 'user_signup': return { text: 'Đăng ký', variant: 'secondary' as const };
-      case 'order_completed': return { text: 'Thanh toán', variant: 'default' as const };
-      case 'order_failed': return { text: 'Lỗi', variant: 'destructive' as const };
-      case 'image_generated': return { text: 'Tạo ảnh', variant: 'secondary' as const };
+      case 'user_signup': return { text: 'Signup', variant: 'secondary' as const };
+      case 'order_completed': return { text: 'Payment', variant: 'default' as const };
+      case 'order_failed': return { text: 'Error', variant: 'destructive' as const };
+      case 'image_generated': return { text: 'Image', variant: 'secondary' as const };
       case 'template_created': return { text: 'Template', variant: 'outline' as const };
-      case 'user_reported': return { text: 'Báo cáo', variant: 'destructive' as const };
-      default: return { text: 'Khác', variant: 'outline' as const };
+      case 'user_reported': return { text: 'Report', variant: 'destructive' as const };
+      default: return { text: 'Other', variant: 'outline' as const };
     }
   };
 
@@ -74,7 +74,7 @@ export function RecentActivity({ activities, loading = false }: RecentActivityPr
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Hoạt động gần đây</CardTitle>
+          <CardTitle>Recent Activity</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -98,9 +98,9 @@ export function RecentActivity({ activities, loading = false }: RecentActivityPr
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
-          Hoạt động gần đây
+          Recent Activity
           <Badge variant="outline" className="text-xs">
-            {activities.length} hoạt động
+            {activities.length} activities
           </Badge>
         </CardTitle>
       </CardHeader>
@@ -109,7 +109,7 @@ export function RecentActivity({ activities, loading = false }: RecentActivityPr
           {activities.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
               <Clock className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p>Chưa có hoạt động nào</p>
+              <p>No activity yet</p>
             </div>
           ) : (
             activities.map((activity) => {
@@ -146,7 +146,7 @@ export function RecentActivity({ activities, loading = false }: RecentActivityPr
                     )}
                     
                     <p className="text-xs text-gray-400">
-                      {new Date(activity.timestamp).toLocaleString('vi-VN')}
+                      {new Date(activity.timestamp).toLocaleString()}
                     </p>
                   </div>
                 </div>

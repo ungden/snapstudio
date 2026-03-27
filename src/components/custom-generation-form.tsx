@@ -35,12 +35,12 @@ interface CustomGenerationFormProps {
 const SOLO_COST = 30; // 30 points per solo generation
 
 const promptSuggestions = [
-  "Một sản phẩm đẹp mắt trên bàn gỗ với ánh sáng tự nhiên",
-  "Sản phẩm được bày trí trong không gian hiện đại, tối giản",
-  "Close-up chi tiết sản phẩm với background mờ ảo",
-  "Sản phẩm trong bối cảnh lifestyle, người dùng thực tế",
-  "Góc chụp từ trên xuống (flat lay) với props trang trí",
-  "Sản phẩm với hiệu ứng ánh sáng dramatic, chuyên nghiệp"
+  "A beautiful product on a wooden table with natural lighting",
+  "Product arranged in a modern, minimalist space",
+  "Close-up product detail with blurred background",
+  "Product in a lifestyle context with real users",
+  "Top-down angle (flat lay) with decorative props",
+  "Product with dramatic, professional lighting effects"
 ];
 
 export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenerationFormProps) {
@@ -59,13 +59,13 @@ export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenera
 
     // Validate file type
     if (!file.type.startsWith('image/')) {
-      toast.error('Vui lòng chọn file ảnh hợp lệ');
+      toast.error('Please select a valid image file');
       return;
     }
 
     // Validate file size (10MB max)
     if (file.size > 10 * 1024 * 1024) {
-      toast.error('File quá lớn. Tối đa 10MB');
+      toast.error('File too large. Maximum 10MB');
       return;
     }
 
@@ -86,22 +86,22 @@ export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenera
 
   const handleGenerate = async () => {
     if (!user) {
-      toast.error("Bạn cần đăng nhập để tạo ảnh");
+      toast.error("You need to log in to generate images");
       return;
     }
 
     if (!prompt.trim()) {
-      toast.error("Vui lòng nhập mô tả ảnh bạn muốn tạo");
+      toast.error("Please enter a description of the image you want to create");
       return;
     }
 
     if (!selectedImage) {
-      toast.error("Vui lòng chọn ảnh sản phẩm");
+      toast.error("Please select a product image");
       return;
     }
 
     if (!canGenerate) {
-      toast.error(`Không đủ điểm. Cần ${SOLO_COST} điểm để tạo ảnh.`);
+      toast.error(`Not enough points. ${SOLO_COST} points needed to generate an image.`);
       return;
     }
 
@@ -137,7 +137,7 @@ export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenera
       }
 
       if (!data?.success) {
-        throw new Error(data?.error || 'Không thể tạo ảnh');
+        throw new Error(data?.error || 'Unable to generate image');
       }
 
       // Refresh profile to update points balance
@@ -146,13 +146,13 @@ export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenera
       // Call the callback with generated image
       onImageGenerated(data.imageUrl, prompt.trim());
       
-      toast.success("🎉 Tạo ảnh thành công!");
+      toast.success("🎉 Image generated successfully!");
       setPrompt(""); // Clear form
       clearImage(); // Clear image
 
     } catch (error: any) {
       console.error('Error in handleGenerate:', error);
-      toast.error(error.message || 'Lỗi khi tạo ảnh');
+      toast.error(error.message || 'Error generating image');
     } finally {
       setIsGenerating(false);
     }
@@ -170,8 +170,8 @@ export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenera
             <Wand2 className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h3 className="text-xl font-bold text-gray-900">Tạo ảnh tùy chỉnh</h3>
-            <p className="text-sm text-gray-600">Mô tả chi tiết ảnh bạn muốn tạo</p>
+            <h3 className="text-xl font-bold text-gray-900">Custom Image Generation</h3>
+            <p className="text-sm text-gray-600">Describe in detail the image you want to create</p>
           </div>
         </CardTitle>
       </CardHeader>
@@ -181,10 +181,10 @@ export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenera
           <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
             <div className="flex items-center gap-2 text-red-800">
               <AlertCircle className="w-5 h-5" />
-              <span className="font-medium">Không đủ điểm</span>
+              <span className="font-medium">Not enough points</span>
             </div>
             <p className="text-sm text-red-700 mt-1">
-              Bạn cần {SOLO_COST} điểm để tạo ảnh. Hiện tại bạn có {profile?.points_balance ?? 0} điểm.
+              You need {SOLO_COST} points to generate an image. You currently have {profile?.points_balance ?? 0} points.
             </p>
           </div>
         )}
@@ -193,14 +193,14 @@ export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenera
         <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-purple-600" />
-            <span className="text-sm font-medium text-gray-700">Số dư hiện tại</span>
+            <span className="text-sm font-medium text-gray-700">Current balance</span>
           </div>
           <div className="flex items-center gap-2">
             <Badge className={cn(
               "text-sm",
               canGenerate ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
             )}>
-              {(profile?.points_balance ?? 0).toLocaleString()} điểm
+              {(profile?.points_balance ?? 0).toLocaleString()} pts
             </Badge>
             {hasSubscription && (
               <Badge className="bg-blue-100 text-blue-800 text-xs">
@@ -212,7 +212,7 @@ export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenera
 
         {/* Image Upload */}
         <div className="space-y-3">
-          <Label className="text-sm font-medium">Ảnh sản phẩm *</Label>
+          <Label className="text-sm font-medium">Product Image *</Label>
           {!selectedImage ? (
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
               <input
@@ -227,8 +227,8 @@ export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenera
                   <div className="w-12 h-12 bg-gray-100 rounded-lg mx-auto flex items-center justify-center">
                     <Wand2 className="w-6 h-6 text-gray-400" />
                   </div>
-                  <p className="text-sm text-gray-600">Chọn ảnh sản phẩm</p>
-                  <p className="text-xs text-gray-500">JPG, PNG, WebP - Tối đa 10MB</p>
+                  <p className="text-sm text-gray-600">Select product image</p>
+                  <p className="text-xs text-gray-500">JPG, PNG, WebP - Max 10MB</p>
                 </div>
               </label>
             </div>
@@ -254,11 +254,11 @@ export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenera
         {/* Prompt Input */}
         <div className="space-y-3">
           <Label htmlFor="custom-prompt" className="text-sm font-medium">
-            Mô tả ảnh bạn muốn tạo *
+            Describe the image you want to create *
           </Label>
           <Textarea
             id="custom-prompt"
-            placeholder="Ví dụ: Một chiếc điện thoại iPhone màu đen được đặt trên bàn gỗ với ánh sáng tự nhiên từ cửa sổ, background mờ ảo, phong cách chụp sản phẩm chuyên nghiệp..."
+            placeholder="Example: A black iPhone placed on a wooden table with natural window light, blurred background, professional product photography style..."
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             rows={4}
@@ -266,13 +266,13 @@ export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenera
             disabled={isGenerating}
           />
           <div className="text-xs text-gray-500">
-            Mô tả càng chi tiết, ảnh càng chính xác. Bao gồm: sản phẩm, bối cảnh, ánh sáng, góc chụp.
+            The more detailed the description, the more accurate the image. Include: product, setting, lighting, camera angle.
           </div>
         </div>
 
         {/* Prompt Suggestions */}
         <div className="space-y-3">
-          <Label className="text-sm font-medium">Gợi ý prompt phổ biến</Label>
+          <Label className="text-sm font-medium">Popular prompt suggestions</Label>
           <div className="grid grid-cols-1 gap-2">
             {promptSuggestions.map((suggestion, index) => (
               <Button
@@ -299,12 +299,12 @@ export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenera
           {isGenerating ? (
             <>
               <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-              Đang tạo ảnh...
+              Generating image...
             </>
           ) : (
             <>
               <Zap className="w-5 h-5 mr-2" />
-              Tạo ảnh ngay ({SOLO_COST} điểm)
+              Generate Now ({SOLO_COST} pts)
             </>
           )}
         </Button>
@@ -312,12 +312,12 @@ export function CustomGenerationForm({ onImageGenerated, profile }: CustomGenera
         {/* Info Footer */}
         <div className="p-3 bg-white rounded-lg border border-purple-200">
           <div className="text-xs text-gray-600 space-y-1">
-            <p><strong>Lưu ý:</strong></p>
+            <p><strong>Note:</strong></p>
             <ul className="list-disc list-inside space-y-1 ml-2">
-              <li>Mỗi lần tạo ảnh tốn {SOLO_COST} điểm</li>
-              <li>Thời gian tạo: 10-30 giây</li>
-              <li>Ảnh được tạo sẽ có watermark SnapStudio</li>
-              <li>Bạn có thể tải xuống và sử dụng ngay</li>
+              <li>Each generation costs {SOLO_COST} points</li>
+              <li>Generation time: 10-30 seconds</li>
+              <li>Generated images will have a SnapStudio watermark</li>
+              <li>You can download and use them immediately</li>
             </ul>
           </div>
         </div>

@@ -47,7 +47,7 @@ export function RecentProjects() {
 
       if (projectsError) {
         console.error("Error fetching projects:", projectsError);
-        setError("Không thể tải dự án");
+        setError("Unable to load projects");
         setProjects([]);
         return;
       }
@@ -70,7 +70,7 @@ export function RecentProjects() {
 
     } catch (error) {
       console.error("Exception in fetchProjects:", error);
-      setError("Lỗi không xác định");
+      setError("Unknown error");
       setProjects([]);
     } finally {
       setLoading(false);
@@ -99,12 +99,12 @@ export function RecentProjects() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Dự án gần đây</CardTitle>
+          <CardTitle>Recent Projects</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="text-center py-4">
             <Loader2 className="w-6 h-6 animate-spin mx-auto text-blue-600" />
-            <p className="text-sm text-gray-500 mt-2">Đang xác thực...</p>
+            <p className="text-sm text-gray-500 mt-2">Authenticating...</p>
           </div>
         </CardContent>
       </Card>
@@ -115,11 +115,11 @@ export function RecentProjects() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Dự án gần đây</CardTitle>
+          <CardTitle>Recent Projects</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="text-center py-8">
-            <p className="text-gray-500">Vui lòng đăng nhập để xem dự án</p>
+            <p className="text-gray-500">Please log in to view projects</p>
           </div>
         </CardContent>
       </Card>
@@ -130,10 +130,10 @@ export function RecentProjects() {
     <>
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Dự án gần đây</CardTitle>
+          <CardTitle>Recent Projects</CardTitle>
           <Button variant="ghost" size="sm" asChild>
             <Link href="/dashboard/projects">
-              Xem tất cả <ArrowRight className="w-4 h-4 ml-2" />
+              View All <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </Button>
         </CardHeader>
@@ -141,30 +141,30 @@ export function RecentProjects() {
           {loading ? (
             <div className="text-center py-4">
               <Loader2 className="w-6 h-6 animate-spin mx-auto text-blue-600" />
-              <p className="text-sm text-gray-500 mt-2">Đang tải dự án...</p>
+              <p className="text-sm text-gray-500 mt-2">Loading projects...</p>
             </div>
           ) : error ? (
             <div className="text-center py-8 border-2 border-dashed border-red-200 rounded-lg bg-red-50">
               <AlertCircle className="w-12 h-12 mx-auto text-red-400 mb-4" />
-              <h3 className="font-semibold text-red-800 mb-2">Lỗi tải dự án</h3>
+              <h3 className="font-semibold text-red-800 mb-2">Error loading projects</h3>
               <p className="text-sm text-red-600 mb-4">{error}</p>
               <div className="flex gap-2 justify-center">
                 <Button variant="outline" size="sm" onClick={handleRetry}>
-                  Thử lại
+                  Retry
                 </Button>
                 <Button size="sm" onClick={() => router.push('/dashboard/projects')}>
-                  Xem tất cả dự án
+                  View All Projects
                 </Button>
               </div>
             </div>
           ) : projects.length === 0 ? (
             <div className="text-center py-8 border-2 border-dashed border-gray-200 rounded-lg">
               <Wand2 className="w-12 h-12 mx-auto text-gray-300 mb-4" />
-              <h3 className="font-semibold text-gray-800 mb-2">Bắt đầu dự án đầu tiên của bạn</h3>
-              <p className="text-sm text-gray-500 mb-4">Tạo bộ ảnh marketing hoàn chỉnh chỉ trong vài giây.</p>
+              <h3 className="font-semibold text-gray-800 mb-2">Start your first project</h3>
+              <p className="text-sm text-gray-500 mb-4">Create a complete marketing image set in just seconds.</p>
               <Button onClick={() => router.push('/dashboard')}>
                 <Plus className="w-4 h-4 mr-2" />
-                Tạo dự án mới
+                Create New Project
               </Button>
             </div>
           ) : (
@@ -177,7 +177,7 @@ export function RecentProjects() {
                     </div>
                     <div className="flex-1">
                       <p className="font-semibold text-gray-900">{project.name}</p>
-                      <p className="text-sm text-gray-500">{project.image_count} ảnh</p>
+                      <p className="text-sm text-gray-500">{project.image_count} images</p>
                     </div>
                     <ArrowRight className="w-4 h-4 text-gray-400" />
                   </div>

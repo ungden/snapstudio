@@ -94,9 +94,9 @@ export function GeneratedImagesGrid({
       await navigator.clipboard.writeText(image.image_url);
       setCopied(image.id);
       setTimeout(() => setCopied(null), 2000);
-      toast.success("Đã sao chép link ảnh!");
+      toast.success("Image link copied!");
     } catch (error) {
-      toast.error("Không thể sao chép link");
+      toast.error("Unable to copy link");
     }
   };
 
@@ -105,7 +105,7 @@ export function GeneratedImagesGrid({
       try {
         await navigator.share({
           title: image.title,
-          text: image.description || `Ảnh ${image.image_type} cho ${productName}`,
+          text: image.description || `${image.image_type} image for ${productName}`,
           url: image.image_url
         });
       } catch (error) {
@@ -143,10 +143,10 @@ export function GeneratedImagesGrid({
               </div>
               <div>
                 <h3 className="text-xl font-bold text-green-900">
-                  🎉 Bộ ảnh đã sẵn sàng!
+                  🎉 Image set is ready!
                 </h3>
                 <p className="text-green-700 text-sm">
-                  {images.length} ảnh chuyên nghiệp cho "{productName}"
+                  {images.length} professional images for "{productName}"
                 </p>
               </div>
             </div>
@@ -156,7 +156,7 @@ export function GeneratedImagesGrid({
                 className="bg-green-600 hover:bg-green-700"
               >
                 <Download className="w-4 h-4 mr-2" />
-                Tải tất cả
+                Download All
               </Button>
               <Button 
                 variant="outline" 
@@ -164,7 +164,7 @@ export function GeneratedImagesGrid({
                 className="border-green-300 text-green-700 hover:bg-green-100"
               >
                 <RotateCcw className="w-4 h-4 mr-2" />
-                Tạo bộ mới
+                Create New Set
               </Button>
             </div>
           </CardTitle>
@@ -181,7 +181,7 @@ export function GeneratedImagesGrid({
                         {getTypeDisplayName(type)}
                       </Badge>
                       <span className="text-sm text-gray-600">
-                        {typeImages.length} ảnh
+                        {typeImages.length} images
                       </span>
                     </div>
                     
@@ -242,7 +242,7 @@ export function GeneratedImagesGrid({
                               </p>
                             )}
                             <div className="text-xs text-gray-500">
-                              {image.download_count} lượt tải
+                              {image.download_count} downloads
                             </div>
                           </div>
 
@@ -260,7 +260,7 @@ export function GeneratedImagesGrid({
                                     <Download className="w-3 h-3" />
                                   </Button>
                                 </TooltipTrigger>
-                                <TooltipContent>Tải xuống</TooltipContent>
+                                <TooltipContent>Download</TooltipContent>
                               </Tooltip>
 
                               <Tooltip>
@@ -278,7 +278,7 @@ export function GeneratedImagesGrid({
                                   </Button>
                                 </TooltipTrigger>
                                 <TooltipContent>
-                                  {image.is_favorite ? "Bỏ yêu thích" : "Yêu thích"}
+                                  {image.is_favorite ? "Remove favorite" : "Favorite"}
                                 </TooltipContent>
                               </Tooltip>
                             </div>
@@ -299,7 +299,7 @@ export function GeneratedImagesGrid({
                                     )}
                                   </Button>
                                 </TooltipTrigger>
-                                <TooltipContent>Sao chép link</TooltipContent>
+                                <TooltipContent>Copy link</TooltipContent>
                               </Tooltip>
 
                               <Tooltip>
@@ -313,7 +313,7 @@ export function GeneratedImagesGrid({
                                     <Share2 className="w-3 h-3" />
                                   </Button>
                                 </TooltipTrigger>
-                                <TooltipContent>Chia sẻ</TooltipContent>
+                                <TooltipContent>Share</TooltipContent>
                               </Tooltip>
                             </div>
                           </div>

@@ -71,7 +71,7 @@ export default function OrdersPage() {
       
       if (error) {
         console.error('Error loading orders:', error);
-        toast.error('Lỗi tải đơn hàng: ' + error.message);
+        toast.error('Error loading orders: ' + error.message);
         return;
       }
 
@@ -80,14 +80,14 @@ export default function OrdersPage() {
 
     } catch (error) {
       console.error('Error in loadOrders:', error);
-      toast.error('Lỗi khi tải danh sách đơn hàng');
+      toast.error('Error loading order list');
     } finally {
       setLoading(false);
     }
   };
 
   const confirmOrder = async (orderId: string) => {
-    if (!confirm('Bạn có chắc muốn xác nhận đơn hàng này?')) return;
+    if (!confirm('Are you sure you want to confirm this order?')) return;
 
     try {
       const { error } = await supabase.functions.invoke('confirm-payment', {
@@ -95,11 +95,11 @@ export default function OrdersPage() {
       });
 
       if (error) throw error;
-      toast.success('Xác nhận đơn hàng thành công!');
+      toast.success('Order confirmed successfully!');
       loadOrders();
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      toast.error(`Lỗi khi xác nhận: ${errorMessage}`);
+      toast.error(`Error confirming order: ${errorMessage}`);
     }
   };
 
@@ -121,12 +121,12 @@ export default function OrdersPage() {
       <div className="mb-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Quản lý Đơn hàng</h1>
-            <p className="text-gray-600">Xem và xác nhận các đơn hàng thanh toán.</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Order Management</h1>
+            <p className="text-gray-600">View and confirm payment orders.</p>
           </div>
           <Button onClick={loadOrders} variant="outline" className="flex items-center gap-2">
             <RefreshCw className="w-4 h-4" />
-            Làm mới
+            Refresh
           </Button>
         </div>
       </div>
@@ -139,7 +139,7 @@ export default function OrdersPage() {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
-                  placeholder="Tìm theo mã đơn, email, tên gói..."
+                  placeholder="Search by order ID, email, plan name..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -149,14 +149,14 @@ export default function OrdersPage() {
             
             <Select value={statusFilter} onValueChange={setStatusFilter}>
               <SelectTrigger className="w-48">
-                <SelectValue placeholder="Trạng thái" />
+                <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Tất cả trạng thái</SelectItem>
-                <SelectItem value="pending">Chờ xử lý</SelectItem>
-                <SelectItem value="completed">Hoàn thành</SelectItem>
-                <SelectItem value="failed">Thất bại</SelectItem>
-                <SelectItem value="rejected">Đã từ chối</SelectItem>
+                <SelectItem value="all">All Statuses</SelectItem>
+                <SelectItem value="pending">Pending</SelectItem>
+                <SelectItem value="completed">Completed</SelectItem>
+                <SelectItem value="failed">Failed</SelectItem>
+                <SelectItem value="rejected">Rejected</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -167,9 +167,9 @@ export default function OrdersPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
-            Danh sách đơn hàng ({filteredOrders.length.toLocaleString()})
+            Order List ({filteredOrders.length.toLocaleString()})
             <div className="text-sm text-gray-500">
-              Trang {page + 1} / {totalPages}
+              Page {page + 1} / {totalPages}
             </div>
           </CardTitle>
         </CardHeader>
@@ -177,7 +177,7 @@ export default function OrdersPage() {
           {loading ? (
             <div className="text-center py-8">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-              <p className="text-gray-600">Đang tải đơn hàng...</p>
+              <p className="text-gray-600">Loading orders...</p>
             </div>
           ) : (
             <>
@@ -185,13 +185,13 @@ export default function OrdersPage() {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Mã đơn hàng</TableHead>
+                      <TableHead>Order ID</TableHead>
                       <TableHead>Email</TableHead>
-                      <TableHead>Gói</TableHead>
-                      <TableHead>Số tiền</TableHead>
-                      <TableHead>Trạng thái</TableHead>
-                      <TableHead>Ngày tạo</TableHead>
-                      <TableHead>Thao tác</TableHead>
+                      <TableHead>Plan</TableHead>
+                      <TableHead>Amount</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Created</TableHead>
+                      <TableHead>Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -212,7 +212,7 @@ export default function OrdersPage() {
                           </Badge>
                         </TableCell>
                         <TableCell>
-                          {new Date(order.created_at).toLocaleDateString('vi-VN')}
+                          {new Date(order.created_at).toLocaleDateString()}
                         </TableCell>
                         <TableCell>
                           {order.status === 'pending' && (
@@ -221,7 +221,7 @@ export default function OrdersPage() {
                               onClick={() => confirmOrder(order.id)}
                             >
                               <CheckCircle className="w-4 h-4 mr-1" />
-                              Xác nhận
+                              Confirm
                             </Button>
                           )}
                         </TableCell>
@@ -239,17 +239,17 @@ export default function OrdersPage() {
                     onClick={() => setPage(p => Math.max(0, p - 1))}
                     disabled={page === 0}
                   >
-                    Trước
+                    Previous
                   </Button>
                   <span className="text-sm text-gray-600">
-                    Trang {page + 1} / {totalPages}
+                    Page {page + 1} / {totalPages}
                   </span>
                   <Button
                     variant="outline"
                     onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
                     disabled={page >= totalPages - 1}
                   >
-                    Sau
+                    Next
                   </Button>
                 </div>
               )}

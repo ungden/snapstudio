@@ -102,7 +102,7 @@ export default function ProjectsPage() {
       setProjects(projectsWithCounts);
     } catch (error) {
       console.error('Error loading projects:', error);
-      toast.error('Lỗi khi tải dự án');
+      toast.error('Error loading projects');
     } finally {
       setLoading(false);
     }
@@ -110,7 +110,7 @@ export default function ProjectsPage() {
 
   const createProject = async () => {
     if (!newProjectName.trim() || !newProductName.trim()) {
-      toast.error('Vui lòng điền đầy đủ thông tin');
+      toast.error('Please fill in all required fields');
       return;
     }
 
@@ -130,7 +130,7 @@ export default function ProjectsPage() {
 
       if (error) throw error;
 
-      toast.success('Tạo dự án thành công!');
+      toast.success('Project created successfully!');
       setIsCreateDialogOpen(false);
       setNewProjectName('');
       setNewProductName('');
@@ -140,12 +140,12 @@ export default function ProjectsPage() {
       router.push(`/dashboard?projectId=${data.id}`);
     } catch (error) {
       console.error('Error creating project:', error);
-      toast.error('Lỗi khi tạo dự án');
+      toast.error('Error creating project');
     }
   };
 
   const deleteProject = async (projectId: string) => {
-    if (!confirm('Bạn có chắc muốn xóa dự án này? Tất cả ảnh trong dự án cũng sẽ bị xóa.')) {
+    if (!confirm('Are you sure you want to delete this project? All images in the project will also be deleted.')) {
       return;
     }
 
@@ -166,24 +166,24 @@ export default function ProjectsPage() {
 
       if (projectError) throw projectError;
 
-      toast.success('Đã xóa dự án');
+      toast.success('Project deleted');
       loadProjects();
     } catch (error) {
       console.error('Error deleting project:', error);
-      toast.error('Lỗi khi xóa dự án');
+      toast.error('Error deleting project');
     }
   };
 
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'completed':
-        return <Badge className="bg-green-100 text-green-800">Hoàn thành</Badge>;
+        return <Badge className="bg-green-100 text-green-800">Completed</Badge>;
       case 'processing':
-        return <Badge className="bg-blue-100 text-blue-800">Đang xử lý</Badge>;
+        return <Badge className="bg-blue-100 text-blue-800">Processing</Badge>;
       case 'failed':
-        return <Badge className="bg-red-100 text-red-800">Thất bại</Badge>;
+        return <Badge className="bg-red-100 text-red-800">Failed</Badge>;
       default:
-        return <Badge className="bg-gray-100 text-gray-800">Chờ xử lý</Badge>;
+        return <Badge className="bg-gray-100 text-gray-800">Pending</Badge>;
     }
   };
 
@@ -215,12 +215,12 @@ export default function ProjectsPage() {
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Dự án của bạn</h1>
-            <p className="text-gray-600">Quản lý và theo dõi tất cả dự án tạo ảnh.</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Your Projects</h1>
+            <p className="text-gray-600">Manage and track all your image generation projects.</p>
           </div>
           <Button onClick={() => setIsCreateDialogOpen(true)}>
             <Plus className="w-4 h-4 mr-2" />
-            Tạo dự án mới
+            New Project
           </Button>
         </div>
 
@@ -231,7 +231,7 @@ export default function ProjectsPage() {
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
-                  placeholder="Tìm kiếm dự án..."
+                  placeholder="Search projects..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -239,14 +239,14 @@ export default function ProjectsPage() {
               </div>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
                 <SelectTrigger className="w-48">
-                  <SelectValue placeholder="Trạng thái" />
+                  <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Tất cả</SelectItem>
-                  <SelectItem value="completed">Hoàn thành</SelectItem>
-                  <SelectItem value="processing">Đang xử lý</SelectItem>
-                  <SelectItem value="pending">Chờ xử lý</SelectItem>
-                  <SelectItem value="failed">Thất bại</SelectItem>
+                  <SelectItem value="all">All</SelectItem>
+                  <SelectItem value="completed">Completed</SelectItem>
+                  <SelectItem value="processing">Processing</SelectItem>
+                  <SelectItem value="pending">Pending</SelectItem>
+                  <SelectItem value="failed">Failed</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -257,21 +257,21 @@ export default function ProjectsPage() {
         {loading ? (
           <div className="text-center py-12">
             <Loader2 className="w-8 w-8 animate-spin mx-auto mb-4 text-blue-600" />
-            <p className="text-gray-600">Đang tải dự án...</p>
+            <p className="text-gray-600">Loading projects...</p>
           </div>
         ) : filteredProjects.length === 0 ? (
           <Card>
             <CardContent className="p-12 text-center">
               <Folder className="w-16 h-16 mx-auto text-gray-300 mb-4" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                {searchTerm ? 'Không tìm thấy dự án' : 'Chưa có dự án nào'}
+                {searchTerm ? 'No projects found' : 'No projects yet'}
               </h3>
               <p className="text-gray-600 mb-6">
-                {searchTerm ? 'Thử tìm kiếm với từ khóa khác' : 'Tạo dự án đầu tiên để bắt đầu tạo ảnh'}
+                {searchTerm ? 'Try searching with different keywords' : 'Create your first project to start generating images'}
               </p>
               <Button onClick={() => setIsCreateDialogOpen(true)}>
                 <Plus className="w-4 h-4 mr-2" />
-                Tạo dự án đầu tiên
+                Create First Project
               </Button>
             </CardContent>
           </Card>
@@ -306,11 +306,11 @@ export default function ProjectsPage() {
                   <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                     <div className="flex items-center gap-1">
                       <Image className="w-4 h-4" />
-                      <span>{project.image_count || 0} ảnh</span>
+                      <span>{project.image_count || 0} images</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
-                      <span>{new Date(project.created_at).toLocaleDateString('vi-VN')}</span>
+                      <span>{new Date(project.created_at).toLocaleDateString('en-US')}</span>
                     </div>
                   </div>
 
@@ -321,7 +321,7 @@ export default function ProjectsPage() {
                       onClick={() => router.push(`/dashboard?projectId=${project.id}`)}
                     >
                       <Eye className="w-4 h-4 mr-1" />
-                      Xem
+                      View
                     </Button>
                     <Button 
                       size="sm" 
@@ -349,29 +349,29 @@ export default function ProjectsPage() {
       <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Tạo dự án mới</DialogTitle>
+            <DialogTitle>Create New Project</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div>
-              <Label htmlFor="project-name">Tên dự án</Label>
+              <Label htmlFor="project-name">Project Name</Label>
               <Input
                 id="project-name"
-                placeholder="VD: Bộ ảnh Tết 2025"
+                placeholder="e.g. Holiday Photo Set 2025"
                 value={newProjectName}
                 onChange={(e) => setNewProjectName(e.target.value)}
               />
             </div>
             <div>
-              <Label htmlFor="product-name">Tên sản phẩm</Label>
+              <Label htmlFor="product-name">Product Name</Label>
               <Input
                 id="product-name"
-                placeholder="VD: iPhone 15 Pro Max"
+                placeholder="e.g. iPhone 15 Pro Max"
                 value={newProductName}
                 onChange={(e) => setNewProductName(e.target.value)}
               />
             </div>
             <div>
-              <Label htmlFor="industry">Ngành hàng</Label>
+              <Label htmlFor="industry">Industry</Label>
               <Select value={selectedIndustry} onValueChange={setSelectedIndustry}>
                 <SelectTrigger>
                   <SelectValue />
@@ -388,10 +388,10 @@ export default function ProjectsPage() {
           </div>
           <div className="flex gap-2">
             <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)} className="flex-1">
-              Hủy
+              Cancel
             </Button>
             <Button onClick={createProject} className="flex-1">
-              Tạo dự án
+              Create Project
             </Button>
           </div>
         </DialogContent>

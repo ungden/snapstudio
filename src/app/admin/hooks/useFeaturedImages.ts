@@ -34,7 +34,7 @@ export function useFeaturedImages() {
       .order('created_at', { ascending: false });
 
     if (error) {
-      toast.error('Lỗi tải ảnh nổi bật');
+      toast.error('Error loading featured images');
       setLoading(false);
       return;
     }
@@ -67,10 +67,10 @@ export function useFeaturedImages() {
       .eq('id', imageToRemove.id);
 
     if (error) {
-      toast.error('Lỗi khi gỡ ảnh. Đang hoàn tác.');
+      toast.error('Error removing image. Reverting.');
       setImages(originalImages);
     } else {
-      toast.success('Đã gỡ ảnh khỏi danh sách nổi bật.');
+      toast.success('Image removed from featured list.');
     }
   }, [images]);
 
@@ -87,10 +87,10 @@ export function useFeaturedImages() {
       .eq('id', imageToAdd.id);
 
     if (error) {
-      toast.error('Lỗi khi thêm ảnh. Đang hoàn tác.');
+      toast.error('Error adding image. Reverting.');
       setImages(originalImages);
     } else {
-      toast.success('Đã thêm ảnh vào danh sách nổi bật.');
+      toast.success('Image added to featured list.');
     }
   }, [images]);
 

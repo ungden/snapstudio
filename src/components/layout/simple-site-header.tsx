@@ -17,25 +17,25 @@ const industries = [
   { 
     href: "/food-beverage", 
     title: "Food & Beverage", 
-    description: "Thực phẩm & Đồ uống",
+    description: "Food & Drinks",
     color: "text-orange-600"
   },
   { 
     href: "/beauty-personal-care", 
     title: "Beauty & Personal Care", 
-    description: "Mỹ phẩm & Chăm sóc",
+    description: "Cosmetics & Personal Care",
     color: "text-pink-600"
   },
   { 
     href: "/fashion-accessories", 
     title: "Fashion & Accessories", 
-    description: "Thời trang & Phụ kiện",
+    description: "Fashion & Accessories",
     color: "text-purple-600"
   },
   { 
     href: "/mother-baby", 
     title: "Mother & Baby", 
-    description: "Mẹ & Bé",
+    description: "Mother & Baby",
     color: "text-blue-600"
   },
 ];
@@ -52,7 +52,7 @@ export function SimpleSiteHeader() {
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent hover:bg-blue-50 text-gray-700">
                   <Building2 className="w-4 h-4 mr-2" />
-                  Ngành hàng
+                  Industries
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[400px] gap-3 p-4">
@@ -78,13 +78,13 @@ export function SimpleSiteHeader() {
           </NavigationMenu>
           
           <Link href="/features" className="text-gray-700 hover:text-blue-600 transition-colors">
-            Tính năng
+            Features
           </Link>
           <Link href="/templates" className="text-gray-700 hover:text-blue-600 transition-colors">
             Templates
           </Link>
           <Link href="/#pricing" className="text-gray-700 hover:text-blue-600 transition-colors">
-            Bảng giá
+            Pricing
           </Link>
         </div>
         
@@ -96,7 +96,7 @@ export function SimpleSiteHeader() {
           >
             <Link href="/login">
               <LogIn className="w-4 h-4 mr-2" />
-              Đăng nhập
+              Sign In
             </Link>
           </Button>
         </div>

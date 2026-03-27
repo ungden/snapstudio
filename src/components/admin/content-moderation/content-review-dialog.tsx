@@ -135,7 +135,7 @@ export function ContentReviewDialog({
                   </div>
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-gray-500" />
-                    <span>Created: {new Date(item.created_at).toLocaleString('vi-VN')}</span>
+                    <span>Created: {new Date(item.created_at).toLocaleString()}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Flag className="w-4 h-4 text-gray-500" />

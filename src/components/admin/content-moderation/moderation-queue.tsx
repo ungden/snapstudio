@@ -320,7 +320,7 @@ export function ModerationQueue({
                         {getStatusBadge(item.status)}
                       </TableCell>
                       <TableCell className="text-sm">
-                        {new Date(item.created_at).toLocaleDateString('vi-VN')}
+                        {new Date(item.created_at).toLocaleDateString()}
                       </TableCell>
                       <TableCell>
                         {item.status === 'pending' && (

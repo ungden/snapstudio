@@ -100,7 +100,7 @@ export function CommunityImageDialog({
       setCommentText("");
       onCommentAdded?.();
     } catch (error) {
-      toast.error("Lỗi khi gửi bình luận");
+      toast.error("Error posting comment");
     } finally {
       setIsSubmitting(false);
     }
@@ -112,9 +112,9 @@ export function CommunityImageDialog({
     const filename = `${image.title}-snapstudio.jpg`;
     try {
       await ImageGenerator.downloadImage(urlToDownload, filename);
-      toast.success("Tải ảnh thành công!");
+      toast.success("Image downloaded successfully!");
     } catch {
-      toast.error("Tải ảnh thất bại.");
+      toast.error("Image download failed.");
     }
   };
 
@@ -142,12 +142,12 @@ export function CommunityImageDialog({
                   </Avatar>
                   <div>
                     <p className="font-semibold text-sm">{image.profiles?.full_name || image.profiles?.email?.split('@')[0]}</p>
-                    <p className="text-xs text-gray-500">Tác giả</p>
+                    <p className="text-xs text-gray-500">Author</p>
                   </div>
                 </div>
                 <Link href={`/community/${image.id}`}>
                   <Button variant="ghost" size="sm">
-                    Chi tiết <ArrowRight className="w-3 h-3 ml-1" />
+                    Details <ArrowRight className="w-3 h-3 ml-1" />
                   </Button>
                 </Link>
               </div>
@@ -190,7 +190,7 @@ export function CommunityImageDialog({
               <div className="p-4 border-t bg-gray-50">
                 <div className="flex items-center gap-2">
                   <Input 
-                    placeholder="Viết bình luận..."
+                    placeholder="Write a comment..."
                     value={commentText}
                     onChange={(e) => setCommentText(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleComment()}

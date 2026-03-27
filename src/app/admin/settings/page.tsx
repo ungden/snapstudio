@@ -76,16 +76,16 @@ export default function SettingsPage() {
       // In a real app, you would save these to a settings table
       // For now, just show success message
       await new Promise(resolve => setTimeout(resolve, 1000));
-      toast.success('Cài đặt đã được lưu thành công!');
+      toast.success('Settings saved successfully!');
     } catch (error) {
-      toast.error('Lỗi khi lưu cài đặt');
+      toast.error('Error saving settings');
     } finally {
       setLoading(false);
     }
   };
 
   const resetToDefaults = () => {
-    if (!confirm('Bạn có chắc muốn khôi phục cài đặt mặc định?')) return;
+    if (!confirm('Are you sure you want to restore default settings?')) return;
     
     setSettings({
       aiModel: 'gemini-2.5-flash',
@@ -105,7 +105,7 @@ export default function SettingsPage() {
       enableImageModeration: false
     });
     
-    toast.success('Đã khôi phục cài đặt mặc định');
+    toast.success('Default settings restored');
   };
 
   return (
@@ -113,8 +113,8 @@ export default function SettingsPage() {
         <AdminSidebar />
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Cài đặt Hệ thống</h1>
-            <p className="text-gray-600">Cấu hình các thông số và tùy chọn hệ thống.</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">System Settings</h1>
+            <p className="text-gray-600">Configure system parameters and options.</p>
           </div>
 
           <div className="space-y-8">
@@ -123,7 +123,7 @@ export default function SettingsPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <Zap className="w-5 h-5" />
-                  Cấu hình AI
+                  AI Configuration
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -146,7 +146,7 @@ export default function SettingsPage() {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium mb-2">Batch Cost (điểm)</label>
+                    <label className="block text-sm font-medium mb-2">Batch Cost (points)</label>
                     <Input
                       type="number"
                       value={settings.batchCostPoints}
@@ -155,7 +155,7 @@ export default function SettingsPage() {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium mb-2">Solo Cost (điểm)</label>
+                    <label className="block text-sm font-medium mb-2">Solo Cost (points)</label>
                     <Input
                       type="number"
                       value={settings.soloCostPoints}
@@ -171,13 +171,13 @@ export default function SettingsPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <CreditCard className="w-5 h-5" />
-                  Cấu hình Thanh toán
+                  Payment Configuration
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Tỷ giá USD/VND</label>
+                    <label className="block text-sm font-medium mb-2">USD/VND Exchange Rate</label>
                     <Input
                       type="number"
                       value={settings.usdVndRate}
@@ -186,7 +186,7 @@ export default function SettingsPage() {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium mb-2">Phí xử lý (%)</label>
+                    <label className="block text-sm font-medium mb-2">Processing Fee (%)</label>
                     <Input
                       type="number"
                       value={settings.processingFeePercent}
@@ -202,13 +202,13 @@ export default function SettingsPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <Database className="w-5 h-5" />
-                  Giới hạn Hệ thống
+                  System Limits
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Max ảnh/người dùng</label>
+                    <label className="block text-sm font-medium mb-2">Max Images/User</label>
                     <Input
                       type="number"
                       value={settings.maxImagesPerUser}
@@ -217,7 +217,7 @@ export default function SettingsPage() {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium mb-2">Max dự án/người dùng</label>
+                    <label className="block text-sm font-medium mb-2">Max Projects/User</label>
                     <Input
                       type="number"
                       value={settings.maxProjectsPerUser}
@@ -233,15 +233,15 @@ export default function SettingsPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <Settings className="w-5 h-5" />
-                  Tính năng
+                  Features
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h4 className="font-medium text-gray-900">Cộng đồng</h4>
-                      <p className="text-sm text-gray-600">Cho phép người dùng chia sẻ và xem ảnh công khai</p>
+                      <h4 className="font-medium text-gray-900">Community</h4>
+                      <p className="text-sm text-gray-600">Allow users to share and view public images</p>
                     </div>
                     <Switch
                       checked={settings.enableCommunity}
@@ -251,8 +251,8 @@ export default function SettingsPage() {
                   
                   <div className="flex items-center justify-between">
                     <div>
-                      <h4 className="font-medium text-gray-900">Thông báo</h4>
-                      <p className="text-sm text-gray-600">Gửi thông báo email cho người dùng</p>
+                      <h4 className="font-medium text-gray-900">Notifications</h4>
+                      <p className="text-sm text-gray-600">Send email notifications to users</p>
                     </div>
                     <Switch
                       checked={settings.enableNotifications}
@@ -263,7 +263,7 @@ export default function SettingsPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <h4 className="font-medium text-gray-900">Rate Limiting</h4>
-                      <p className="text-sm text-gray-600">Giới hạn số request để bảo vệ hệ thống</p>
+                      <p className="text-sm text-gray-600">Limit requests to protect the system</p>
                     </div>
                     <Switch
                       checked={settings.enableRateLimit}
@@ -273,8 +273,8 @@ export default function SettingsPage() {
                   
                   <div className="flex items-center justify-between">
                     <div>
-                      <h4 className="font-medium text-gray-900">Kiểm duyệt ảnh</h4>
-                      <p className="text-sm text-gray-600">Tự động kiểm tra nội dung ảnh</p>
+                      <h4 className="font-medium text-gray-900">Image Moderation</h4>
+                      <p className="text-sm text-gray-600">Automatically check image content</p>
                     </div>
                     <Switch
                       checked={settings.enableImageModeration}
@@ -285,7 +285,7 @@ export default function SettingsPage() {
 
                 {settings.enableRateLimit && (
                   <div>
-                    <label className="block text-sm font-medium mb-2">Max requests/phút</label>
+                    <label className="block text-sm font-medium mb-2">Max Requests/Minute</label>
                     <Input
                       type="number"
                       value={settings.maxRequestsPerMinute}
@@ -301,7 +301,7 @@ export default function SettingsPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <Mail className="w-5 h-5" />
-                  Cấu hình Email
+                  Email Configuration
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -341,16 +341,16 @@ export default function SettingsPage() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Lưu cài đặt</h3>
-                    <p className="text-sm text-gray-600">Các thay đổi sẽ có hiệu lực ngay lập tức</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">Save Settings</h3>
+                    <p className="text-sm text-gray-600">Changes will take effect immediately</p>
                   </div>
                   <div className="flex gap-3">
                     <Button variant="outline" onClick={resetToDefaults}>
-                      Khôi phục mặc định
+                      Restore Defaults
                     </Button>
                     <Button onClick={handleSave} disabled={loading}>
                       <Save className="w-4 h-4 mr-2" />
-                      {loading ? 'Đang lưu...' : 'Lưu cài đặt'}
+                      {loading ? 'Saving...' : 'Save Settings'}
                     </Button>
                   </div>
                 </div>

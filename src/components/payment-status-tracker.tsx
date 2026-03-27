@@ -69,11 +69,11 @@ export function PaymentStatusTracker({ onPaymentSuccess }: PaymentStatusTrackerP
           if (newStatus) {
             setStatus(newStatus);
             if (newStatus === 'completed') {
-              toast.success('Thanh toán thành công!');
+              toast.success('Payment successful!');
               onPaymentSuccess();
               setTimeout(() => setOrder(null), 5000);
             } else if (newStatus === 'failed' || newStatus === 'rejected') {
-              toast.error('Thanh toán thất bại hoặc đã bị hủy.');
+              toast.error('Payment failed or was cancelled.');
             }
           }
         }
@@ -89,10 +89,10 @@ export function PaymentStatusTracker({ onPaymentSuccess }: PaymentStatusTrackerP
     if (!order) return;
     const result = await PaymentClient.cancelOrder(order.orderId);
     if (result.success) {
-      toast.info('Đã hủy đơn hàng.');
+      toast.info('Order cancelled.');
       setOrder(null);
     } else {
-      toast.error(result.error || 'Lỗi khi hủy đơn hàng.');
+      toast.error(result.error || 'Error cancelling order.');
     }
   };
 
@@ -101,7 +101,7 @@ export function PaymentStatusTracker({ onPaymentSuccess }: PaymentStatusTrackerP
       <Card>
         <CardContent className="p-6 text-center">
           <Loader2 className="w-6 h-6 animate-spin mx-auto mb-2 text-blue-600" />
-          <p className="text-sm text-gray-600">Đang kiểm tra thanh toán...</p>
+          <p className="text-sm text-gray-600">Checking payment status...</p>
         </CardContent>
       </Card>
     );
@@ -112,11 +112,11 @@ export function PaymentStatusTracker({ onPaymentSuccess }: PaymentStatusTrackerP
   }
 
   const statusInfo = {
-    pending: { icon: Clock, color: 'text-yellow-600', text: 'Đang chờ thanh toán' },
-    completed: { icon: CheckCircle, color: 'text-green-600', text: 'Thanh toán thành công' },
-    failed: { icon: XCircle, color: 'text-red-600', text: 'Thanh toán thất bại' },
-    rejected: { icon: XCircle, color: 'text-red-600', text: 'Đơn hàng đã hủy' },
-    unknown: { icon: Loader2, color: 'text-gray-600', text: 'Đang kiểm tra...' },
+    pending: { icon: Clock, color: 'text-yellow-600', text: 'Awaiting payment' },
+    completed: { icon: CheckCircle, color: 'text-green-600', text: 'Payment successful' },
+    failed: { icon: XCircle, color: 'text-red-600', text: 'Payment failed' },
+    rejected: { icon: XCircle, color: 'text-red-600', text: 'Order cancelled' },
+    unknown: { icon: Loader2, color: 'text-gray-600', text: 'Checking...' },
   };
   const currentStatus = statusInfo[status];
   const Icon = currentStatus.icon;
@@ -127,7 +127,7 @@ export function PaymentStatusTracker({ onPaymentSuccess }: PaymentStatusTrackerP
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Banknote className="w-5 h-5 text-blue-600" />
-            Đơn hàng đang chờ
+            Pending Order
           </div>
           <Badge variant={status === 'completed' ? 'default' : 'secondary'}>
             {status}
@@ -150,12 +150,12 @@ export function PaymentStatusTracker({ onPaymentSuccess }: PaymentStatusTrackerP
 
         {status === 'pending' && (
           <div className="text-center">
-            <p className="text-sm text-gray-600 mb-2">Vui lòng quét mã QR trong ứng dụng ngân hàng để hoàn tất.</p>
-            <Button variant="ghost" size="sm" onClick={handleCancelOrder}>Hủy đơn hàng</Button>
+            <p className="text-sm text-gray-600 mb-2">Please scan the QR code in your banking app to complete the payment.</p>
+            <Button variant="ghost" size="sm" onClick={handleCancelOrder}>Cancel Order</Button>
           </div>
         )}
         {status === 'completed' && (
-          <p className="text-sm text-green-600 text-center">Điểm đã được cộng vào tài khoản của bạn.</p>
+          <p className="text-sm text-green-600 text-center">Points have been added to your account.</p>
         )}
       </CardContent>
     </Card>

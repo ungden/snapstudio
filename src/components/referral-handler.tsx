@@ -20,7 +20,7 @@ export function ReferralHandler() {
       localStorage.setItem('snapstudio_referral_code', refCode);
       
       // Show welcome message for referred users
-      toast.success(`🎉 Chào mừng! Bạn được giới thiệu bởi CTV ${refCode}`, {
+      toast.success(`🎉 Welcome! You were referred by affiliate ${refCode}`, {
         duration: 5000,
       });
     }
@@ -31,8 +31,8 @@ export function ReferralHandler() {
     return (
       <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white py-3 px-4 text-center">
         <p className="text-sm font-medium">
-          🎉 Bạn được giới thiệu bởi CTV <span className="font-bold">{referralCode}</span> - 
-          Đăng ký ngay để nhận ưu đãi đặc biệt!
+          🎉 You were referred by affiliate <span className="font-bold">{referralCode}</span> -
+          Sign up now for a special offer!
         </p>
       </div>
     );

@@ -9,15 +9,15 @@ export function SiteFooter() {
           <div className="md:col-span-2">
             <Link href="/" className="text-2xl font-bold gradient-text mb-4 inline-block">SnapStudio</Link>
             <p className="text-gray-400 mb-6 max-w-md">
-              Dịch vụ tạo ảnh sản phẩm bằng AI hàng đầu Việt Nam. 
-              Từ 1 ảnh gốc tạo ra 12 ảnh marketing chuyên nghiệp trong 30 giây.
+              Leading AI product image generation service.
+              From 1 source photo, create 12 professional marketing images in 30 seconds.
             </p>
             <div className="flex space-x-4">
               <a 
                 href="https://www.facebook.com/snapstudio" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                aria-label="Fanpage Facebook"
+                aria-label="Facebook Page"
                 className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors"
               >
                 <Facebook className="w-5 h-5 text-white" />
@@ -26,7 +26,7 @@ export function SiteFooter() {
                 href="https://www.facebook.com/groups/snapstudio" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                aria-label="Cộng đồng Facebook"
+                aria-label="Facebook Community"
                 className="w-10 h-10 bg-gray-700 hover:bg-blue-800 rounded-lg flex items-center justify-center transition-colors"
               >
                 <Users className="w-5 h-5 text-white" />
@@ -35,17 +35,17 @@ export function SiteFooter() {
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">Dịch vụ</h3>
+            <h3 className="font-semibold mb-4">Services</h3>
             <ul className="space-y-2 text-gray-400">
-              <li><Link href="/features" className="hover:text-white transition-colors">Tạo ảnh AI</Link></li>
-              <li><Link href="/templates" className="hover:text-white transition-colors">Phong cách ảnh</Link></li>
+              <li><Link href="/features" className="hover:text-white transition-colors">AI Image Generation</Link></li>
+              <li><Link href="/templates" className="hover:text-white transition-colors">Image Styles</Link></li>
               <li><a href="#" className="hover:text-white transition-colors">Batch Processing</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Solo Mode</a></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">Ngành hàng</h3>
+            <h3 className="font-semibold mb-4">Industries</h3>
             <ul className="space-y-2 text-gray-400">
               <li><Link href="/food-beverage" className="hover:text-white transition-colors flex items-center gap-2">🍔 Food & Beverage</Link></li>
               <li><Link href="/beauty-personal-care" className="hover:text-white transition-colors flex items-center gap-2">💄 Beauty & Personal Care</Link></li>
@@ -55,10 +55,10 @@ export function SiteFooter() {
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">Hỗ trợ</h3>
+            <h3 className="font-semibold mb-4">Support</h3>
             <ul className="space-y-2 text-gray-400">
               <li><Link href="/faq" className="hover:text-white transition-colors">FAQ</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">Liên hệ</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
             </ul>
           </div>
@@ -66,11 +66,11 @@ export function SiteFooter() {
         
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 mb-4 md:mb-0">
-            © 2025 SnapStudio. Tất cả quyền được bảo lưu.
+            © 2025 SnapStudio. All rights reserved.
           </p>
           <div className="flex items-center space-x-6 text-gray-400">
-            <Link href="/terms" className="hover:text-white transition-colors">Điều khoản</Link>
-            <Link href="/privacy" className="hover:text-white transition-colors">Bảo mật</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
             <a href="mailto:contact@snapstudio.app" className="hover:text-white transition-colors">
               contact@snapstudio.app
             </a>

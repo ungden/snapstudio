@@ -45,7 +45,7 @@ export function RealTimeDashboard() {
         const newEvent: RealTimeEvent = {
           id: `user-${payload.new.id}`,
           type: 'new_user',
-          message: `Người dùng mới: ${payload.new.email}`,
+          message: `New user: ${payload.new.email}`,
           timestamp: payload.commit_timestamp,
         };
         setEvents(prev => [newEvent, ...prev.slice(0, 9)]);
@@ -59,7 +59,7 @@ export function RealTimeDashboard() {
         const newEvent: RealTimeEvent = {
           id: `image-${payload.new.id}`,
           type: 'new_image',
-          message: `Ảnh mới được tạo: ${payload.new.title}`,
+          message: `New image created: ${payload.new.title}`,
           timestamp: payload.commit_timestamp,
         };
         setEvents(prev => [newEvent, ...prev.slice(0, 9)]);
@@ -73,7 +73,7 @@ export function RealTimeDashboard() {
         const newEvent: RealTimeEvent = {
           id: `order-${payload.new.id}`,
           type: 'new_order',
-          message: `Đơn hàng mới: ${payload.new.amount.toLocaleString()} VND`,
+          message: `New order: ${payload.new.amount.toLocaleString()} VND`,
           timestamp: payload.commit_timestamp,
         };
         setEvents(prev => [newEvent, ...prev.slice(0, 9)]);
@@ -99,7 +99,7 @@ export function RealTimeDashboard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Hoạt động Real-time</CardTitle>
+        <CardTitle>Real-time Activity</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-3 gap-4 mb-6">
@@ -128,7 +128,7 @@ export function RealTimeDashboard() {
             <Alert>
               <Bell className="h-4 w-4" />
               <AlertDescription>
-                Đang chờ hoạt động mới...
+                Waiting for new activity...
               </AlertDescription>
             </Alert>
           )}
@@ -137,7 +137,7 @@ export function RealTimeDashboard() {
               <div className="mt-1">{getEventIcon(event.type)}</div>
               <div className="flex-1">
                 <p>{event.message}</p>
-                <p className="text-xs text-gray-500">{new Date(event.timestamp).toLocaleTimeString('vi-VN')}</p>
+                <p className="text-xs text-gray-500">{new Date(event.timestamp).toLocaleTimeString()}</p>
               </div>
             </div>
           ))}

@@ -223,7 +223,7 @@ export function ContentReports({
                     </div>
                     
                     <p className="text-xs text-gray-500">
-                      {new Date(report.created_at).toLocaleString('vi-VN')}
+                      {new Date(report.created_at).toLocaleString()}
                     </p>
                   </div>
                   
@@ -281,7 +281,7 @@ export function ContentReports({
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2">Timeline</h4>
                     <div className="text-sm space-y-1">
-                      <div><strong>Reported:</strong> {new Date(selectedReport.created_at).toLocaleString('vi-VN')}</div>
+                      <div><strong>Reported:</strong> {new Date(selectedReport.created_at).toLocaleString()}</div>
                     </div>
                   </div>
                 </div>

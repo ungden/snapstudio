@@ -127,14 +127,14 @@ export default function CommunityPage() {
 
     } catch (error) {
       console.error('Error loading community data:', error);
-      toast.error('Lỗi khi tải dữ liệu cộng đồng');
+      toast.error('Error loading community data');
     } finally {
       setLoading(false);
     }
   };
 
   const deleteComment = async (commentId: string) => {
-    if (!confirm('Bạn có chắc muốn xóa bình luận này?')) return;
+    if (!confirm('Are you sure you want to delete this comment?')) return;
 
     try {
       const { error } = await supabase
@@ -145,14 +145,14 @@ export default function CommunityPage() {
       if (error) throw error;
 
       setComments(prev => prev.filter(c => c.id !== commentId));
-      toast.success('Đã xóa bình luận');
+      toast.success('Comment deleted');
     } catch (error) {
-      toast.error('Lỗi khi xóa bình luận');
+      toast.error('Error deleting comment');
     }
   };
 
   const deleteLike = async (likeId: string) => {
-    if (!confirm('Bạn có chắc muốn xóa lượt thích này?')) return;
+    if (!confirm('Are you sure you want to remove this like?')) return;
 
     try {
       const { error } = await supabase
@@ -163,9 +163,9 @@ export default function CommunityPage() {
       if (error) throw error;
 
       setLikes(prev => prev.filter(l => l.id !== likeId));
-      toast.success('Đã xóa lượt thích');
+      toast.success('Like removed');
     } catch (error) {
-      toast.error('Lỗi khi xóa lượt thích');
+      toast.error('Error removing like');
     }
   };
 
@@ -207,12 +207,12 @@ export default function CommunityPage() {
             <div className="mb-8">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-900 mb-2">Quản lý Cộng đồng</h1>
-                  <p className="text-gray-600">Kiểm duyệt bình luận và quản lý tương tác cộng đồng.</p>
+                  <h1 className="text-3xl font-bold text-gray-900 mb-2">Community Management</h1>
+                  <p className="text-gray-600">Moderate comments and manage community interactions.</p>
                 </div>
                 <Button onClick={loadCommunityData} variant="outline" className="flex items-center gap-2">
                   <RefreshCw className="w-4 h-4" />
-                  Làm mới
+                  Refresh
                 </Button>
               </div>
             </div>
@@ -223,7 +223,7 @@ export default function CommunityPage() {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-gray-600">Tổng bình luận</p>
+                      <p className="text-sm text-gray-600">Total Comments</p>
                       <p className="text-2xl font-bold">{comments.length}</p>
                     </div>
                     <MessageSquare className="w-8 h-8 text-blue-600" />
@@ -234,7 +234,7 @@ export default function CommunityPage() {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-gray-600">Tổng lượt thích</p>
+                      <p className="text-sm text-gray-600">Total Likes</p>
                       <p className="text-2xl font-bold">{likes.length}</p>
                     </div>
                     <Heart className="w-8 h-8 text-red-600" />
@@ -245,7 +245,7 @@ export default function CommunityPage() {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-gray-600">Người dùng hoạt động</p>
+                      <p className="text-sm text-gray-600">Active Users</p>
                       <p className="text-2xl font-bold">{Object.keys(profiles).length}</p>
                     </div>
                     <User className="w-8 h-8 text-green-600" />
@@ -262,7 +262,7 @@ export default function CommunityPage() {
                 className="flex items-center gap-2"
               >
                 <MessageSquare className="w-4 h-4" />
-                Bình luận ({comments.length})
+                Comments ({comments.length})
               </Button>
               <Button
                 variant={activeTab === 'likes' ? 'default' : 'outline'}
@@ -270,7 +270,7 @@ export default function CommunityPage() {
                 className="flex items-center gap-2"
               >
                 <Heart className="w-4 h-4" />
-                Lượt thích ({likes.length})
+                Likes ({likes.length})
               </Button>
             </div>
 
@@ -280,7 +280,7 @@ export default function CommunityPage() {
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                   <Input
-                    placeholder="Tìm kiếm..."
+                    placeholder="Search..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10"
@@ -293,25 +293,25 @@ export default function CommunityPage() {
             <Card>
               <CardHeader>
                 <CardTitle>
-                  {activeTab === 'comments' ? 'Danh sách bình luận' : 'Danh sách lượt thích'}
+                  {activeTab === 'comments' ? 'Comments List' : 'Likes List'}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <div className="text-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                    <p className="text-gray-600">Đang tải...</p>
+                    <p className="text-gray-600">Loading...</p>
                   </div>
                 ) : activeTab === 'comments' ? (
                   <div className="overflow-x-auto">
                     <Table>
                       <TableHeader>
                         <TableRow>
-                          <TableHead>Người dùng</TableHead>
-                          <TableHead>Ảnh</TableHead>
-                          <TableHead>Nội dung</TableHead>
-                          <TableHead>Thời gian</TableHead>
-                          <TableHead>Thao tác</TableHead>
+                          <TableHead>User</TableHead>
+                          <TableHead>Image</TableHead>
+                          <TableHead>Content</TableHead>
+                          <TableHead>Time</TableHead>
+                          <TableHead>Actions</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -345,7 +345,7 @@ export default function CommunityPage() {
                                 <div className="text-sm truncate">{comment.content}</div>
                               </TableCell>
                               <TableCell className="text-sm">
-                                {new Date(comment.created_at).toLocaleString('vi-VN')}
+                                {new Date(comment.created_at).toLocaleString()}
                               </TableCell>
                               <TableCell>
                                 <div className="flex gap-1">
@@ -376,10 +376,10 @@ export default function CommunityPage() {
                     <Table>
                       <TableHeader>
                         <TableRow>
-                          <TableHead>Người dùng</TableHead>
-                          <TableHead>Ảnh</TableHead>
-                          <TableHead>Thời gian</TableHead>
-                          <TableHead>Thao tác</TableHead>
+                          <TableHead>User</TableHead>
+                          <TableHead>Image</TableHead>
+                          <TableHead>Time</TableHead>
+                          <TableHead>Actions</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -410,7 +410,7 @@ export default function CommunityPage() {
                                 </div>
                               </TableCell>
                               <TableCell className="text-sm">
-                                {new Date(like.created_at).toLocaleString('vi-VN')}
+                                {new Date(like.created_at).toLocaleString()}
                               </TableCell>
                               <TableCell>
                                 <Button
@@ -439,19 +439,19 @@ export default function CommunityPage() {
           {selectedComment && (
             <>
               <DialogHeader>
-                <DialogTitle>Chi tiết bình luận</DialogTitle>
+                <DialogTitle>Comment Details</DialogTitle>
               </DialogHeader>
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-2">Người bình luận</h4>
+                  <h4 className="font-semibold mb-2">Commenter</h4>
                   <div className="text-sm">
-                    <div><strong>Tên:</strong> {profiles[selectedComment.user_id]?.full_name || 'N/A'}</div>
+                    <div><strong>Name:</strong> {profiles[selectedComment.user_id]?.full_name || 'N/A'}</div>
                     <div><strong>Email:</strong> {profiles[selectedComment.user_id]?.email || 'N/A'}</div>
                   </div>
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold mb-2">Ảnh được bình luận</h4>
+                  <h4 className="font-semibold mb-2">Commented Image</h4>
                   {images[selectedComment.image_id] && (
                     <div className="flex items-center gap-3">
                       <img 
@@ -468,16 +468,16 @@ export default function CommunityPage() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold mb-2">Nội dung bình luận</h4>
+                  <h4 className="font-semibold mb-2">Comment Content</h4>
                   <div className="bg-gray-50 p-3 rounded-lg">
                     <p className="text-sm">{selectedComment.content}</p>
                   </div>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold mb-2">Thời gian</h4>
+                  <h4 className="font-semibold mb-2">Time</h4>
                   <p className="text-sm text-gray-600">
-                    {new Date(selectedComment.created_at).toLocaleString('vi-VN')}
+                    {new Date(selectedComment.created_at).toLocaleString()}
                   </p>
                 </div>
 
@@ -490,7 +490,7 @@ export default function CommunityPage() {
                     }}
                   >
                     <Trash2 className="w-4 h-4 mr-2" />
-                    Xóa bình luận
+                    Delete Comment
                   </Button>
                 </div>
               </div>

@@ -69,7 +69,7 @@ export default function ImageDetailPage() {
           .single();
 
         if (error || !data) {
-          toast.error("Không tìm thấy ảnh");
+          toast.error("Image not found");
           router.push('/community');
           return;
         }
@@ -115,7 +115,7 @@ export default function ImageDetailPage() {
 
   const handleLike = async () => {
     if (!user || !image) {
-      toast.error("Bạn cần đăng nhập để thích ảnh");
+      toast.error("You need to sign in to like images");
       return;
     }
 
@@ -133,7 +133,7 @@ export default function ImageDetailPage() {
         await supabase.from('community_likes').insert({ user_id: user.id, image_id: image.id });
       }
     } catch (error) {
-      toast.error("Lỗi khi thích ảnh");
+      toast.error("Failed to like image");
       // Revert
       setIsLiked(originalIsLiked);
       setImage(prev => prev ? { ...prev, like_count: originalLikeCount } : null);
@@ -157,7 +157,7 @@ export default function ImageDetailPage() {
       setImage(prev => prev ? { ...prev, comment_count: prev.comment_count + 1 } : null);
       setCommentText("");
     } catch (error) {
-      toast.error("Lỗi khi gửi bình luận");
+      toast.error("Failed to post comment");
     } finally {
       setIsSubmitting(false);
     }
@@ -169,9 +169,9 @@ export default function ImageDetailPage() {
     const filename = `${image.title}-snapstudio.jpg`;
     try {
       await ImageGenerator.downloadImage(urlToDownload, filename);
-      toast.success("Tải ảnh thành công!");
+      toast.success("Image downloaded successfully!");
     } catch {
-      toast.error("Tải ảnh thất bại.");
+      toast.error("Failed to download image.");
     }
   };
 
@@ -186,7 +186,7 @@ export default function ImageDetailPage() {
   if (!image) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <p>Không tìm thấy ảnh.</p>
+        <p>Image not found.</p>
       </div>
     );
   }
@@ -195,7 +195,7 @@ export default function ImageDetailPage() {
     <div className="max-w-6xl mx-auto py-12 px-4">
       <Button variant="ghost" onClick={() => router.back()} className="mb-6">
         <ArrowLeft className="w-4 h-4 mr-2" />
-        Quay lại
+        Go Back
       </Button>
       <Card className="overflow-hidden shadow-lg">
         <div className="grid grid-cols-1 lg:grid-cols-3">
@@ -216,7 +216,7 @@ export default function ImageDetailPage() {
                 </Avatar>
                 <div>
                   <p className="font-semibold">{image.profiles?.full_name || image.profiles?.email?.split('@')[0]}</p>
-                  <p className="text-sm text-gray-500">Đăng lúc {new Date(image.created_at).toLocaleDateString('vi-VN')}</p>
+                  <p className="text-sm text-gray-500">Posted on {new Date(image.created_at).toLocaleDateString('en-US')}</p>
                 </div>
               </div>
               <h1 className="text-2xl font-bold mb-2">{image.title}</h1>
@@ -240,7 +240,7 @@ export default function ImageDetailPage() {
               </div>
             </div>
             <div className="flex-1 p-6 overflow-y-auto space-y-4 max-h-80">
-              <h3 className="font-semibold">Bình luận ({comments.length})</h3>
+              <h3 className="font-semibold">Comments ({comments.length})</h3>
               {comments.map(comment => (
                 <div key={comment.id} className="flex items-start gap-3">
                   <Avatar className="w-8 h-8">
@@ -251,7 +251,7 @@ export default function ImageDetailPage() {
                   <div className="flex-1">
                     <p className="text-sm">
                       <span className="font-semibold">{comment.profiles?.full_name || comment.profiles?.email?.split('@')[0]}</span>
-                      <span className="text-gray-500 ml-2 text-xs">{new Date(comment.created_at).toLocaleDateString('vi-VN')}</span>
+                      <span className="text-gray-500 ml-2 text-xs">{new Date(comment.created_at).toLocaleDateString('en-US')}</span>
                     </p>
                     <p className="text-sm text-gray-700">{comment.content}</p>
                   </div>
@@ -262,7 +262,7 @@ export default function ImageDetailPage() {
               <div className="p-6 border-t bg-gray-50">
                 <div className="flex items-center gap-2">
                   <Input 
-                    placeholder="Viết bình luận..."
+                    placeholder="Write a comment..."
                     value={commentText}
                     onChange={(e) => setCommentText(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleComment()}

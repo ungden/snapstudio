@@ -30,12 +30,12 @@ export function BatchConfigurator({ batchConfig, onConfigChange, exampleImages, 
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-blue-600" />
-            Cấu hình bộ 12 ảnh
+            Configure 12-image set
           </div>
           <Badge className={cn(
             totalSelected === 12 ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
           )}>
-            {totalSelected} / 12 ảnh
+            {totalSelected} / 12 images
           </Badge>
         </CardTitle>
       </CardHeader>

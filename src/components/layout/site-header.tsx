@@ -17,25 +17,25 @@ const industries = [
   { 
     href: "/food-beverage", 
     title: "Food & Beverage", 
-    description: "Thực phẩm & Đồ uống",
+    description: "Food & Beverages",
     color: "text-orange-600"
   },
   { 
     href: "/beauty-personal-care", 
     title: "Beauty & Personal Care", 
-    description: "Mỹ phẩm & Chăm sóc",
+    description: "Cosmetics & Personal Care",
     color: "text-pink-600"
   },
   { 
     href: "/fashion-accessories", 
     title: "Fashion & Accessories", 
-    description: "Thời trang & Phụ kiện",
+    description: "Fashion & Accessories",
     color: "text-purple-600"
   },
   { 
     href: "/mother-baby", 
     title: "Mother & Baby", 
-    description: "Mẹ & Bé",
+    description: "Mom & Baby",
     color: "text-blue-600"
   },
 ];
@@ -53,7 +53,7 @@ export function SiteHeader() {
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="bg-transparent hover:bg-blue-50 text-gray-700">
                     <Building2 className="w-4 h-4 mr-2" />
-                    Ngành hàng
+                    Industries
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="grid w-[400px] gap-3 p-4">
@@ -79,13 +79,13 @@ export function SiteHeader() {
             </NavigationMenu>
             
             <Link href="/features" className="text-gray-700 hover:text-blue-600 transition-colors">
-              Tính năng
+              Features
             </Link>
             <Link href="/templates" className="text-gray-700 hover:text-blue-600 transition-colors">
               Templates
             </Link>
             <Link href="/#pricing" className="text-gray-700 hover:text-blue-600 transition-colors">
-              Bảng giá
+              Pricing
             </Link>
           </div>
           
@@ -95,7 +95,7 @@ export function SiteHeader() {
               className="border-blue-600 text-blue-600 hover:bg-blue-50 focus-ring auth-trigger"
             >
               <LogIn className="w-4 h-4 mr-2" />
-              Đăng nhập
+              Log In
             </Button>
           </div>
         </div>

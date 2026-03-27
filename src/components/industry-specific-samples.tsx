@@ -76,7 +76,7 @@ export function IndustrySpecificSamples({ industry }: { industry: IndustryId }) 
   if (samples.length === 0) {
     return (
       <div className="text-center py-8 text-gray-500">
-        Chưa có ảnh mẫu cho ngành hàng này.
+        No sample images available for this industry yet.
       </div>
     );
   }

@@ -44,7 +44,7 @@ export default function ProfitabilityPage() {
       setData(resp as ProfitabilityData);
     } catch (error: any) {
       console.error('Error loading profitability data:', error);
-      toast.error(error.message || 'Lỗi khi tải dữ liệu lợi nhuận');
+      toast.error(error.message || 'Error loading profitability data');
     } finally {
       setLoading(false);
     }
@@ -70,8 +70,8 @@ export default function ProfitabilityPage() {
             <div className="mb-8">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-900 mb-2">Phân tích Lợi nhuận</h1>
-                  <p className="text-gray-600">Theo dõi doanh thu, chi phí và lợi nhuận của hệ thống.</p>
+                  <h1 className="text-3xl font-bold text-gray-900 mb-2">Profitability Analysis</h1>
+                  <p className="text-gray-600">Track revenue, costs, and system profitability.</p>
                 </div>
                 <div className="flex gap-3">
                   <Select value={dateRange} onValueChange={setDateRange}>
@@ -79,14 +79,14 @@ export default function ProfitabilityPage() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="7">7 ngày qua</SelectItem>
-                      <SelectItem value="30">30 ngày qua</SelectItem>
-                      <SelectItem value="90">90 ngày qua</SelectItem>
+                      <SelectItem value="7">Last 7 days</SelectItem>
+                      <SelectItem value="30">Last 30 days</SelectItem>
+                      <SelectItem value="90">Last 90 days</SelectItem>
                     </SelectContent>
                   </Select>
                   <Button onClick={loadData} variant="outline">
                     <RefreshCw className="w-4 h-4 mr-2" />
-                    Làm mới
+                    Refresh
                   </Button>
                 </div>
               </div>
@@ -95,7 +95,7 @@ export default function ProfitabilityPage() {
             {loading ? (
               <div className="text-center py-12">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                <p className="text-gray-600">Đang tải dữ liệu...</p>
+                <p className="text-gray-600">Loading data...</p>
               </div>
             ) : data ? (
               <div className="space-y-8">
@@ -103,7 +103,7 @@ export default function ProfitabilityPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">Tổng Doanh thu</CardTitle>
+                      <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
                       <TrendingUp className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
@@ -112,7 +112,7 @@ export default function ProfitabilityPage() {
                   </Card>
                   <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">Tổng Chi phí</CardTitle>
+                      <CardTitle className="text-sm font-medium">Total Cost</CardTitle>
                       <TrendingDown className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
@@ -121,7 +121,7 @@ export default function ProfitabilityPage() {
                   </Card>
                   <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">Lợi nhuận</CardTitle>
+                      <CardTitle className="text-sm font-medium">Profit</CardTitle>
                       <DollarSign className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
@@ -132,7 +132,7 @@ export default function ProfitabilityPage() {
                   </Card>
                   <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">Tỷ suất lợi nhuận</CardTitle>
+                      <CardTitle className="text-sm font-medium">Profit Margin</CardTitle>
                       <DollarSign className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
@@ -146,7 +146,7 @@ export default function ProfitabilityPage() {
                 {/* Profitability Chart */}
                 <Card>
                   <CardHeader>
-                    <CardTitle>Biểu đồ Doanh thu, Chi phí & Lợi nhuận</CardTitle>
+                    <CardTitle>Revenue, Cost & Profit Chart</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ResponsiveContainer width="100%" height={400}>
@@ -156,16 +156,16 @@ export default function ProfitabilityPage() {
                         <YAxis tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
                         <Tooltip formatter={(v: number) => `${v.toLocaleString()} VND`} />
                         <Legend />
-                        <Line type="monotone" dataKey="revenue" name="Doanh thu" stroke="#10B981" strokeWidth={2} />
-                        <Line type="monotone" dataKey="cost" name="Chi phí" stroke="#EF4444" strokeWidth={2} />
-                        <Line type="monotone" dataKey="profit" name="Lợi nhuận" stroke="#3B82F6" strokeWidth={3} />
+                        <Line type="monotone" dataKey="revenue" name="Revenue" stroke="#10B981" strokeWidth={2} />
+                        <Line type="monotone" dataKey="cost" name="Cost" stroke="#EF4444" strokeWidth={2} />
+                        <Line type="monotone" dataKey="profit" name="Profit" stroke="#3B82F6" strokeWidth={3} />
                       </LineChart>
                     </ResponsiveContainer>
                   </CardContent>
                 </Card>
               </div>
             ) : (
-              <p>Không có dữ liệu.</p>
+              <p>No data available.</p>
             )}
           </div>
         </main>

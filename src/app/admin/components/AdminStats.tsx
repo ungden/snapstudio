@@ -16,25 +16,25 @@ interface AdminStatsProps {
 export function AdminStats({ stats }: AdminStatsProps) {
   const statItems = [
     {
-      label: 'Người dùng',
+      label: 'Users',
       value: stats.totalUsers,
       icon: Users,
       color: 'text-blue-600'
     },
     {
-      label: 'Ảnh đã tạo',
+      label: 'Images Created',
       value: stats.totalImages,
       icon: Image,
       color: 'text-green-600'
     },
     {
-      label: 'Đơn hàng',
+      label: 'Orders',
       value: stats.totalOrders,
       icon: ShoppingCart,
       color: 'text-orange-600'
     },
     {
-      label: 'Chờ xử lý',
+      label: 'Pending',
       value: stats.pendingOrders,
       icon: AlertCircle,
       color: 'text-yellow-600'
@@ -46,7 +46,7 @@ export function AdminStats({ stats }: AdminStatsProps) {
       color: 'text-purple-600'
     },
     {
-      label: 'Doanh thu',
+      label: 'Revenue',
       value: `${(stats.revenue / 1000000).toFixed(1)}M`,
       icon: DollarSign,
       color: 'text-green-600'

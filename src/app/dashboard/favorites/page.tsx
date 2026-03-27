@@ -64,7 +64,7 @@ export default function FavoritesPage() {
       setFavorites(data as FavoriteImage[] || []);
     } catch (error) {
       console.error('Error loading favorites:', error);
-      toast.error('Lỗi khi tải ảnh yêu thích');
+      toast.error('Error loading favorite images');
     } finally {
       setLoading(false);
     }
@@ -80,9 +80,9 @@ export default function FavoritesPage() {
       if (error) throw error;
 
       setFavorites(prev => prev.filter(img => img.id !== imageId));
-      toast.success('Đã bỏ yêu thích');
+      toast.success('Removed from favorites');
     } catch (error) {
-      toast.error('Lỗi khi bỏ yêu thích');
+      toast.error('Error removing from favorites');
     }
   };
 
@@ -100,9 +100,9 @@ export default function FavoritesPage() {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
       
-      toast.success('Tải ảnh thành công!');
+      toast.success('Image downloaded successfully!');
     } catch (error) {
-      toast.error('Lỗi khi tải ảnh');
+      toast.error('Error downloading image');
     }
   };
 
@@ -128,8 +128,8 @@ export default function FavoritesPage() {
         <DashboardSidebar />
         <div className="max-w-6xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Ảnh yêu thích</h1>
-            <p className="text-gray-600">Tất cả ảnh bạn đã đánh dấu yêu thích.</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Favorite Images</h1>
+            <p className="text-gray-600">All images you have marked as favorites.</p>
           </div>
 
           {/* Search */}
@@ -138,7 +138,7 @@ export default function FavoritesPage() {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
-                  placeholder="Tìm kiếm ảnh yêu thích..."
+                  placeholder="Search favorite images..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -151,21 +151,21 @@ export default function FavoritesPage() {
           {loading ? (
             <div className="text-center py-12">
               <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
-              <p className="text-gray-600">Đang tải ảnh yêu thích...</p>
+              <p className="text-gray-600">Loading favorite images...</p>
             </div>
           ) : filteredFavorites.length === 0 ? (
             <Card>
               <CardContent className="p-12 text-center">
                 <Heart className="w-16 h-16 mx-auto text-gray-300 mb-4" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {searchTerm ? 'Không tìm thấy ảnh' : 'Chưa có ảnh yêu thích'}
+                  {searchTerm ? 'No images found' : 'No favorite images yet'}
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  {searchTerm ? 'Thử tìm kiếm với từ khóa khác' : 'Đánh dấu ❤️ những ảnh bạn thích để xem lại dễ dàng'}
+                  {searchTerm ? 'Try searching with different keywords' : 'Mark images with ❤️ to easily find them later'}
                 </p>
                 {!searchTerm && (
                   <Button onClick={() => router.push('/dashboard')}>
-                    Tạo ảnh ngay
+                    Generate images now
                   </Button>
                 )}
               </CardContent>
@@ -202,11 +202,11 @@ export default function FavoritesPage() {
                   <CardContent className="p-4">
                     <h4 className="font-medium text-sm text-gray-900 mb-1 truncate">{image.title}</h4>
                     <p className="text-xs text-gray-500 mb-3 truncate">
-                      {image.projects?.name || 'Dự án không xác định'}
+                      {image.projects?.name || 'Unknown project'}
                     </p>
                     
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-500">{image.download_count} lượt tải</span>
+                      <span className="text-xs text-gray-500">{image.download_count} downloads</span>
                       <div className="flex gap-1">
                         <Button
                           size="sm"

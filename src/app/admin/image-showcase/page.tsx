@@ -51,7 +51,7 @@ export default function ImageShowcasePage() {
       .limit(20);
 
     if (error) {
-      toast.error('Lỗi khi tìm kiếm ảnh');
+      toast.error('Error searching images');
     } else {
       setSearchResults((data as GeneratedImage[]) || []);
     }
@@ -69,17 +69,17 @@ export default function ImageShowcasePage() {
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Quản lý Ảnh Showcase</h1>
-              <p className="text-gray-600">Chọn ảnh nổi bật hiển thị trên trang chủ và dashboard.</p>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Image Showcase Management</h1>
+              <p className="text-gray-600">Select featured images to display on the homepage and dashboard.</p>
             </div>
             <div className="flex gap-2">
               <Button onClick={() => setIsAddDialogOpen(true)}>
                 <Plus className="w-4 h-4 mr-2" />
-                Thêm ảnh nổi bật
+                Add Featured Image
               </Button>
               <Button onClick={reload} variant="outline">
                 <RefreshCw className="w-4 h-4 mr-2" />
-                Làm mới
+                Refresh
               </Button>
             </div>
           </div>
@@ -96,9 +96,9 @@ export default function ImageShowcasePage() {
               </CardHeader>
               <CardContent>
                 {featuredLoading ? (
-                  <p>Đang tải...</p>
+                  <p>Loading...</p>
                 ) : images.length === 0 ? (
-                  <p className="text-sm text-gray-500">Chưa có ảnh nổi bật.</p>
+                  <p className="text-sm text-gray-500">No featured images yet.</p>
                 ) : (
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {images.map((image: GeneratedImage) => (
@@ -122,11 +122,11 @@ export default function ImageShowcasePage() {
       <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
         <DialogContent className="max-w-3xl">
           <DialogHeader>
-            <DialogTitle>Thêm ảnh vào Showcase</DialogTitle>
+            <DialogTitle>Add Image to Showcase</DialogTitle>
           </DialogHeader>
           <div className="flex gap-2 mb-4">
             <Input 
-              placeholder="Tìm kiếm ảnh theo tên..."
+              placeholder="Search images by name..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
@@ -136,7 +136,7 @@ export default function ImageShowcasePage() {
             </Button>
           </div>
           {searchLoading ? (
-            <p>Đang tìm kiếm...</p>
+            <p>Searching...</p>
           ) : (
             <div className="max-h-96 overflow-y-auto grid grid-cols-2 md:grid-cols-4 gap-4">
               {searchResults.map(image => (
@@ -146,7 +146,7 @@ export default function ImageShowcasePage() {
                     {image.is_featured ? (
                       <Badge variant="secondary">
                         <Check className="w-4 h-4 mr-1" />
-                        Đã thêm
+                        Added
                       </Badge>
                     ) : (
                       <Button size="sm" onClick={() => handleAddFeature(image)}>

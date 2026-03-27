@@ -13,12 +13,12 @@ interface GenerationProgressProps {
 }
 
 const progressStages = [
-  { threshold: 0, label: "Khởi tạo", description: "Chuẩn bị dữ liệu và prompt AI", icon: Clock },
-  { threshold: 20, label: "Phân tích ảnh", description: "AI đang phân tích ảnh gốc của bạn", icon: Sparkles },
-  { threshold: 40, label: "Tạo prompt", description: "Tối ưu prompt cho từng loại ảnh", icon: Zap },
-  { threshold: 60, label: "Render ảnh", description: "AI đang tạo 12 ảnh chuyên nghiệp", icon: Loader2 },
-  { threshold: 80, label: "Xử lý cuối", description: "Thêm watermark và tối ưu chất lượng", icon: Sparkles },
-  { threshold: 100, label: "Hoàn thành", description: "Bộ ảnh đã sẵn sàng!", icon: CheckCircle }
+  { threshold: 0, label: "Initializing", description: "Preparing data and AI prompts", icon: Clock },
+  { threshold: 20, label: "Analyzing image", description: "AI is analyzing your original image", icon: Sparkles },
+  { threshold: 40, label: "Creating prompts", description: "Optimizing prompts for each image type", icon: Zap },
+  { threshold: 60, label: "Rendering images", description: "AI is generating 12 professional images", icon: Loader2 },
+  { threshold: 80, label: "Final processing", description: "Adding watermark and optimizing quality", icon: Sparkles },
+  { threshold: 100, label: "Complete", description: "Your image set is ready!", icon: CheckCircle }
 ];
 
 export function GenerationProgress({ productName, progress }: GenerationProgressProps) {
@@ -74,13 +74,13 @@ export function GenerationProgress({ productName, progress }: GenerationProgress
               "text-2xl font-bold mb-2 transition-colors",
               isCompleted ? "text-green-900" : "text-blue-900"
             )}>
-              {isCompleted ? "🎉 Hoàn thành!" : "Đang tạo ảnh..."}
+              {isCompleted ? "🎉 Complete!" : "Generating images..."}
             </h3>
             <p className={cn(
               "text-lg transition-colors",
               isCompleted ? "text-green-700" : "text-blue-700"
             )}>
-              {isCompleted ? `Bộ ảnh cho "${productName}" đã sẵn sàng!` : `Đang tạo bộ ảnh cho "${productName}"`}
+              {isCompleted ? `Image set for "${productName}" is ready!` : `Generating image set for "${productName}"`}
             </p>
           </div>
 
@@ -141,11 +141,11 @@ export function GenerationProgress({ productName, progress }: GenerationProgress
               <div className="flex items-center justify-center gap-2 text-blue-800">
                 <Clock className="w-4 h-4" />
                 <span className="text-sm font-medium">
-                  Thời gian ước tính: {displayProgress < 50 ? "45-60" : displayProgress < 80 ? "20-30" : "5-10"} giây
+                  Estimated time: {displayProgress < 50 ? "45-60" : displayProgress < 80 ? "20-30" : "5-10"} seconds
                 </span>
               </div>
               <p className="text-xs text-blue-600 mt-1">
-                Vui lòng không tắt trang này. Quá trình sẽ hoàn thành tự động.
+                Please do not close this page. The process will complete automatically.
               </p>
             </div>
           )}
@@ -155,10 +155,10 @@ export function GenerationProgress({ productName, progress }: GenerationProgress
             <div className="p-4 bg-green-100 rounded-lg border border-green-200">
               <div className="flex items-center justify-center gap-2 text-green-800 mb-2">
                 <CheckCircle className="w-5 h-5" />
-                <span className="font-medium">Tạo ảnh thành công!</span>
+                <span className="font-medium">Images generated successfully!</span>
               </div>
               <p className="text-sm text-green-700">
-                12 ảnh chuyên nghiệp đã được tạo và sẵn sàng để tải xuống.
+                12 professional images have been generated and are ready for download.
               </p>
             </div>
           )}

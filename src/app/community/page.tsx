@@ -69,7 +69,7 @@ export default function CommunityPage() {
 
       if (error) {
         console.error("Error loading images:", error);
-        toast.error("Lỗi khi tải ảnh cộng đồng");
+        toast.error("Failed to load community images");
         return;
       }
 
@@ -121,7 +121,7 @@ export default function CommunityPage() {
 
   const handleLike = async (image: CommunityImage) => {
     if (!user) {
-      toast.error("Bạn cần đăng nhập để thích ảnh");
+      toast.error("You need to sign in to like images");
       return;
     }
 
@@ -159,7 +159,7 @@ export default function CommunityPage() {
       }
     } catch (error) {
       console.error("Error liking image:", error);
-      toast.error("Lỗi khi thích ảnh");
+      toast.error("Failed to like image");
       // Revert optimistic update
       setLikedIds(originalLikedIds);
       setImages(originalImages);
@@ -170,8 +170,8 @@ export default function CommunityPage() {
     <>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-3">Cộng đồng SnapStudio</h1>
-          <p className="text-lg text-gray-600">Khám phá những tác phẩm sáng tạo từ cộng đồng người dùng.</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-3">SnapStudio Community</h1>
+          <p className="text-lg text-gray-600">Discover creative works from the user community.</p>
         </header>
 
         <div className="flex justify-center mb-8">
@@ -182,7 +182,7 @@ export default function CommunityPage() {
               className="flex items-center gap-2"
             >
               <Star className="w-4 h-4" />
-              Khám phá
+              Explore
             </Button>
             <Button 
               variant={activeTab === 'following' ? 'default' : 'ghost'}
@@ -190,7 +190,7 @@ export default function CommunityPage() {
               className="flex items-center gap-2"
             >
               <Users className="w-4 h-4" />
-              Đang theo dõi
+              Following
             </Button>
           </div>
         </div>
@@ -200,15 +200,15 @@ export default function CommunityPage() {
             <div className="flex justify-between items-center mb-8">
               <div className="relative w-full max-w-xs">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <Input placeholder="Tìm kiếm ảnh..." className="pl-10" />
+                <Input placeholder="Search images..." className="pl-10" />
               </div>
               <Select value={sort} onValueChange={(value: 'latest' | 'popular') => setSort(value)}>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="latest">Mới nhất</SelectItem>
-                  <SelectItem value="popular">Phổ biến nhất</SelectItem>
+                  <SelectItem value="latest">Latest</SelectItem>
+                  <SelectItem value="popular">Most Popular</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -230,7 +230,7 @@ export default function CommunityPage() {
                       <div className="absolute bottom-0 left-0 p-3 text-white">
                         <p className="font-semibold text-sm truncate">{image.title}</p>
                         <p className="text-xs opacity-80">
-                          bởi {image.full_name || image.email?.split('@')[0] || 'Người dùng'}
+                          by {image.full_name || image.email?.split('@')[0] || 'User'}
                         </p>
                       </div>
                     </div>
@@ -264,7 +264,7 @@ export default function CommunityPage() {
 
             {hasMore && !loading && (
               <div className="text-center mt-8">
-                <Button onClick={() => loadImages()}>Tải thêm</Button>
+                <Button onClick={() => loadImages()}>Load More</Button>
               </div>
             )}
           </>

@@ -61,7 +61,7 @@ export function useAdminData() {
 
     } catch (error) {
       console.error('Error loading data:', error);
-      toast.error('Lỗi khi tải dữ liệu');
+      toast.error('Error loading data');
     } finally {
       setLoading(false);
     }

@@ -21,17 +21,17 @@ const supabase = createSupabaseBrowserClient();
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: BarChart3 },
-  { name: 'Đơn hàng', href: '/admin/orders', icon: CreditCard },
-  { name: 'Người dùng', href: '/admin/users', icon: Users },
+  { name: 'Orders', href: '/admin/orders', icon: CreditCard },
+  { name: 'Users', href: '/admin/users', icon: Users },
   { name: 'Templates', href: '/admin/templates', icon: FileText },
-  { name: 'Ảnh Showcase', href: '/admin/image-showcase', icon: Palette },
-  { name: 'Ảnh đã tạo', href: '/admin/images', icon: Image },
+  { name: 'Image Showcase', href: '/admin/image-showcase', icon: Palette },
+  { name: 'Generated Images', href: '/admin/images', icon: Image },
   { name: 'Analytics', href: '/admin/analytics', icon: TrendingUp },
-  { name: 'Lợi nhuận', href: '/admin/profitability', icon: DollarSign },
-  { name: 'Hoạt động', href: '/admin/activity', icon: Activity },
-  { name: 'Cộng đồng', href: '/admin/community', icon: MessageSquare },
-  { name: 'Hệ thống', href: '/admin/system', icon: Database },
-  { name: 'Cài đặt', href: '/admin/settings', icon: Settings },
+  { name: 'Profitability', href: '/admin/profitability', icon: DollarSign },
+  { name: 'Activity', href: '/admin/activity', icon: Activity },
+  { name: 'Community', href: '/admin/community', icon: MessageSquare },
+  { name: 'System', href: '/admin/system', icon: Database },
+  { name: 'Settings', href: '/admin/settings', icon: Settings },
 ];
 
 function AdminSidebarContent() {
@@ -42,10 +42,10 @@ function AdminSidebarContent() {
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
-      toast.error(error.message || "Đăng xuất thất bại");
+      toast.error(error.message || "Logout failed");
       return;
     }
-    toast.success("Đã đăng xuất");
+    toast.success("Logged out");
     router.replace("/login");
   };
 
@@ -115,7 +115,7 @@ function AdminSidebarContent() {
             className={cn("w-full justify-start text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200", isCollapsed && "justify-center")}
           >
             <Home className={cn("w-4 h-4", !isCollapsed && "mr-3")} />
-            <span className={cn(isCollapsed && "hidden")}>Về Dashboard</span>
+            <span className={cn(isCollapsed && "hidden")}>Go to Dashboard</span>
           </Button>
         </Link>
         <Button 
@@ -124,7 +124,7 @@ function AdminSidebarContent() {
           onClick={handleLogout}
         >
           <LogOut className={cn("w-4 h-4", !isCollapsed && "mr-3")} />
-          <span className={cn(isCollapsed && "hidden")}>Đăng xuất</span>
+          <span className={cn(isCollapsed && "hidden")}>Logout</span>
         </Button>
       </div>
     </div>

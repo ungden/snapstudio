@@ -77,7 +77,7 @@ const plans: Plan[] = [
     priceUsd: 5,
     priceVnd: 132000,
     billingPeriod: 'monthly',
-    features: ['1,200 điểm/tháng', '~10 bộ ảnh', 'Tất cả templates', 'Tải xuống HD']
+    features: ['1,200 points/month', '~10 image sets', 'All templates', 'HD downloads']
   },
   {
     id: 'pro_monthly',
@@ -87,7 +87,7 @@ const plans: Plan[] = [
     priceVnd: 528000,
     popular: true,
     billingPeriod: 'monthly',
-    features: ['5,000 điểm/tháng', '~41 bộ ảnh', 'Hỗ trợ ưu tiên', 'Advanced features']
+    features: ['5,000 points/month', '~41 image sets', 'Priority support', 'Advanced features']
   },
   {
     id: 'business_monthly',
@@ -96,7 +96,7 @@ const plans: Plan[] = [
     priceUsd: 60,
     priceVnd: 1584000,
     billingPeriod: 'monthly',
-    features: ['15,000 điểm/tháng', '~125 bộ ảnh', 'Team features', 'API access']
+    features: ['15,000 points/month', '~125 image sets', 'Team features', 'API access']
   },
   {
     id: 'pro_yearly',
@@ -106,8 +106,8 @@ const plans: Plan[] = [
     priceVnd: 5280000,
     popular: true,
     billingPeriod: 'yearly',
-    savings: 'Tiết kiệm 17%',
-    features: ['5,000 điểm/tháng', 'Thanh toán 1 lần/năm', 'Tiết kiệm $40/năm', 'Tất cả tính năng Pro']
+    savings: 'Save 17%',
+    features: ['5,000 points/month', 'Billed annually', 'Save $40/year', 'All Pro features']
   }
 ];
 
@@ -200,7 +200,7 @@ function BillingPageContent() {
 
   const handleSelectPlan = async (planId: string) => {
     if (!user) {
-      toast.error('Vui lòng đăng nhập để mua gói');
+      toast.error('Please log in to purchase a plan');
       return;
     }
 
@@ -210,12 +210,12 @@ function BillingPageContent() {
       
       if (result.success && result.order) {
         setCurrentOrder(result.order);
-        toast.success('Đã tạo đơn hàng! Vui lòng thanh toán để hoàn tất.');
+        toast.success('Order created! Please complete the payment.');
       } else {
-        toast.error(result.error || 'Không thể tạo đơn hàng');
+        toast.error(result.error || 'Unable to create order');
       }
     } catch (error: any) {
-      toast.error(error.message || 'Lỗi khi tạo đơn hàng');
+      toast.error(error.message || 'Error creating order');
     } finally {
       setLoading(false);
     }
@@ -226,22 +226,22 @@ function BillingPageContent() {
       await navigator.clipboard.writeText(text);
       setCopied(type);
       setTimeout(() => setCopied(null), 2000);
-      toast.success(`Đã sao chép ${type}!`);
+      toast.success(`Copied ${type}!`);
     } catch (error) {
-      toast.error('Không thể sao chép');
+      toast.error('Unable to copy');
     }
   };
 
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'completed':
-        return <Badge className="bg-green-100 text-green-800">Hoàn thành</Badge>;
+        return <Badge className="bg-green-100 text-green-800">Completed</Badge>;
       case 'pending':
-        return <Badge className="bg-yellow-100 text-yellow-800">Chờ thanh toán</Badge>;
+        return <Badge className="bg-yellow-100 text-yellow-800">Awaiting Payment</Badge>;
       case 'failed':
-        return <Badge className="bg-red-100 text-red-800">Thất bại</Badge>;
+        return <Badge className="bg-red-100 text-red-800">Failed</Badge>;
       case 'rejected':
-        return <Badge className="bg-gray-100 text-gray-800">Đã hủy</Badge>;
+        return <Badge className="bg-gray-100 text-gray-800">Cancelled</Badge>;
       default:
         return <Badge variant="outline">{status}</Badge>;
     }
@@ -272,8 +272,8 @@ function BillingPageContent() {
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Thanh toán & Gói cước</h1>
-        <p className="text-gray-600">Quản lý gói cước và lịch sử thanh toán của bạn</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Billing & Plans</h1>
+        <p className="text-gray-600">Manage your plans and payment history</p>
       </div>
 
       {/* Current Subscription */}
@@ -281,38 +281,38 @@ function BillingPageContent() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-blue-600" />
-            Gói hiện tại
+            Current Plan
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Thông tin gói</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Plan Info</h3>
               <div className="space-y-1 text-sm">
-                <div><strong>Gói:</strong> {profile?.subscription_plan || 'Free'}</div>
-                <div><strong>Số dư:</strong> {(profile?.points_balance || 0).toLocaleString()} điểm</div>
-                <div><strong>Ảnh đã tạo:</strong> {profile?.images_generated || 0}</div>
+                <div><strong>Plan:</strong> {profile?.subscription_plan || 'Free'}</div>
+                <div><strong>Balance:</strong> {(profile?.points_balance || 0).toLocaleString()} points</div>
+                <div><strong>Images Generated:</strong> {profile?.images_generated || 0}</div>
               </div>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Thời hạn</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Duration</h3>
               <div className="space-y-1 text-sm">
                 {profile?.subscription_expires_at ? (
                   <>
-                    <div><strong>Hết hạn:</strong> {new Date(profile.subscription_expires_at).toLocaleDateString('vi-VN')}</div>
-                    <div><strong>Còn lại:</strong> {Math.max(0, Math.ceil((new Date(profile.subscription_expires_at).getTime() - Date.now()) / (1000 * 60 * 60 * 24)))} ngày</div>
+                    <div><strong>Expires:</strong> {new Date(profile.subscription_expires_at).toLocaleDateString('en-US')}</div>
+                    <div><strong>Remaining:</strong> {Math.max(0, Math.ceil((new Date(profile.subscription_expires_at).getTime() - Date.now()) / (1000 * 60 * 60 * 24)))} days</div>
                   </>
                 ) : (
-                  <div className="text-gray-500">Gói miễn phí</div>
+                  <div className="text-gray-500">Free plan</div>
                 )}
               </div>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Sử dụng</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Usage</h3>
               <div className="space-y-2">
                 <div className="text-sm">
                   <div className="flex justify-between mb-1">
-                    <span>Điểm đã dùng tháng này</span>
+                    <span>Points used this month</span>
                     <span>~{Math.floor((profile?.images_generated || 0) * 10)} pts</span>
                   </div>
                   <Progress value={Math.min(100, ((profile?.images_generated || 0) * 10) / (profile?.points_balance || 1) * 100)} className="h-2" />
@@ -329,34 +329,34 @@ function BillingPageContent() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Clock className="w-5 h-5 text-orange-600" />
-              Đơn hàng đang chờ thanh toán
+              Order Awaiting Payment
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3">Thông tin thanh toán</h3>
+                  <h3 className="font-semibold text-gray-900 mb-3">Payment Information</h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
-                      <span>Gói:</span>
+                      <span>Plan:</span>
                       <span className="font-semibold">{currentOrder.planName}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Số tiền:</span>
+                      <span>Amount:</span>
                       <span className="font-bold text-lg text-blue-600">{currentOrder.amount.toLocaleString()} VND</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Mã chuyển khoản:</span>
+                      <span>Transfer Code:</span>
                       <div className="flex items-center gap-2">
                         <span className="font-mono">{currentOrder.description}</span>
                         <Button
                           size="sm"
                           variant="outline"
                           className="p-1 h-6 w-6"
-                          onClick={() => copyToClipboard(currentOrder.description, 'mã chuyển khoản')}
+                          onClick={() => copyToClipboard(currentOrder.description, 'transfer code')}
                         >
-                          {copied === 'mã chuyển khoản' ? <CheckCircle className="w-3 h-3 text-green-600" /> : <Copy className="w-3 h-3" />}
+                          {copied === 'transfer code' ? <CheckCircle className="w-3 h-3 text-green-600" /> : <Copy className="w-3 h-3" />}
                         </Button>
                       </div>
                     </div>
@@ -364,28 +364,28 @@ function BillingPageContent() {
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3">Thông tin ngân hàng</h3>
+                  <h3 className="font-semibold text-gray-900 mb-3">Bank Information</h3>
                   <div className="space-y-2 text-sm bg-white p-4 rounded-lg border">
                     <div className="flex justify-between">
-                      <span>Ngân hàng:</span>
+                      <span>Bank:</span>
                       <span>{currentOrder.bankName}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Số tài khoản:</span>
+                      <span>Account Number:</span>
                       <div className="flex items-center gap-2">
                         <span className="font-mono">{currentOrder.beneficiary}</span>
                         <Button
                           size="sm"
                           variant="outline"
                           className="p-1 h-6 w-6"
-                          onClick={() => copyToClipboard(currentOrder.beneficiary, 'số tài khoản')}
+                          onClick={() => copyToClipboard(currentOrder.beneficiary, 'account number')}
                         >
-                          {copied === 'số tài khoản' ? <CheckCircle className="w-3 h-3 text-green-600" /> : <Copy className="w-3 h-3" />}
+                          {copied === 'account number' ? <CheckCircle className="w-3 h-3 text-green-600" /> : <Copy className="w-3 h-3" />}
                         </Button>
                       </div>
                     </div>
                     <div className="flex justify-between">
-                      <span>Chủ tài khoản:</span>
+                      <span>Account Holder:</span>
                       <span>{currentOrder.accountName}</span>
                     </div>
                   </div>
@@ -393,16 +393,16 @@ function BillingPageContent() {
               </div>
 
               <div className="text-center">
-                <h3 className="font-semibold text-gray-900 mb-3">Quét mã QR để thanh toán</h3>
+                <h3 className="font-semibold text-gray-900 mb-3">Scan QR Code to Pay</h3>
                 <div className="bg-white p-4 rounded-xl border-2 border-gray-200 inline-block">
                   <img 
                     src={currentOrder.qrUrl} 
-                    alt="QR Code thanh toán"
+                    alt="Payment QR Code"
                     className="w-64 h-64 mx-auto"
                   />
                 </div>
                 <p className="text-sm text-gray-600 mt-4">
-                  Quét mã QR bằng app ngân hàng để thanh toán tự động
+                  Scan the QR code with your banking app for automatic payment
                 </p>
               </div>
             </div>
@@ -412,7 +412,7 @@ function BillingPageContent() {
 
       {/* Available Plans */}
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Chọn gói phù hợp</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Choose the Right Plan</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {plans.map((plan) => {
             const Icon = getPlanIcon(plan.name);
@@ -429,7 +429,7 @@ function BillingPageContent() {
               >
                 {plan.popular && (
                   <div className="absolute top-0 left-0 right-0 bg-blue-600 text-white text-center py-2 text-sm font-bold">
-                    PHỔ BIẾN
+                    POPULAR
                   </div>
                 )}
 
@@ -447,7 +447,7 @@ function BillingPageContent() {
                     ${plan.priceUsd}
                   </div>
                   <div className="text-sm text-gray-500 mb-2">
-                    {plan.billingPeriod === 'yearly' ? '/năm' : '/tháng'}
+                    {plan.billingPeriod === 'yearly' ? '/year' : '/month'}
                   </div>
                   
                   {/* VND Price Below (smaller) */}
@@ -456,7 +456,7 @@ function BillingPageContent() {
                   </div>
                   
                   <Badge className="bg-blue-50 text-blue-700 mt-2">
-                    {plan.points.toLocaleString()} điểm/tháng
+                    {plan.points.toLocaleString()} points/month
                   </Badge>
                 </CardHeader>
 
@@ -481,7 +481,7 @@ function BillingPageContent() {
                     ) : (
                       <CreditCard className="w-4 h-4 mr-2" />
                     )}
-                    Chọn gói này
+                    Select Plan
                   </Button>
                 </CardContent>
               </Card>
@@ -492,8 +492,8 @@ function BillingPageContent() {
         {/* Pricing Note */}
         <div className="text-center mt-6">
           <p className="text-sm text-gray-500">
-            💡 <strong>Mẹo:</strong> Giá USD giúp so sánh với các dịch vụ quốc tế. 
-            Thanh toán bằng VND qua chuyển khoản ngân hàng Việt Nam.
+            💡 <strong>Tip:</strong> USD pricing is shown for international comparison.
+            Payment is made in VND via Vietnamese bank transfer.
           </p>
         </div>
       </div>
@@ -503,19 +503,19 @@ function BillingPageContent() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <History className="w-5 h-5" />
-            Lịch sử đơn hàng
+            Order History
           </CardTitle>
         </CardHeader>
         <CardContent>
           {historyLoading ? (
             <div className="text-center py-8">
               <Loader2 className="w-6 h-6 animate-spin mx-auto text-blue-600" />
-              <p className="text-gray-600 mt-2">Đang tải lịch sử...</p>
+              <p className="text-gray-600 mt-2">Loading history...</p>
             </div>
           ) : orderHistory.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
               <CreditCard className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p>Chưa có đơn hàng nào</p>
+              <p>No orders yet</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -524,7 +524,7 @@ function BillingPageContent() {
                   <div>
                     <div className="font-semibold">{order.metadata?.plan_name || 'Unknown Plan'}</div>
                     <div className="text-sm text-gray-600">
-                      {new Date(order.created_at).toLocaleDateString('vi-VN')} • 
+                      {new Date(order.created_at).toLocaleDateString('en-US')} •
                       {order.amount.toLocaleString()} VND
                     </div>
                   </div>
@@ -532,7 +532,7 @@ function BillingPageContent() {
                     {getStatusBadge(order.status)}
                     {order.metadata?.billing_period && (
                       <div className="text-xs text-gray-500 mt-1">
-                        {order.metadata.billing_period === 'yearly' ? 'Thanh toán năm' : 'Thanh toán tháng'}
+                        {order.metadata.billing_period === 'yearly' ? 'Annual billing' : 'Monthly billing'}
                       </div>
                     )}
                   </div>
@@ -552,7 +552,7 @@ export default function BillingPage() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center py-12">
           <Loader2 className="w-8 h-8 animate-spin mx-auto text-blue-600" />
-          <p className="text-gray-600 mt-2">Đang tải...</p>
+          <p className="text-gray-600 mt-2">Loading...</p>
         </div>
       </div>
     }>
